@@ -1,0 +1,1768 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:visibility="visible"
+    android:keepScreenOn="true"
+    tools:context=".MainActivity">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layoutorcamento"
+        android:layout_width="470dp"
+        android:layout_height="800dp"
+        android:background="#f5da99"
+        android:verticalScrollbarPosition="left"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/layoutContentMainVendas"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarOrc"
+            android:layout_width="470dp"
+            android:layout_height="64dp"
+            android:background="@color/orcamento"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="ORÇAMENTO"
+            app:titleMargin="120dp"
+            app:titleMarginEnd="120dp"
+            app:titleMarginStart="100dp"
+            app:titleMargins="20dp"
+            app:titleTextColor="@color/colorAccent" />
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar2Orc"
+            android:layout_width="482dp"
+            android:layout_height="217dp"
+            android:background="@color/orcamento"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:titleMargin="120dp"
+            app:titleMarginEnd="100dp"
+            app:titleMarginStart="80dp"
+            app:titleMargins="40dp"
+            app:titleTextColor="@color/colorPrimaryDark" />
+
+        <ListView
+            android:id="@+id/tvOrcamento"
+            style="@style/Widget.AppCompat.ListView.Menu"
+            android:layout_width="482dp"
+            android:layout_height="0dp"
+            android:background="@color/colorAccent"
+            android:scrollY="10dp"
+            android:scrollbarAlwaysDrawHorizontalTrack="false"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:scrollbars="vertical"
+            android:scrollHorizontally="true"
+            android:verticalScrollbarPosition="left"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/toolbar2Orc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarOrc" />
+
+        <Button
+            android:id="@+id/bFinalizarOrc"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="167dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/semfoco"
+            android:onClick="finalizaorcamento"
+            android:text="FINALIZAR"
+            android:textColor="@color/colorAccent"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/toolbar2Orc" />
+
+        <EditText
+            style="@style/Widget.AppCompat.AutoCompleteTextView"
+            android:layout_width="176dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="48dp"
+            android:ems="10"
+            android:focusable="false"
+            android:inputType="textPersonName"
+            android:text="Quantidade dos itens"
+            android:textColor="@color/colorAccent"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/etOrcTotDesc"
+            app:layout_constraintStart_toStartOf="@+id/etOrcTotDesc" />
+
+        <EditText
+            android:id="@+id/etOrcTotItens"
+            style="@style/Widget.AppCompat.AutoCompleteTextView"
+            android:layout_width="176dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="8dp"
+            android:ems="10"
+            android:focusable="false"
+            android:inputType="textPersonName"
+            android:text=" Total dos itens"
+            android:textColor="@color/colorAccent"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/etOrcTotDesc"
+            app:layout_constraintStart_toStartOf="@+id/etOrcTotDesc" />
+
+        <EditText
+            android:id="@+id/etOrcTotDesc"
+            style="@style/Widget.AppCompat.AutoCompleteTextView"
+            android:layout_width="174dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="60dp"
+            android:ems="10"
+            android:focusable="false"
+            android:inputType="textPersonName"
+            android:text="Total de desconto"
+            android:textColor="@color/colorAccent"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/toolbar2Orc"
+            app:layout_constraintStart_toStartOf="@+id/toolbar2Orc" />
+
+
+        <TextView
+            android:id="@+id/tvValorTotalOrc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="104dp"
+            android:layout_marginBottom="116dp"
+            android:text="R$ 0.00"
+            android:textColor="@color/colorAccent"
+            android:textSize="30sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/toolbar2Orc"
+            app:layout_constraintStart_toEndOf="@+id/etOrcTotItens" />
+
+        <TextView
+            android:id="@+id/tvTotSemDescOrc"
+            android:layout_width="63dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="32dp"
+            android:focusable="auto"
+            android:text="R$ 0.00"
+            android:textColor="@color/colorAccent"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/tvDescontoOrc"
+            app:layout_constraintStart_toEndOf="@+id/etOrcTotItens" />
+
+        <TextView
+            android:id="@+id/tvQtdItensOrc"
+            android:layout_width="47dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="72dp"
+            android:text="0"
+            android:textColor="@color/colorAccent"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/tvDescontoOrc"
+            app:layout_constraintStart_toEndOf="@+id/etOrcTotItens" />
+
+        <TextView
+            android:id="@+id/tvDescontoOrc"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="R$ 0.00"
+            android:textColor="@color/colorAccent"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@+id/etOrcTotDesc"
+            app:layout_constraintTop_toTopOf="@+id/etOrcTotDesc" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layoutCadastrarCategoria"
+        android:layout_width="1191dp"
+        android:layout_height="800dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="2dp"
+
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BenviarEmail">
+
+        <EditText
+            android:id="@+id/textviewinserirCat"
+            android:layout_width="205dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="16dp"
+            android:enabled="true"
+            android:hint="Pesquise uma categoria"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewcadCat" />
+
+
+        <TextView
+            android:id="@+id/textViewcadCat"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="1117dp"
+            android:hint="CADASTRO DE CATEGORIA"
+            android:scaleX="2"
+            android:scaleY="2"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvNcm"
+            android:layout_width="450dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="50dp"
+            android:text="Descrição"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textviewinserirCat" />
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:layout_marginLeft="70dp"
+            android:text="NCM"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/tvNcm"
+            app:layout_constraintTop_toTopOf="@+id/tvNcm" />
+
+        <Button
+            android:id="@+id/clearcateg"
+            android:layout_width="44dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="2dp"
+            android:background="#8B0000"
+            android:onClick="limpacateg"
+            android:text="X"
+            android:textColor="#F8F8FF"
+            android:textColorLink="#00F1EAEA"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintStart_toEndOf="@+id/textviewinserirCat"
+            app:layout_constraintTop_toTopOf="@+id/textviewinserirCat" />
+
+        <TextView
+            android:id="@+id/textView33"
+            android:layout_width="100sp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="90dp"
+            android:layout_marginLeft="90dp"
+            android:text="Produtos"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/textView25"
+            app:layout_constraintTop_toTopOf="@+id/tvNcm" />
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="110dp"
+            android:layout_marginLeft="110dp"
+            android:text="Criado em"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/textView33"
+            app:layout_constraintTop_toTopOf="@+id/textView33" />
+
+        <ListView
+            android:id="@+id/listcategoria"
+            android:layout_width="1100dp"
+            android:layout_height="550dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView33">
+
+        </ListView>
+
+        <Button
+            android:id="@+id/bProd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="400dp"
+            android:layout_marginLeft="400dp"
+            android:background="@color/design_default_color_primary"
+            android:text="Produto"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@+id/bPesqCat"
+            app:layout_constraintTop_toTopOf="@+id/bNovaCat" />
+
+        <Button
+            android:id="@+id/bPesqCat"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="346dp"
+            android:layout_marginLeft="346dp"
+            android:layout_marginTop="69dp"
+            android:background="@color/selecionado"
+            android:onClick="filtrandocateg"
+            android:scrollX="1dp"
+            android:text="Buscar"
+            android:textAllCaps="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/bNovaCat"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="535dp"
+            android:layout_marginLeft="535dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@color/selecionado"
+            android:onClick="novacategoria"
+            android:text="+ Nova Categoria"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/bPesqCat"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layoutCadProd"
+        android:layout_width="1191dp"
+        android:layout_height="800dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="2dp"
+
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BenviarEmail">
+
+        <EditText
+            android:id="@+id/txtpesquisa"
+            android:layout_width="205dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="16dp"
+            android:enabled="true"
+            android:hint="Pesquise um produto..."
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewcadProd" />
+
+        <Button
+            android:id="@+id/clearprod"
+            android:layout_width="44dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="2dp"
+            android:background="#8B0000"
+            android:onClick="limpaprod"
+            android:text="X"
+            android:textColor="#F8F8FF"
+            android:textColorLink="#00F1EAEA"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintStart_toEndOf="@+id/txtpesquisa"
+            app:layout_constraintTop_toBottomOf="@+id/textViewcadProd"
+            app:layout_constraintTop_toTopOf="@+id/txtpesquisa" />
+
+        <TextView
+            android:id="@+id/textViewcadProd"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="1117dp"
+            android:hint="CADASTRO DE PRODUTO"
+            android:scaleX="2"
+            android:scaleY="2"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/bCategoria"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="400dp"
+            android:layout_marginLeft="400dp"
+            android:background="@color/design_default_color_primary"
+            android:text="Categoria"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/bPesqProd"
+            app:layout_constraintTop_toTopOf="@+id/bNovoProd" />
+
+        <TextView
+            android:id="@+id/textView32"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="50dp"
+            android:text="Descrição"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtpesquisa" />
+
+        <TextView
+            android:id="@+id/textView34"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:layout_marginLeft="70dp"
+            android:text="Categoria"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/textView32"
+            app:layout_constraintTop_toTopOf="@+id/textView32" />
+
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="90dp"
+            android:layout_marginLeft="90dp"
+            android:text="Preco"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/textView34"
+            app:layout_constraintTop_toTopOf="@+id/textView34" />
+
+        <TextView
+            android:id="@+id/textView36"
+            android:layout_width="135dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="90dp"
+            android:layout_marginLeft="90dp"
+            android:text="EAN"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/textView35"
+            app:layout_constraintTop_toTopOf="@+id/textView35" />
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginLeft="100dp"
+            android:text="Criado em"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/textView36"
+            app:layout_constraintTop_toTopOf="@+id/textView36" />
+
+        <ListView
+            android:id="@+id/listproduto"
+            android:layout_width="1100dp"
+            android:layout_height="550dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView34" />
+
+        <Button
+            android:id="@+id/bPesqProd"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="346dp"
+            android:layout_marginLeft="346dp"
+            android:layout_marginTop="69dp"
+            android:background="@color/selecionado"
+            android:onClick="filtrandoprod"
+            android:scrollX="1dp"
+            android:text="Buscar"
+            android:textAllCaps="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/bNovoProd"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="535dp"
+            android:layout_marginLeft="535dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@color/selecionado"
+            android:onClick="novoproduto"
+            android:text="+ Novo Produto"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/bPesqProd"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layoutConfigura"
+        android:layout_width="1191dp"
+        android:layout_height="800dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="2dp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BenviarEmail">
+
+        <AnalogClock
+            android:id="@+id/TCclosck"
+            android:layout_width="713dp"
+            android:layout_height="400dp"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="400dp"
+            android:minWidth="300dip"
+            android:minHeight="300dip"
+            android:scaleX="3"
+            android:scaleY="3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/StatusSistema"
+            android:layout_width="1191dp"
+            android:layout_height="700dp"
+            android:layout_marginStart="4dp"
+            android:onClick="esconderTeclado"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="300dp"
+                android:layout_height="100dp"
+                android:indeterminate="false"
+                android:max="100"
+                android:minWidth="200dp"
+                android:minHeight="50dp"
+                android:progress="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnConsultarStatusOper"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <Button
+                android:id="@+id/btnvoltarmenuant"
+                android:layout_width="280dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="8dp"
+                android:background="#4169E1"
+                android:onClick="ConfigMenuAnterior"
+                android:text=" ao menu anterior"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnFecharAplicacao" />
+
+            <Button
+                android:id="@+id/btnFecharAplicacao"
+                android:layout_width="280dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="8dp"
+                android:background="#4169E1"
+                android:onClick="FecharAplicacao"
+                android:text="Fechar Aplicação"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnExtrairLogs" />
+
+            <Button
+                android:id="@+id/btnExtrairLogs"
+                android:layout_width="280dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="8dp"
+                android:background="#4169E1"
+                android:onClick="extrairLogs"
+                android:text="Extrair Logs"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnConsultarStatusOper" />
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/layconsultarstatusoper"
+                android:layout_width="700dp"
+                android:layout_height="700dp"
+                android:layout_marginStart="78dp"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/bordasarredondados"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btnConsultarStatusOper"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tvconsultarstatusoperac"
+                    android:layout_width="580dp"
+                    android:layout_height="600dp"
+                    android:layout_marginTop="15dp"
+                    android:text="TextView"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/btnimprimirstatussat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginBottom="20dp"
+                    android:onClick="imprimirStatusSat"
+                    android:text="Imprimir"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+            </android.support.constraint.ConstraintLayout>
+
+            <Button
+                android:id="@+id/btnConsultarStatusOper"
+                android:layout_width="280dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="100dp"
+                android:background="#4169E1"
+                android:onClick="consultarStatusOperacional"
+                android:text="Consultar Status Operacional"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+        <Button
+            android:id="@+id/getExternalStorage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="350dp"
+            android:layout_marginTop="90dp"
+            android:text="Lerarquivo"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/button13"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/myInputText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="350dp"
+            android:layout_marginTop="200dp"
+            android:text="TextView"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/button13"
+            app:layout_constraintTop_toTopOf="@+id/button13" />
+
+        <TextView
+            android:id="@+id/response"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="350dp"
+            android:layout_marginTop="350dp"
+            android:text="TextView"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/button13"
+            app:layout_constraintTop_toTopOf="@+id/button13" />
+
+        <EditText
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="111dp"
+            android:layout_marginTop="100dp"
+            android:text="TextView"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/button13"
+            app:layout_constraintTop_toTopOf="@+id/button13" />
+
+        <Button
+            android:id="@+id/saveExternalStorage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="350dp"
+            android:layout_marginTop="250dp"
+            android:text="Salvar"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/button13"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            android:text="Teste impressorra controlID"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/button13"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button13"
+            android:layout_width="300dp"
+            android:layout_height="150dp"
+            android:text="Consultar sat controlid"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/Parametros" />
+
+        <Button
+            android:id="@+id/button12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="75dp"
+            android:layout_marginBottom="23dp"
+            android:text="Teste impressão Sweda"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/Parametros"
+            android:layout_width="1191dp"
+            android:layout_height="594dp"
+            android:layout_marginStart="4dp"
+            android:onClick="esconderTeclado"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="438dp"
+                android:layout_marginTop="16dp"
+                android:text="Parâmetros do sistema"
+                android:textSize="30sp"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btncontador"
+                android:layout_width="205dp"
+                android:layout_height="57dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="95dp"
+                android:background="@color/corparametrosemfoco"
+                android:text="CONTADOR"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
+
+            <Button
+                android:id="@+id/btnemitente"
+                android:layout_width="205dp"
+                android:layout_height="57dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/corparametrosemfoco"
+                android:text="EMITENTE"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="@+id/btndiversos"
+                app:layout_constraintTop_toBottomOf="@+id/btndiversos"
+                tools:visibility="visible" />
+
+            <Button
+                android:id="@+id/btnimpressora"
+                android:layout_width="205dp"
+                android:layout_height="57dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/corparametrosemfoco"
+                android:text="IMPRESSORA"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="@+id/btnemitente"
+                app:layout_constraintTop_toBottomOf="@+id/btnemitente"
+                tools:visibility="visible" />
+
+            <Button
+                android:id="@+id/btnsair"
+                android:layout_width="205dp"
+                android:layout_height="57dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/corparametrosemfoco"
+                android:onClick="ConfigMenuAnterior"
+                android:text="sair"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="@+id/btnsat"
+                app:layout_constraintTop_toBottomOf="@+id/btnsat"
+                tools:visibility="visible" />
+
+            <GridView
+                android:id="@+id/gridParametros"
+                android:layout_width="235dp"
+                android:layout_height="455dp"
+                android:layout_marginStart="21dp"
+                android:background="@drawable/bordasarredondadoscateg"
+                android:numColumns="1"
+                android:scrollbarSize="2dp"
+                android:textAlignment="viewEnd"
+                app:layout_constraintStart_toEndOf="@+id/btncontador"
+                app:layout_constraintTop_toTopOf="@+id/btncontador" />
+
+            <EditText
+                android:id="@+id/tvInfo"
+                android:layout_width="328dp"
+                android:layout_height="204dp"
+                android:layout_marginTop="84dp"
+                android:layout_marginEnd="116dp"
+                android:background="@drawable/bordasarredondadoscateg"
+                android:gravity="top"
+                android:paddingLeft="6dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btGravarAlt"
+                android:layout_width="328dp"
+                android:layout_height="51dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/corparametrosemfoco"
+                android:text="Gravar alterações"
+                app:layout_constraintEnd_toEndOf="@+id/tvInfo"
+                app:layout_constraintTop_toBottomOf="@+id/tvInfo" />
+
+            <TextView
+                android:id="@+id/tvDescricao"
+                android:layout_width="330dp"
+                android:layout_height="34dp"
+                android:gravity="center"
+                android:text="DESCRIÇÃO"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="@+id/btGravarAlt"
+                app:layout_constraintTop_toBottomOf="@+id/btGravarAlt" />
+
+            <Button
+                android:id="@+id/btnsat"
+                android:layout_width="205dp"
+                android:layout_height="57dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/corparametrosemfoco"
+                android:text="SAT"
+                app:layout_constraintEnd_toEndOf="@+id/btnrevenda"
+                app:layout_constraintTop_toBottomOf="@+id/btnrevenda" />
+
+            <TextView
+                android:id="@+id/tvInfoDescr"
+                android:layout_width="333dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bordasarredondados"
+                android:lines="4"
+                android:maxLines="4"
+                android:paddingLeft="6dp"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="@+id/tvDescricao"
+                app:layout_constraintTop_toBottomOf="@+id/tvDescricao" />
+
+            <Button
+                android:id="@+id/btndesenvolvedora"
+                android:layout_width="205dp"
+                android:layout_height="57dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/corparametrosemfoco"
+                android:text="DESENVOLVEDORA"
+                app:layout_constraintEnd_toEndOf="@+id/btncontador"
+                app:layout_constraintTop_toBottomOf="@+id/btncontador" />
+
+            <Button
+                android:id="@+id/btnrevenda"
+                android:layout_width="205dp"
+                android:layout_height="57dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/corparametrosemfoco"
+                android:text="REVENDA"
+                app:layout_constraintEnd_toEndOf="@+id/btnimpressora"
+                app:layout_constraintTop_toBottomOf="@+id/btnimpressora" />
+
+            <Button
+                android:id="@+id/btndiversos"
+                android:layout_width="205dp"
+                android:layout_height="57dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/corparametrosemfoco"
+                android:text="DIVERSOS"
+                app:layout_constraintEnd_toEndOf="@+id/btndesenvolvedora"
+                app:layout_constraintTop_toBottomOf="@+id/btndesenvolvedora" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <Button
+            android:id="@+id/btnstatusistema"
+            android:layout_width="357dp"
+            android:layout_height="203dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="168dp"
+            android:background="#4169E1"
+            android:text="Status do Sistema"
+            android:textColor="#FFFFFF"
+            android:textSize="36sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <Button
+            android:id="@+id/btnparametros"
+            android:layout_width="357dp"
+            android:layout_height="203dp"
+            android:layout_marginStart="300dp"
+            android:layout_marginTop="168dp"
+            android:background="#4169E1"
+            android:text="Parametros do Sistema"
+            android:textColor="#FFFFFF"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@+id/btnstatusistema"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layoutRelatorio"
+        android:layout_width="1180dp"
+        android:layout_height="800dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="2dp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BenviarEmail">
+
+        <AnalogClock
+            android:id="@+id/AnlClockRelatorio"
+            android:layout_width="713dp"
+            android:layout_height="400dp"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="400dp"
+            android:minWidth="300dip"
+            android:minHeight="300dip"
+            android:scaleX="3"
+            android:scaleY="3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvfechamentoPor"
+            android:layout_width="144dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="32dp"
+            android:text="Fechamento por"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/Bfechamento"
+            app:layout_constraintStart_toStartOf="@+id/textdtnInicial"
+            app:layout_constraintTop_toBottomOf="@+id/textRelatorioOrcamento" />
+
+        <Spinner
+            android:id="@+id/sptipofechamento"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:layout_width="250dp"
+            android:layout_height="42dp"
+            android:spinnerMode="dropdown"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/tvfechamentoPor"
+            app:layout_constraintTop_toBottomOf="@+id/tvfechamentoPor"
+            tools:ignore="MissingConstraints"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/totalValor"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="16dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/totalItens"
+            app:layout_constraintTop_toBottomOf="@+id/listorcamento"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/Bfechamento"
+            android:layout_width="309dp"
+            android:layout_height="132dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="155dp"
+            android:background="#4169E1"
+            android:onClick="relatoriofechamento"
+            android:text="Fechamento"
+            android:textColor="#FFFFFF"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@+id/textRelatorio"
+            app:layout_constraintTop_toBottomOf="@+id/textRelatorio"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/Borcamento"
+            android:layout_width="309dp"
+            android:layout_height="132dp"
+            android:layout_marginTop="16dp"
+            android:background="#4169E1"
+            android:onClick="relatorioorcamento"
+            android:text="Orçamento"
+            android:textColor="#FFFFFF"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/Bfechamento"
+            app:layout_constraintTop_toBottomOf="@+id/Bfechamento"
+            tools:onClick="relatorioorcamento"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/Bestatisticas"
+            android:layout_width="309dp"
+            android:layout_height="132dp"
+            android:layout_marginStart="155dp"
+            android:layout_marginTop="4dp"
+            android:background="#4169E1"
+            android:text="Estatísticas"
+            android:textColor="#FFFFFF"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/textRelatorio"
+            app:layout_constraintTop_toBottomOf="@+id/textRelatorio"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/textRelatorio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="460dp"
+            android:layout_marginTop="48dp"
+            android:text="Relatórios"
+            android:textSize="60sp"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/textRelatorioOrcamento"
+            android:layout_width="657dp"
+            android:layout_height="79dp"
+            android:layout_marginStart="270dp"
+            android:layout_marginTop="16dp"
+            android:text="Relatório de Orçamento"
+            android:textSize="60sp"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/textdtnInicial"
+            android:layout_width="192dp"
+            android:layout_height="19dp"
+            android:layout_marginTop="90dp"
+            android:text="Data Inicial:"
+            android:textSize="14sp"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/editDatainicial"
+            app:layout_constraintTop_toBottomOf="@+id/textRelatorio"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/textdtnFinal"
+            android:layout_width="192dp"
+            android:layout_height="19dp"
+            android:layout_marginTop="90dp"
+            android:text="Data Final:"
+            android:textSize="14sp"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/editDatafinal"
+            app:layout_constraintTop_toBottomOf="@+id/textRelatorio"
+            tools:visibility="visible" />
+
+        <EditText
+            android:id="@+id/editDatainicial"
+            android:layout_width="306dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:editable="false"
+            android:ems="10"
+            android:focusable="false"
+            android:inputType="date"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/textRelatorioOrcamento"
+            app:layout_constraintTop_toBottomOf="@+id/textdtnInicial"
+            tools:visibility="visible" />
+
+        <EditText
+            android:id="@+id/editDatafinal"
+            android:layout_width="306dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:editable="false"
+            android:ems="10"
+            android:focusable="false"
+            android:inputType="date"
+            android:visibility="invisible"
+            app:layout_constraintStart_toEndOf="@+id/editDatainicial"
+            app:layout_constraintTop_toBottomOf="@+id/textdtnFinal"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/btngerarorcamento"
+            android:layout_width="311dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="10dp"
+            android:background="#32CD32"
+            android:onClick="gerarRelatorio"
+            android:text="Gerar"
+            android:textColor="#FFFFFF"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/editDatainicial"
+            app:layout_constraintTop_toBottomOf="@+id/editDatainicial"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/btnimprimirorcamento"
+            android:layout_width="317dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/finalizarorc"
+            android:onClick="imprimirRelOrc"
+            android:text="Imprimir"
+            android:textColor="#FFFFFF"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@+id/editDatafinal"
+            app:layout_constraintTop_toBottomOf="@+id/editDatafinal"
+            tools:visibility="visible" />
+
+        <ListView
+            android:id="@+id/listorcamento"
+            android:layout_width="869dp"
+            android:layout_height="370dp"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/btngerarorcamento"
+            app:layout_constraintTop_toBottomOf="@+id/btngerarorcamento"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/totalItens"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="801dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="165dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/totalValor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/listorcamento"
+            tools:visibility="visible" />
+    </android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:id="@+id/Bvender"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="120dp"
+        android:layout_height="98dp"
+        android:background="@color/selecionado"
+        android:onClick="SelcVender"
+        android:text="VENDER"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/Bsair"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="120dp"
+        android:layout_height="98dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/semfoco"
+        android:onClick="sair"
+        android:text="SAIR"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Bsuporte" />
+
+    <Button
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="121dp"
+        android:layout_height="98dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/semfoco"
+        android:onClick="sair"
+        app:layout_constraintStart_toStartOf="@+id/Bsair"
+        app:layout_constraintTop_toBottomOf="@+id/Bsair" />
+
+    <Button
+        android:id="@+id/Bcontador"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="120dp"
+        android:layout_height="98dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/semfoco"
+        android:onClick="SelcContador"
+        android:text="CONTADOR"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Brelatorios" />
+
+    <Button
+        android:id="@+id/Bconfigurar"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="120dp"
+
+        android:layout_height="98dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/semfoco"
+        android:enabled="true"
+        android:onClick="SelcConfigurar"
+        android:text="CONFIGURAÇÕES"
+        app:layout_constraintCircleRadius="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Bcontador" />
+
+    <Button
+        android:id="@+id/Bsuporte"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="120dp"
+
+
+        android:layout_height="98dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/semfoco"
+        android:onClick="SelcSuporte"
+        android:text="SUPORTE"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Bconfigurar" />
+
+    <Button
+        android:id="@+id/Brelatorios"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="120dp"
+        android:layout_height="98dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/semfoco"
+        android:enabled="true"
+        android:onClick="SelcRelatorio"
+        android:text="RELATORIOS"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Bcadastro"
+        tools:style="@style/Widget.AppCompat.Button.Borderless" />
+
+    <Button
+        android:id="@+id/Bcadastro"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="120dp"
+        android:layout_height="98dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/semfoco"
+        android:enabled="true"
+        android:onClick="SelcCadastrarProd"
+        android:text="CADASTROS"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Bvender" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layoutContentMainVendas"
+        android:layout_width="685dp"
+        android:layout_height="800dp"
+        android:layout_marginStart="8dp"
+        android:fadeScrollbars="true"
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbars="vertical"
+        android:verticalScrollbarPosition="right"
+        android:visibility="visible"
+        app:layout_constraintStart_toEndOf="@+id/Bcontador"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextClock
+            android:id="@+id/TCclock"
+            android:layout_width="213dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:format24Hour="dd/MM/yyyy HH:mm:ss"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btnClearPesqProd"
+            android:layout_width="44dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="#8B0000"
+            android:onClick="limpaPesqProd"
+            android:text="X"
+            android:textColor="#F8F8FF"
+            android:textColorLink="#00F1EAEA"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/btnBuscar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnalertausb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="184dp"
+            android:background="@color/colorAccent"
+            android:text="       !    "
+            android:textAllCaps="true"
+            android:textColor="#ffff00"
+            android:textSize="36sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <EditText
+            android:id="@+id/tvPesquisarProd"
+            android:layout_width="394dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="195dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:enabled="true"
+            android:hint="Pesquisar um produto..."
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/GridProdutos"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <GridView
+            android:id="@+id/GridProdutos"
+            android:layout_width="680dp"
+            android:layout_height="650dp"
+            android:layout_marginTop="72dp"
+            android:numColumns="4"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvPesquisarProd" />
+
+        <GridView
+            android:id="@+id/GridCategorias"
+            android:layout_width="680dp"
+            android:layout_height="650dp"
+            android:layout_marginTop="88dp"
+            android:numColumns="4"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvPesquisarProd" />
+
+
+        <Button
+            android:id="@+id/btnBuscar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorPrimary"
+            android:onClick="buscarProduto"
+            android:text="Buscar"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@+id/tvPesquisarProd"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layoutSuporte"
+        android:layout_width="1039dp"
+        android:layout_height="720dp"
+        android:layout_marginEnd="24dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/Bvender"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="108dp"
+            android:layout_marginTop="16dp"
+            android:text="Suporte"
+            android:textColor="#000000"
+            android:textSize="40sp"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@+id/tvinformativo"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvinformativo"
+            android:layout_width="380dp"
+            android:layout_height="280dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="200dp"
+            android:lines="15"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvtelefone"
+            android:layout_width="170dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="200dp"
+            android:lines="2"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/tvinformativo"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvemail"
+            android:layout_width="354dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="8dp"
+            android:cursorVisible="false"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:lines="2"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/tvinformativo"
+            app:layout_constraintTop_toBottomOf="@+id/tvtelefone" />
+
+        <TextView
+            android:id="@+id/tvendereco"
+            android:layout_width="320dp"
+            android:layout_height="68dp"
+            android:layout_marginTop="16dp"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/tvemail"
+            app:layout_constraintTop_toBottomOf="@+id/tvemail" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layoutCupom"
+        android:layout_width="475dp"
+        android:layout_height="800dp"
+        android:background="#f5da99"
+        android:verticalScrollbarPosition="left"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/layoutContentMainVendas"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/btninformcpf"
+            style="@android:style/Widget.Button.Toggle"
+            android:layout_width="160dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/selecionado"
+            android:text="Informar CPF"
+            android:textColor="@color/colorAccent"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/toolbar2" />
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="470dp"
+            android:layout_height="wrap_content"
+            android:background="@color/semfoco"
+            android:elevation="4dp"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            android:visibility="visible"
+            app:contentInsetStartWithNavigation="80dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="DETALHE DA VENDA"
+            app:titleMargin="120dp"
+            app:titleMarginEnd="100dp"
+            app:titleMarginStart="80dp"
+            app:titleMargins="20dp"
+            app:titleTextColor="@color/colorAccent" />
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar2"
+            android:layout_width="482dp"
+            android:layout_height="203dp"
+            android:background="@color/semfoco"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:titleMargin="120dp"
+            app:titleMarginEnd="100dp"
+            app:titleMarginStart="80dp"
+            app:titleMargins="20dp"
+            app:titleTextColor="@color/colorPrimaryDark" />
+
+        <ListView
+            android:id="@+id/textViewcupom"
+            style="@style/Widget.AppCompat.ListView.Menu"
+            android:layout_width="482dp"
+            android:layout_height="0dp"
+            android:background="#FFFFE0"
+            android:scrollY="10dp"
+            android:scrollbarAlwaysDrawHorizontalTrack="false"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:scrollbars="vertical"
+            android:scrollHorizontally="true"
+            android:verticalScrollbarPosition="left"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/toolbar2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <Button
+            android:id="@+id/bFinalizar"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="167dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/semfoco"
+            android:clickable="true"
+            android:onClick="finalizaVenda"
+            android:scaleY="1"
+            android:text="FINALIZAR"
+            android:textColor="@color/colorAccent"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/toolbar2" />
+
+        <EditText
+            android:id="@+id/editText11"
+            style="@style/Widget.AppCompat.AutoCompleteTextView"
+            android:layout_width="176dp"
+            android:layout_height="49dp"
+            android:layout_marginBottom="108dp"
+            android:ems="10"
+            android:focusable="false"
+            android:inputType="textPersonName"
+            android:text="Quantidade de itens"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintBottom_toTopOf="@+id/btninformcpf"
+            app:layout_constraintStart_toStartOf="@+id/btninformcpf" />
+
+        <EditText
+            android:id="@+id/editText12"
+            style="@style/Widget.AppCompat.AutoCompleteTextView"
+            android:layout_width="176dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="8dp"
+            android:ems="10"
+            android:focusable="false"
+            android:inputType="textPersonName"
+            android:text=" Total dos itens"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintBottom_toTopOf="@+id/editText13"
+            app:layout_constraintStart_toStartOf="@+id/editText13" />
+
+        <EditText
+            android:id="@+id/editText13"
+            style="@style/Widget.AppCompat.AutoCompleteTextView"
+            android:layout_width="174dp"
+            android:layout_height="38dp"
+            android:layout_marginBottom="8dp"
+            android:ems="10"
+            android:focusable="false"
+            android:inputType="textPersonName"
+            android:text="Total de desconto"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintBottom_toTopOf="@+id/btninformcpf"
+            app:layout_constraintStart_toStartOf="@+id/btninformcpf" />
+
+        <TextView
+            android:id="@+id/tvValorTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="104dp"
+            android:layout_marginLeft="104dp"
+            android:layout_marginBottom="116dp"
+            android:text="R$ 0.00"
+            android:textColor="@color/colorAccent"
+            android:textSize="30sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
+            app:layout_constraintStart_toEndOf="@+id/editText12" />
+
+        <TextView
+            android:id="@+id/tvTotSemDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="16dp"
+            android:text="R$ 0.00"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintStart_toStartOf="@+id/tvDesconto"
+            app:layout_constraintTop_toBottomOf="@+id/editText11" />
+
+        <TextView
+            android:id="@+id/tvQtdItens"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="16dp"
+            android:text="0"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintBottom_toTopOf="@+id/tvTotSemDesc"
+            app:layout_constraintStart_toEndOf="@+id/editText11" />
+
+        <TextView
+            android:id="@+id/tvDesconto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="R$ 0.00"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintStart_toEndOf="@+id/editText13"
+            app:layout_constraintTop_toBottomOf="@+id/editText12" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layoutContador"
+        android:layout_width="939dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="16dp"
+        android:onClick="esconderTeclado"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="350dp"
+            android:layout_height="108dp"
+            android:layout_marginStart="376dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="426dp"
+            android:text="Módulo do contador"
+            android:textColor="#000000"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toTopOf="@+id/btnenvemailcont"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="374dp"
+            android:layout_height="61dp"
+            android:layout_marginTop="55dp"
+            android:text="@string/enviar_arquivos_fiscais_por_e_mail"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="117dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="350dp"
+            android:layout_marginTop="32dp"
+            android:text="E-mail do contador"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:layout_marginTop="24dp"
+            android:inputType="date"
+            android:text="Data inicial"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/tvemailcontador"
+            app:layout_constraintTop_toBottomOf="@+id/tvemailcontador" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:inputType="date"
+            android:text="Data final"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/etdatainicial"
+            app:layout_constraintTop_toBottomOf="@+id/tvemailcontador" />
+
+        <EditText
+            android:id="@+id/tvemailcontador"
+            android:layout_width="411dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/textView10"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+        <EditText
+            android:id="@+id/etdatainicial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:focusable="false"
+            android:inputType="date"
+            app:layout_constraintStart_toStartOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+        <EditText
+            android:id="@+id/etdatafinal"
+            android:layout_width="264dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:focusable="false"
+            android:inputType="date"
+            android:singleLine="true"
+            app:layout_constraintStart_toStartOf="@+id/textView12"
+            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+        <Button
+            android:id="@+id/btnenvemailcont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="108dp"
+            android:layout_marginEnd="235dp"
+            android:background="@color/corparametroselect"
+            android:onClick="emailContador"
+            android:text="Enviar arquivos por e-mail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etdatafinal" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

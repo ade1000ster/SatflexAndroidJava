@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="850dp"
+    android:layout_height="250dp">
+
+    <TextView
+        android:id="@+id/tvNumerolist"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Numero"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvClientelist"
+        android:layout_width="103dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:text="Cliente"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/tvNumerolist"
+        app:layout_constraintTop_toTopOf="@+id/tvNumerolist" />
+
+    <TextView
+        android:id="@+id/tvQuantidadelist"
+        android:layout_width="114dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:text="Quantidade"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/tvClientelist"
+        app:layout_constraintTop_toTopOf="@+id/tvClientelist" />
+
+    <TextView
+        android:id="@+id/tvTotallist"
+        android:layout_width="103dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="111dp"
+        android:text="Total"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/tvQuantidadelist"
+        app:layout_constraintTop_toTopOf="@+id/tvQuantidadelist" />
+
+</android.support.constraint.ConstraintLayout>

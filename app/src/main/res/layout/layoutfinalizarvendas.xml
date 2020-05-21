@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutfinalizarvendas"
+    android:layout_width="900dp"
+    android:layout_height="590dp"
+
+    android:background="@drawable/bordaestilos"
+    android:clickable="true"
+    android:focusable="auto">
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="341dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Finalização da venda"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etValorTot"
+        android:layout_width="869dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:background="#F8F8FF"
+        android:gravity="center"
+        android:scrollHorizontally="true"
+        android:text="R$"
+        android:textSize="48sp"
+        app:layout_constraintStart_toStartOf="@+id/textView17"
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+    <Button
+        android:id="@+id/btnDinheiro"
+        android:layout_width="275dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/design_default_color_primary"
+        android:text="DINHEIRO"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintStart_toStartOf="@+id/etValorTot"
+        app:layout_constraintTop_toBottomOf="@+id/etValorTot" />
+
+    <Button
+        android:id="@+id/btnCheque"
+        android:layout_width="275dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:background="@color/design_default_color_primary"
+        android:text="CHEQUE"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintStart_toEndOf="@+id/btnDinheiro"
+        app:layout_constraintTop_toTopOf="@+id/btnDinheiro" />
+
+    <Button
+        android:id="@+id/btnCartaoC"
+        android:layout_width="275dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:background="@color/design_default_color_primary"
+        android:text="Cartão de crédito"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintEnd_toEndOf="@+id/etValorTot"
+        app:layout_constraintStart_toEndOf="@+id/btnCheque"
+        app:layout_constraintTop_toTopOf="@+id/btnCheque" />
+
+    <Button
+        android:id="@+id/btnCartaoD"
+        android:layout_width="275dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/design_default_color_primary"
+        android:text="Cartão de débito"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintStart_toStartOf="@+id/btnDinheiro"
+        app:layout_constraintTop_toBottomOf="@+id/btnDinheiro" />
+
+    <Button
+        android:id="@+id/btnValeA"
+        android:layout_width="275dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:background="@color/design_default_color_primary"
+        android:text="Vale alimentação"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintStart_toEndOf="@+id/btnCartaoD"
+        app:layout_constraintTop_toTopOf="@+id/btnCartaoD" />
+
+    <Button
+        android:id="@+id/btnOutros"
+        android:layout_width="275dp"
+        android:layout_height="65dp"
+        android:background="@color/design_default_color_primary"
+        android:text="$ Outros"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintEnd_toEndOf="@+id/btnCartaoC"
+        app:layout_constraintStart_toStartOf="@+id/btnCartaoC"
+        app:layout_constraintTop_toTopOf="@+id/btnValeA" />
+
+    <TextView
+        android:id="@+id/textView49"
+        android:layout_width="89dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:text="Total pago"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCartaoD" />
+
+    <TextView
+        android:id="@+id/textView53"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="130dp"
+        android:layout_marginLeft="130dp"
+        android:text="Total de troco"
+        app:layout_constraintStart_toEndOf="@+id/textView57"
+        app:layout_constraintTop_toTopOf="@+id/textView57" />
+
+    <TextView
+        android:id="@+id/textView57"
+        android:layout_width="106dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="130dp"
+        android:layout_marginLeft="130dp"
+        android:text="Total restante"
+        android:textColor="#FF0000"
+        android:textColorLink="#FF0000"
+        app:layout_constraintStart_toEndOf="@+id/textView49"
+        app:layout_constraintTop_toTopOf="@+id/textView49" />
+
+    <EditText
+        android:id="@+id/tvTotalPago"
+        android:layout_width="206dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bordaestilos"
+        android:gravity="center"
+        android:text="0,00"
+        android:focusable="false"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/textView49"
+        app:layout_constraintTop_toBottomOf="@+id/textView49" />
+
+    <EditText
+        android:id="@+id/tvTotalRestante"
+        android:layout_width="206dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bordaestilos"
+        android:gravity="center"
+        android:text="0,00"
+        android:textColor="#FF0000"
+        android:focusable="false"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/textView57"
+        app:layout_constraintTop_toBottomOf="@+id/textView57" />
+
+    <TextView
+        android:id="@+id/textView65"
+        android:layout_width="206dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bordaestilos"
+        android:gravity="center"
+        android:text="0,00"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/textView53"
+        app:layout_constraintTop_toBottomOf="@+id/textView53" />
+
+    <Button
+        android:layout_width="194dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="Finalizar"
+        app:layout_constraintEnd_toEndOf="@+id/btnOutros"
+        app:layout_constraintStart_toEndOf="@+id/textView65"
+        app:layout_constraintTop_toTopOf="@+id/textView65" />
+
+    <EditText
+        android:id="@+id/tvDinheiro"
+        android:layout_width="274dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="97dp"
+        android:layout_marginRight="97dp"
+        android:background="@drawable/bordaestilos"
+        android:text="    Dinheiro"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <GridView
+        android:id="@+id/GridFormPag"
+        android:layout_width="880dp"
+        android:layout_height="117dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:numColumns="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTotalPago" />
+
+    <Button
+        android:id="@+id/btnDesconto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="41dp"
+        android:layout_marginBottom="8dp"
+        android:text="Desconto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnAcrescimo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="177dp"
+        android:layout_marginBottom="8dp"
+        android:text="Acréscimo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnDesconto" />
+
+    <Button
+        android:id="@+id/btnIncluir10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="166dp"
+        android:text="Incluir 10%"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnAcrescimo" />
+
+    <Button
+        android:id="@+id/btnCancelar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="110dp"
+        android:layout_marginBottom="7dp"
+        android:background="@android:color/holo_red_dark"
+        android:onClick="cancelarFinalizarVenda"
+        android:text="Cancelar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnIncluir10"
+        app:layout_constraintTop_toTopOf="@+id/btnIncluir10" />
+
+</android.support.constraint.ConstraintLayout>

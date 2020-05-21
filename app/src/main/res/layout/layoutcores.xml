@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="215dp"
+    android:background="	#F0F8FF">
+
+    <Button
+        android:id="@+id/btn6"
+        android:layout_width="75dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="2dp"
+        android:background="#D15C5C"
+        android:onClick="botao6"
+        android:textColor="	#F0F8FF"
+        android:textIsSelectable="false"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn5"
+        android:layout_width="75dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#4CADE0"
+        android:onClick="botao5"
+        android:textColor="	#F0F8FF"
+        android:textIsSelectable="false"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/btn6"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn4"
+        android:layout_width="75dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginBottom="8dp"
+        android:background="#F0C94A"
+        android:onClick="botao4"
+        android:textColor="	#F0F8FF"
+        android:textIsSelectable="false"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/btn11"
+        app:layout_constraintStart_toEndOf="@+id/btn18" />
+
+    <Button
+        android:id="@+id/btn3"
+        android:layout_width="75dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#00FF7F"
+        android:onClick="botao3"
+        android:textColor="	#DE50DB"
+        android:textIsSelectable="false"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/btn15"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn2"
+        android:layout_width="75dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginBottom="8dp"
+        android:background="#ADADAD"
+        android:onClick="botao2"
+        android:textColor="	#F0F8FF"
+        android:textIsSelectable="false"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/btn17"
+        app:layout_constraintStart_toEndOf="@+id/btn8" />
+
+    <Button
+        android:id="@+id/btn1"
+        android:layout_width="75dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#1C1C1C	"
+        android:onClick="botao1"
+        android:textColor="	#F0F8FF"
+        android:textIsSelectable="false"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/btn3"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn18"
+        android:layout_width="75dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginBottom="8dp"
+        android:background="#000000"
+        android:onClick="botao18"
+        android:textIsSelectable="false"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/btn12"
+        app:layout_constraintStart_toEndOf="@+id/btn5" />
+
+    <Button
+        android:id="@+id/btn13"
+        android:layout_width="75dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#FFA500"
+        android:onClick="botao13"
+        android:textIsSelectable="false"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/btn1"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn14"
+        android:layout_width="75dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginBottom="8dp"
+        android:background="#FFFF00	"
+        android:onClick="botao14"
+        android:textIsSelectable="false"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/btn7"
+        app:layout_constraintStart_toEndOf="@+id/btn13" />
+
+    <Button
+        android:id="@+id/btn15"
+        android:layout_width="75dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#00BFFF"
+        android:onClick="botao15"
+        android:textIsSelectable="false"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/btn5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn17"
+        android:layout_width="75dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginBottom="8dp"
+        android:background="#8B4513	"
+        android:onClick="botao17"
+        android:textIsSelectable="false"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/btn4"
+        app:layout_constraintStart_toEndOf="@+id/btn16" />
+
+    <Button
+        android:id="@+id/btn16"
+        android:layout_width="75dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginBottom="8dp"
+        android:background="#00FF00	"
+        android:onClick="botao16"
+        android:textIsSelectable="false"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/btn18"
+        app:layout_constraintStart_toEndOf="@+id/btn15" />
+
+    <Button
+        android:id="@+id/btn12"
+        android:layout_width="75dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginBottom="2dp"
+        android:background="#FF8C00	"
+        android:onClick="botao12"
+        android:textIsSelectable="false"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn6" />
+
+    <Button
+        android:id="@+id/btn7"
+        android:layout_width="75dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginBottom="8dp"
+        android:background="#FF1493"
+        android:onClick="botao7"
+        android:textIsSelectable="false"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/btn8"
+        app:layout_constraintStart_toEndOf="@+id/btn1" />
+
+    <Button
+        android:id="@+id/btn8"
+        android:layout_width="75dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginBottom="8dp"
+        android:background="#DC143C"
+        android:onClick="botao8"
+        android:textIsSelectable="false"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/btn16"
+        app:layout_constraintStart_toEndOf="@+id/btn3" />
+
+    <Button
+        android:id="@+id/btn9"
+        android:layout_width="75dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginBottom="8dp"
+        android:background="#8B0000	"
+        android:onClick="botao9"
+        android:textIsSelectable="false"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/btn2"
+        app:layout_constraintStart_toEndOf="@+id/btn7" />
+
+    <Button
+        android:id="@+id/btn11"
+        android:layout_width="75dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginBottom="2dp"
+        android:background="#FF4500	"
+        android:onClick="botao11"
+        android:textIsSelectable="false"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn12" />
+
+    <Button
+        android:id="@+id/btn10"
+        android:layout_width="75dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginBottom="8dp"
+        android:background="#FF0000"
+        android:onClick="botao10"
+        android:textIsSelectable="false"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/btn9"
+        app:layout_constraintStart_toEndOf="@+id/btn14" />
+
+</android.support.constraint.ConstraintLayout>

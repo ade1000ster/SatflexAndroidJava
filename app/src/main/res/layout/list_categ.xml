@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/tvdatacriacao"
+        android:layout_width="180dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginLeft="70dp"
+        android:maxLines="1"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/tvprodutos2"
+        app:layout_constraintTop_toTopOf="@+id/tvprodutos2" />
+
+    <TextView
+        android:id="@+id/tvprodutos2"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="90dp"
+        android:layout_marginLeft="90dp"
+        android:text="TextView"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/tvncm2"
+        app:layout_constraintTop_toTopOf="@+id/tvncm2" />
+
+    <TextView
+        android:id="@+id/tvncm2"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:maxLength="10"
+        android:layout_marginLeft="70dp"
+        android:text="TextView"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/tvdescricao2"
+        app:layout_constraintTop_toTopOf="@+id/tvdescricao2" />
+
+    <TextView
+        android:id="@+id/tvdescricao2"
+        android:layout_width="450dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:text="TextView"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>

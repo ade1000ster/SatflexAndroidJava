@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1019697626780",
+    "firebase_url": "https://satflexandroid-4cfcf.firebaseio.com",
+    "project_id": "satflexandroid-4cfcf",
+    "storage_bucket": "satflexandroid-4cfcf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1019697626780:android:ca08712db5f3312097f759",
+        "android_client_info": {
+          "package_name": "com.example.ademirestudo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1019697626780-s2dfnhm45ut87fc0qfcm19nfpofjqk7b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ademirestudo",
+            "certificate_hash": "2c724ab75717ab7f1c4ab7b1c614f4305600ec1a"
+          }
+        },
+        {
+          "client_id": "1019697626780-p6t8cfu3f04pkr5a9krplf5ad7d40hu8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0dpdNqQvwf0ezdTejlAQlbxu_r2Cn8sI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1019697626780-p6t8cfu3f04pkr5a9krplf5ad7d40hu8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

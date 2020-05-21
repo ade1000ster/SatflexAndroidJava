@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="tvTotalItens" type="id" />
+    <item name="tvDescPerc" type="id" />
+    <item name="tvDescVal" type="id" />
+    <item name="tvTotFinal" type="id" />
+    <item name="btConfirmar" type="id" />
+    <item name="btnVoltar" type="id" />
+</resources>

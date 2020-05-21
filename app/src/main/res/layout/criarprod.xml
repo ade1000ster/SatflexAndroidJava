@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutcriarprod"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bordasarredondados"
+    android:foregroundGravity="top|left|bottom"
+    android:onClick="esconderTeclado">
+
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="129dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginLeft="110dp"
+        android:editable="false"
+        android:ems="10"
+        android:focusable="false"
+        android:text="Preço de venda"
+        app:layout_constraintStart_toEndOf="@+id/textView21"
+        app:layout_constraintTop_toTopOf="@+id/textView21" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="126dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:text="Código EAN"
+        app:layout_constraintStart_toStartOf="@+id/tvNcm"
+        app:layout_constraintTop_toTopOf="@+id/textView18" />
+
+    <EditText
+        android:id="@+id/tvNcm"
+        android:layout_width="245dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:background="@drawable/bordasarredondados"
+        android:maxLength="13"
+        android:text=""
+        app:layout_constraintStart_toEndOf="@+id/spCsosn"
+        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="113dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginLeft="110dp"
+        android:lineSpacingExtra="24sp"
+        android:text="Status"
+        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintTop_toTopOf="@+id/textView13" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="75dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="29dp"
+        android:text="Categoria"
+        app:layout_constraintStart_toStartOf="@+id/textViewDescrProd"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDescrProd" />
+
+    <Spinner
+        android:id="@+id/spCsosn"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        android:layout_width="265dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="1dp"
+        android:scrollbarDefaultDelayBeforeFade="250"
+        android:spinnerMode="dropdown"
+        app:layout_constraintStart_toStartOf="@+id/textView18"
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+    <Spinner
+        android:id="@+id/spprecovariavel"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        android:layout_width="145dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:spinnerMode="dropdown"
+        app:layout_constraintStart_toStartOf="@+id/textView21"
+        app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+    <Spinner
+        android:id="@+id/spStatus"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+
+
+        android:spinnerMode="dropdown"
+        app:layout_constraintStart_toStartOf="@+id/textView24"
+        app:layout_constraintTop_toTopOf="@+id/editTextPrecoVenda" />
+
+    <Spinner
+        android:id="@+id/spUnidade"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="135dp"
+        android:layout_height="22dp"
+
+        android:layout_marginTop="8dp"
+        android:text="Unidade de venda"
+        app:layout_constraintStart_toStartOf="@+id/spUnidade"
+        app:layout_constraintTop_toTopOf="@+id/textView22" />
+
+    <Button
+        android:id="@+id/bGravarProd"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="166dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+
+        android:background="@color/selecionado"
+        android:onClick="gravarProduto"
+        android:text="Gravar produto"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/BcancelProd"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="153dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="212dp"
+        android:layout_marginRight="212dp"
+        android:layout_marginBottom="16dp"
+        android:background="@android:color/holo_red_dark"
+        android:onClick="cancelarNovoprod"
+        android:text="Cancelar"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewcriarprod"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Criando novo produto"
+        android:textAllCaps="false"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="75dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="12dp"
+        android:text="Descrição"
+        app:layout_constraintBottom_toTopOf="@+id/textViewDescrProd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewcriarprod" />
+
+    <TextView
+        android:id="@+id/tvCriadoTitulo"
+        android:layout_width="75dp"
+        android:layout_height="25dp"
+        android:text="Criado em"
+        app:layout_constraintStart_toStartOf="@+id/tvCriadoEm"
+        app:layout_constraintTop_toTopOf="@+id/textView14" />
+
+    <EditText
+        android:id="@+id/editTextPrecoVenda"
+        android:layout_width="0dp"
+        android:layout_height="51dp"
+        android:background="@drawable/bordasarredondados"
+        android:clickable="true"
+        android:editable="false"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="numberDecimal"
+        android:onClick="teclado"
+        android:text="0.00"
+        app:layout_constraintStart_toStartOf="@+id/textView13"
+        app:layout_constraintTop_toTopOf="@+id/spprecovariavel" />
+
+    <EditText
+        android:id="@+id/textViewDescrProd"
+        android:layout_width="555dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/bordasarredondados"
+        android:lines="1"
+        android:maxLength="40"
+        android:maxLines="1"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+    <EditText
+        android:id="@+id/tvCriadoEm"
+        android:layout_width="296dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/bordasarredondados"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewDescrProd"
+        app:layout_constraintTop_toBottomOf="@+id/tvCriadoTitulo" />
+
+    <Button
+        android:layout_width="123dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:background="@color/design_default_color_primary"
+        android:onClick="layouTribut"
+        android:text="Tributações"
+        android:typeface = "monospace"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintBottom_toTopOf="@+id/bGravarProd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/spStatus" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="50dp"
+        android:text="Preço variável"
+        app:layout_constraintStart_toStartOf="@+id/textView18"
+        app:layout_constraintTop_toBottomOf="@+id/spCsosn" />
+
+</android.support.constraint.ConstraintLayout>

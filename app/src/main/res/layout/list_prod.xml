@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvcategoria"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginLeft="70dp"
+        android:text="teste"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/tvdescricao"
+        app:layout_constraintTop_toTopOf="@+id/tvdescricao" />
+
+    <TextView
+        android:id="@+id/tvpreco"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="90dp"
+        android:layout_marginLeft="90dp"
+        android:text="teste"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/tvcategoria"
+        app:layout_constraintTop_toTopOf="@+id/tvcategoria" />
+
+    <TextView
+        android:id="@+id/tvean"
+        android:layout_width="135dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="90dp"
+        android:layout_marginLeft="90dp"
+        android:text="teste"
+
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/tvpreco"
+        app:layout_constraintTop_toTopOf="@+id/tvpreco" />
+
+    <TextView
+        android:id="@+id/tvdatacriacao"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:lines="2"
+        android:text="teste"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/tvean"
+        app:layout_constraintTop_toTopOf="@+id/tvean" />
+
+    <TextView
+        android:id="@+id/tvdescricao"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:text="teste"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

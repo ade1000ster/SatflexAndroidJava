@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#1A9D13</color>
+    <color name="colorPrimaryDark">#1F6130</color>
+    <color name="colorAccent">#FFFFFF</color>
+    <color name="selecionado">#31ED27</color>
+    <color name="semfoco">#747372</color>
+    <color name="orcamento">#4682B4</color>
+    <color name="finalizarorc">#191970</color>
+    <color name="corparametroselect">#6873DF</color>
+    <color name="corparametrosemfoco">#FFFFFF</color>
+    <style name="AlertDialogCustom" parent="@android:style/Theme.Dialog">
+        <item name="android:windowTitleStyle">@style/MyOwnDialogTitle</item>
+        <item name="android:textSize">28sp</item>
+    </style>
+    <style name="MyOwnDialogTitle">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+
+</resources>

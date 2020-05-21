@@ -1,0 +1,5 @@
+<root>
+    <item name='android.support.v7.widget.Toolbar void inflateMenu(int)'>
+        <annotation name='java.lang.Deprecated' />
+    </item>
+</root>

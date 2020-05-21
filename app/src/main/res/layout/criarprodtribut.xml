@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bordaestilos"
+    android:foregroundGravity="top|left|bottom">
+
+
+    <TextView
+        android:layout_width="126dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="88dp"
+        android:text="CEST"
+        app:layout_constraintStart_toStartOf="@+id/tvAliqPis"
+        app:layout_constraintTop_toTopOf="@+id/textView50" />
+
+    <EditText
+        android:id="@+id/tvCest"
+        android:layout_width="122dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/bordasarredondados"
+        android:focusable="false"
+        android:gravity="center"
+        android:onClick="tecladoCest"
+        app:layout_constraintStart_toStartOf="@+id/tvCfop"
+        app:layout_constraintTop_toBottomOf="@+id/textView52" />
+
+    <EditText
+        android:id="@+id/tvCstCofins"
+        android:layout_width="122dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bordasarredondados"
+        android:focusable="false"
+        android:gravity="center"
+        android:onClick="tecladoCstCofins"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView55" />
+
+    <TextView
+        android:id="@+id/textView55"
+        android:layout_width="126dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        android:text="CST do Cofins"
+        app:layout_constraintStart_toStartOf="@+id/tvCstCofins"
+        app:layout_constraintTop_toBottomOf="@+id/spCsosn" />
+
+    <TextView
+        android:id="@+id/textView56"
+        android:layout_width="126dp"
+        android:layout_height="0dp"
+        android:text="Aliquota de Cofins"
+        app:layout_constraintStart_toStartOf="@+id/tvAliqCofins"
+        app:layout_constraintTop_toTopOf="@+id/textView55" />
+
+    <EditText
+        android:id="@+id/tvAliqCofins"
+        android:layout_width="122dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bordasarredondados"
+        android:focusable="false"
+        android:gravity="center"
+        android:onClick="tecladoAliqCofins"
+        app:layout_constraintStart_toStartOf="@+id/tvAliqicms"
+        app:layout_constraintTop_toBottomOf="@+id/textView56" />
+
+    <TextView
+        android:id="@+id/textView58"
+        android:layout_width="126dp"
+        android:layout_height="0dp"
+        android:text="Contribuição social"
+        app:layout_constraintStart_toStartOf="@+id/tvCodContribSocial"
+        app:layout_constraintTop_toTopOf="@+id/textView56" />
+
+    <EditText
+        android:id="@+id/tvCodContribSocial"
+        android:layout_width="122dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bordasarredondados"
+        android:focusable="false"
+        android:gravity="center"
+        android:onClick="tecladoContribSocial"
+        app:layout_constraintStart_toEndOf="@+id/tvAliqCofins"
+        app:layout_constraintTop_toBottomOf="@+id/textView58" />
+
+    <TextView
+        android:id="@+id/textView52"
+        android:layout_width="126dp"
+        android:layout_height="0dp"
+        android:text="Aliquota de PIS"
+        app:layout_constraintStart_toStartOf="@+id/tvAliqPis"
+        app:layout_constraintTop_toTopOf="@+id/textView50" />
+
+    <EditText
+        android:id="@+id/tvAliqPis"
+        android:layout_width="122dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bordasarredondados"
+        android:focusable="false"
+        android:gravity="center"
+        android:onClick="tecladoAliqPis"
+        app:layout_constraintStart_toStartOf="@+id/tvCfop"
+        app:layout_constraintTop_toBottomOf="@+id/textView52" />
+
+    <TextView
+        android:id="@+id/textView50"
+        android:layout_width="126dp"
+        android:layout_height="0dp"
+        android:text="CST do PIS"
+        app:layout_constraintStart_toStartOf="@+id/tvCstPis"
+        app:layout_constraintTop_toTopOf="@+id/textView48" />
+
+    <EditText
+        android:id="@+id/tvCstPis"
+        android:layout_width="122dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bordasarredondados"
+        android:focusable="false"
+        android:gravity="center"
+        android:onClick="tecladoCstPis"
+        app:layout_constraintStart_toEndOf="@+id/tvAliqicms"
+        app:layout_constraintTop_toBottomOf="@+id/textView50" />
+
+    <TextView
+        android:id="@+id/textView48"
+        android:layout_width="126dp"
+        android:layout_height="0dp"
+        android:text="Aliquota de ICMS"
+        app:layout_constraintStart_toStartOf="@+id/tvAliqicms"
+        app:layout_constraintTop_toTopOf="@+id/textView47" />
+
+    <EditText
+        android:id="@+id/tvAliqicms"
+        android:layout_width="122dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bordasarredondados"
+        android:focusable="false"
+        android:gravity="center"
+        android:onClick="tecladoICMS"
+        app:layout_constraintStart_toEndOf="@+id/spCsosn"
+        app:layout_constraintTop_toBottomOf="@+id/textView48" />
+
+    <EditText
+        android:id="@+id/tvCfop"
+        android:layout_width="122dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/bordasarredondados"
+        android:focusable="false"
+        android:gravity="center"
+        android:onClick="tecladoCFOP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/spOrigem"
+        app:layout_constraintTop_toBottomOf="@+id/textView46" />
+
+    <TextView
+        android:id="@+id/textView46"
+        android:layout_width="126dp"
+        android:layout_height="0dp"
+        android:text="CFOP"
+        app:layout_constraintStart_toStartOf="@+id/tvCfop"
+        app:layout_constraintTop_toTopOf="@+id/textView44" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="126dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="116dp"
+        android:text="NCM do produto"
+        app:layout_constraintStart_toStartOf="@+id/tvNcm"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView44"
+        android:layout_width="126dp"
+        android:layout_height="0dp"
+        android:text="Origem do produto"
+        app:layout_constraintStart_toStartOf="@+id/spOrigem"
+        app:layout_constraintTop_toBottomOf="@+id/cbTribut" />
+
+    <TextView
+        android:id="@+id/textViewcriarprod"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Criando novo produto"
+        android:textAllCaps="false"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/tvNcm"
+        android:layout_width="239dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bordasarredondados"
+        android:gravity="center"
+        android:focusable="false"
+        android:maxLength="13"
+        android:onClick="tecladoNcm"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="241dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/design_default_color_primary"
+        android:onClick="BotaoA"
+        android:text="Voltar para o produto..."
+        android:textColor="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAliqCofins" />
+
+    <Spinner
+        android:id="@+id/spOrigem"
+        style="@android:style/Widget.Material.Spinner.Underlined"
+        android:layout_width="270dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="3dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:spinnerMode="dialog"
+        app:layout_constraintStart_toEndOf="@+id/tvNcm"
+        app:layout_constraintTop_toBottomOf="@+id/textView44" />
+
+    <Spinner
+        android:id="@+id/spCsosn"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        android:layout_width="239dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:spinnerMode="dropdown"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView47" />
+
+    <TextView
+        android:id="@+id/textView47"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="CSOSN"
+        app:layout_constraintStart_toStartOf="@+id/spCsosn"
+        app:layout_constraintTop_toBottomOf="@+id/tvNcm" />
+
+    <CheckBox
+        android:id="@+id/cbTribut"
+        style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+        android:layout_width="305dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="16dp"
+        android:checked="false"
+        android:buttonTint="#000"
+        android:text="Usar as mesmas tributações da categoria"
+        app:layout_constraintStart_toStartOf="@+id/textViewcriarprod"
+        app:layout_constraintTop_toBottomOf="@+id/textViewcriarprod" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <Button
+        android:id="@+id/Bvender"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="130dp"
+        android:layout_height="70dp"
+        android:background="@color/selecionado"
+        android:onClick="SelcVender"
+        android:text="VENDER"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/Bsair"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="130dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/semfoco"
+        android:onClick="sair"
+        android:text="SAIR"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Bsuporte" />
+
+    <Button
+        android:id="@+id/Bcontador"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="130dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/semfoco"
+        android:onClick="SelcContador"
+        android:text="CONTADOR"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Brelatorios" />
+
+    <Button
+        android:id="@+id/Bconfigurar"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="130dp"
+
+        android:layout_height="70dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/semfoco"
+        android:drawableTop="@drawable/baseline_build_black_18dp"
+        android:enabled="true"
+        android:onClick="SelcConfigurar"
+        android:text="CONFIGURAÇÕES"
+        app:layout_constraintCircleRadius="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Bcontador" />
+
+    <Button
+        android:id="@+id/Bsuporte"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="130dp"
+
+
+        android:layout_height="75dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/semfoco"
+        android:onClick="SelcSuporte"
+        android:text="SUPORTE"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Bconfigurar" />
+
+    <Button
+        android:id="@+id/Brelatorios"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="130dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/semfoco"
+        android:enabled="true"
+        android:onClick="SelcRelatorio"
+        android:text="RELATORIOS"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Bcadastro"
+        tools:style="@style/Widget.AppCompat.Button.Borderless" />
+
+    <Button
+        android:id="@+id/Bcadastro"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="130dp"
+
+        android:layout_height="75dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/semfoco"
+        android:text="CADASTROS"
+        android:textEditNoPasteWindowLayout="@drawable/baseline_build_black_18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Bvender" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layoutContentMainVendas"
+        android:layout_width="506dp"
+        android:layout_height="640dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:visibility="visible"
+        app:layout_constraintStart_toEndOf="@+id/Bcontador"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/tvPesquisarProd"
+            android:layout_width="314dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:enabled="true"
+            android:inputType="textPersonName"
+            android:text="Pesquisar um produto..."
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorPrimary"
+
+
+            android:text="Buscar"
+            app:layout_constraintStart_toEndOf="@+id/tvPesquisarProd"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/bBEBIDAS"
+            android:layout_width="100dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="100dp"
+            android:background="@android:color/holo_orange_light"
+            android:text="Bebidas"
+            app:layout_constraintStart_toStartOf="@+id/tvPesquisarProd"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/bBOLOS"
+            android:layout_width="100dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="100dp"
+            android:background="@android:color/holo_blue_dark"
+            android:text="Bolos"
+            app:layout_constraintStart_toEndOf="@+id/bBEBIDAS"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/bLANCHES"
+            android:layout_width="100dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="100dp"
+            android:background="@color/colorPrimary"
+            android:text="LANCHES"
+            app:layout_constraintStart_toEndOf="@+id/bBOLOS"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="100dp"
+            android:background="@android:color/holo_red_dark"
+            android:clickable="true"
+            android:editable="true"
+            android:enabled="true"
+            android:focusable="auto"
+            android:focusableInTouchMode="true"
+            android:text="REFEICAO"
+            app:layout_constraintStart_toEndOf="@+id/bLANCHES"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editText3"
+            android:layout_width="314dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="732dp"
+            android:ems="10"
+            android:enabled="true"
+            android:inputType="textPersonName"
+            android:text="Pesquisar um produto..."
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="85dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="732dp"
+            android:background="@color/colorPrimary"
+
+
+            android:text="Buscar"
+            app:layout_constraintEnd_toEndOf="@+id/button9"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/editText3"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="100dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="56dp"
+            android:background="@android:color/holo_orange_light"
+            android:text="Bebidas"
+            app:layout_constraintStart_toStartOf="@+id/editText3"
+            app:layout_constraintTop_toBottomOf="@+id/editText3" />
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="100dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="56dp"
+            android:background="@android:color/holo_blue_dark"
+            android:text="Bolos"
+            app:layout_constraintStart_toEndOf="@+id/button6"
+            app:layout_constraintTop_toBottomOf="@+id/editText3" />
+
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="100dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="56dp"
+            android:background="@color/colorPrimary"
+            android:text="LANCHES"
+            app:layout_constraintStart_toEndOf="@+id/button7"
+            app:layout_constraintTop_toBottomOf="@+id/editText3" />
+
+        <Button
+            android:id="@+id/button9"
+            android:layout_width="100dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="56dp"
+            android:background="@color/colorAccent"
+            android:clickable="true"
+            android:editable="true"
+            android:enabled="true"
+            android:focusable="auto"
+            android:focusableInTouchMode="true"
+            android:text="REFEICAO"
+            app:layout_constraintStart_toEndOf="@+id/button8"
+            app:layout_constraintTop_toBottomOf="@+id/editText3" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layoutSuporte"
+        android:layout_width="1039dp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/Bvender"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="108dp"
+            android:layout_marginTop="16dp"
+            android:text="Suporte"
+            android:textColor="@color/colorAccent"
+            android:textSize="36sp"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@+id/tvinformativo"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvinformativo"
+            android:layout_width="305dp"
+            android:layout_height="83dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="200dp"
+            android:lines="8"
+            android:text="A Remarca automação é a empresa responsável pelo desenvolvimento e Suporte ao SAT-FLEX ANDROID.
+
+                "
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="303dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginLeft="100dp"
+            android:lines="8"
+            android:text="Teremos um grande prazer em atender você via telefone ou uma visita presencial. Caso precise de ajuda, por favor, entre em contato conosco. www.remarca.net"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvinformativo" />
+
+        <TextView
+            android:id="@+id/tvtelefone"
+            android:layout_width="145dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="200dp"
+            android:lines="2"
+            android:text="(11) 2755-7911
+                          Das 8:00h às 17:30h"
+            app:layout_constraintStart_toEndOf="@+id/tvinformativo"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/tvemail"
+            android:layout_width="354dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="8dp"
+            android:cursorVisible="false"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:lines="2"
+            android:text="suporte@remarca-automacao.com.br"
+            app:layout_constraintStart_toEndOf="@+id/tvinformativo"
+            app:layout_constraintTop_toBottomOf="@+id/tvtelefone" />
+
+        <TextView
+            android:id="@+id/tvendereco"
+            android:layout_width="151dp"
+            android:layout_height="68dp"
+            android:layout_marginTop="16dp"
+            android:text="Rua Pio XI, 576 - Lapa
+             São Paulo - SP
+               CEP 05060-000"
+            app:layout_constraintStart_toStartOf="@+id/tvemail"
+            app:layout_constraintTop_toBottomOf="@+id/tvemail" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layoutCupom"
+        android:layout_width="801dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintStart_toEndOf="@+id/layoutContentMainVendas"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="769dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@color/semfoco"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="DETALHE DA VENDA"
+            app:titleMargin="120dp"
+            app:titleMarginEnd="100dp"
+            app:titleMarginStart="80dp"
+            app:titleMargins="20dp"
+            app:titleTextColor="@color/colorPrimaryDark" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="303dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="44dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layoutContador"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="350dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="450dp"
+            android:layout_marginLeft="450dp"
+            android:layout_marginTop="36dp"
+            android:text="Módulo do contador"
+            android:textSize="36sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="374dp"
+            android:layout_height="61dp"
+            android:layout_marginTop="48dp"
+            android:text="Enviar arquivos fiscais por e-mail"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="400dp"
+            android:layout_marginLeft="400dp"
+            android:layout_marginTop="32dp"
+            android:text="E-mail do contador"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="400dp"
+            android:layout_marginLeft="400dp"
+            android:layout_marginTop="32dp"
+            android:text="E-mail do contador"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Data inicial"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/tvemailcontador"
+            app:layout_constraintTop_toBottomOf="@+id/tvemailcontador" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="180dp"
+            android:layout_marginLeft="180dp"
+            android:layout_marginTop="16dp"
+            android:text="Data final"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/tvemailcontador" />
+
+        <EditText
+            android:id="@+id/tvemailcontador"
+            android:layout_width="535dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:text="ademir@remarca-automacao.com.br"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+        <EditText
+            android:id="@+id/etdatainicial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:inputType="date"
+            android:text="01/02/2019"
+            app:layout_constraintStart_toStartOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+        <EditText
+            android:id="@+id/etdatafinal"
+            android:layout_width="264dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:inputType="datetime"
+            android:singleLine="true"
+            android:text="28/02/2019"
+            app:layout_constraintStart_toStartOf="@+id/textView12"
+            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+        <Button
+            android:id="@+id/BenviarEmail"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="338dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="32dp"
+            android:background="@color/design_default_color_primary"
+            android:text="Enviar arquivos por e-mail"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp"
+
+            app:layout_constraintStart_toStartOf="@+id/etdatainicial"
+            app:layout_constraintTop_toBottomOf="@+id/etdatafinal" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible">
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>
