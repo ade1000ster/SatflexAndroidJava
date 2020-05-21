@@ -289,7 +289,7 @@ private FTPClient ftp;
         setContentView(layout.activity_main);
         conectarBanc();
 
-     //   ProgressBar.setMax(100); // 100 maximum value for the progress bar
+     //   ProgressBar.setMax(100); // 100 maximum value for the progress barss
         containerGridViewCateg = findViewById(id.GridCategorias);
         containerGridViewprod = findViewById(id.GridProdutos);
         listadeItensVendaProd = new ArrayList<>();
