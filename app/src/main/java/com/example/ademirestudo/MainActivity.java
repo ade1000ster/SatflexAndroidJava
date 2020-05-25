@@ -65,10 +65,16 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.sweda2.si300dll.Java_SI300;
 
+import org.apache.commons.net.ftp.FTPClient;
+
+import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 import java.text.Normalizer;
 import java.text.NumberFormat;
@@ -100,7 +106,6 @@ import model.modelDocumentoProduto;
 import model.modelParametros;
 import model.modelProdutos;
 import model.modelRelatorioOrc;
-import util.IncertNcm;
 import util.TecladoContribSocial;
 import util.TecladoQuantInteiro;
 import util.Tecladocpfcnpj;
@@ -117,6 +122,8 @@ import static com.example.ademirestudo.R.id;
 import static com.example.ademirestudo.R.layout;
 import static com.example.ademirestudo.R.menu;
 public class MainActivity extends AppCompatActivity implements OnClickListener, TextToSpeech.OnInitListener, AdapterView.OnItemSelectedListener {
+private FTPClient ftp;
+
     private StringBuilder statusSat;
     private AlertDialog alertDialog;
     StorageReference firebaseStorageRef = FirebaseStorage.getInstance().getReference();
@@ -145,6 +152,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     private String senhaConfiguracao = "";
     private Button SUPORTE;
     private Button SAIR;
+
     private Button bcateg;
     private Button bprod;
     private Button btnAlertaUsb;
@@ -191,6 +199,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     public static modelDocumentoProduto objCupom;
     public static modelDocumento objdocumento;
     public static modelCupomFiscal objCupomFiscal = new modelCupomFiscal();
+   // public static ArrayList<modelProdutos> listadeprod;
     public static ArrayList<modelDocumentoProduto> listadeItens;
     private ArrayList<modelCategorias> listadecateg;
 
@@ -227,6 +236,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     private int controle = 0;
     public static String dataInicialAux;
     public static String dataFinalAux;
+    EditText inputText;
+    TextView response;
+    Button saveButton, readButton;
     private static File diretorioBanco;
     private static File diretorioXmlContador;
     private static File diretorioXmlTemp;
@@ -240,7 +252,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     private static String chave = "";
     private static int coo = 000000;
     public EnviarEmail enviaemail;
-    public IncertNcm incertNcm;
     FinalizarVendas finalizarVendas = null;
     AlteraProd alterarProd = null;
     private static SAT sweda;
@@ -278,7 +289,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         setContentView(layout.activity_main);
         conectarBanc();
 
-     //   ProgressBar.setMax(100); // 100 maximum value for the progress barff
+     //   ProgressBar.setMax(100); // 100 maximum value for the progress bar
         containerGridViewCateg = findViewById(id.GridCategorias);
         containerGridViewprod = findViewById(id.GridProdutos);
         listadeItensVendaProd = new ArrayList<>();
@@ -410,14 +421,44 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         criarDiretorios();
         // avisar();
       //  bloqueio();
-       compactarBanco();
+      // compactarBanco();
+
         conectSatControlid();
         SimpleDateFormat formataData = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date data = new Date();
         String dataFormatada = formataData.format(data);
+        // filepath = dataFormatada;
+        inputText = (EditText) findViewById(id.myInputText);
+        response = (TextView) findViewById(id.response);
         getSAT().identificarEth();
         impSweda();
+        Button saveButton = (Button) findViewById(id.saveExternalStorage);
 
+        // Bundle icicle;
+
+
+
+        readButton = (Button) findViewById(id.getExternalStorage);
+        readButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    FileInputStream fis = new FileInputStream("xmlcontador/a.xml");
+                    DataInputStream in = new DataInputStream(fis);
+                    BufferedReader br =
+                            new BufferedReader(new InputStreamReader(in));
+                    String strLine;
+                    while ((strLine = br.readLine()) != null) {
+                        myData = myData + strLine;
+                    }
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                inputText.setText(myData);
+                response.setText("SampleFile.txt data retrieved from Internal Storage...");
+            }
+        });
         downloadAtualizacao();
        // backupBanco();
         //statusSat =new StringBuilder();
@@ -575,9 +616,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
                 savedadosVenda.write(dadosvenda.getBytes());
                 savedadosVenda.close();
                 retornosat = retornosatt.split("\\|");
-
                 if (retornosat[1].equalsIgnoreCase("06000")) {
 
+                    //VENDER.setText(retornosat[1]);
                     chave = retornosat[8];
                     String vendas = converteBase64.base64(retornosat[6]);
                     String[] hora = vendas.split("hEmi>");
@@ -629,6 +670,72 @@ else{
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
+    public boolean venderSatControlIdd() {
+        Random random = new Random();
+        int number = 0;
+        String numeroSessao = "123456";
+
+        if (SATiD.getInstance().isConnected()) {
+            SQLiteDatabase db = dadosOpenHelper.getReadableDatabase();
+            try {
+                number = random.nextInt(999999);
+                numeroSessao = (String.format("%06d", number));
+                String consultarstatusat = SATiD.getInstance().ConsultarStatusOperacional(Integer.parseInt(numeroSessao), objparam.getSatCodAtivacao());
+                DadosVenda dadosVenda = new DadosVenda();
+                number = random.nextInt(999999);
+                numeroSessao = (String.format("%06d", number));
+
+                String retornosatt = SATiD.getInstance().EnviarDadosVenda(Integer.parseInt(numeroSessao), objparam.getSatCodAtivacao(), dadosVenda.criarDadosVenda().toString());
+                String dadosvenda = dadosVenda.criarDadosVenda().toString();
+                FileOutputStream savedadosVenda = new FileOutputStream(diretorioTemp + "/" + "dadosVenda" + ".xml");
+                savedadosVenda.write(dadosvenda.getBytes());
+                savedadosVenda.close();
+                retornosat = retornosatt.split("\\|");
+                if (retornosat[1].equalsIgnoreCase("06000")) {
+
+                    //VENDER.setText(retornosat[1]);
+                    chave = retornosat[8];
+                    String vendas = converteBase64.base64(retornosat[6]);
+                    String[] hora = vendas.split("hEmi>");
+                    String[] data = vendas.split("dEmi>");
+                    qrCode = retornosat[11];
+                    coo = Integer.parseInt(retornosat[8].substring(34, 40));
+                    objCupomFiscal.setCoo(coo);
+                    objdocumento.setChaveCfe(chave.substring(3));
+                    objCupomFiscal.setChaveCfe(objdocumento.getChaveCfe());
+                    objdocumento.setXml(vendas);
+                    objdocumento.setNumero(coo);
+                    objdocumento.setDthrcriacao(data[1].substring(0, 4) + "-" + data[1].substring(4, 6) + "-" + data[1].substring(6, 8) + " " + hora[1].substring(0, 2) + ":" + hora[1].substring(2, 4) + ":" + hora[1].substring(4, 6));
+                    objCupomFiscal.setData(data[1].substring(6, 8) + "/" + data[1].substring(4, 6) + "/" + data[1].substring(0, 4));
+                    objCupomFiscal.setHora(hora[1].substring(0, 2) + ":" + hora[1].substring(2, 4) + ":" + hora[1].substring(4, 6));
+                    dadosOpenHelper.adddocumento(objdocumento);
+
+                    if (objparam.getImpressoraConfirm().equalsIgnoreCase("N")) {
+                        impCupomFiscal();
+                    } else {
+
+
+                    }
+                    return true;
+                } else {
+                    erroconexãosat = retornosat[3];
+                    return false;
+                }
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                return false;
+            }
+
+
+        } else {
+            erroconexãosat = " Não foi possivel estabelecer conexão com o sat ";
+            return false;
+        }
+
+    }
+
     public SAT getSAT() {
         if (sweda == null) {
             sweda = new SAT(getApplicationContext());
@@ -3716,20 +3823,6 @@ else{
         }
     }
 
-    public void addNcm(String ncm){
-        try {
-            dadosOpenHelper.inserirNcm(ncm);
-        }
-        catch (Exception e){
-
-        }
-    }
-public void inserNcm(View view){
-        incertNcm = new IncertNcm(this);
-   // addNcm("a+");
-    incertNcm.execute();
-
-}
     public void DeletaPasta(File file) {
         if (file.isDirectory()) {
             for (File fila : file.listFiles()) {
@@ -3922,7 +4015,48 @@ public void inserNcm(View view){
         btnStatusSistema.setVisibility(VISIBLE);
     }
 
+    public void ftpp(){
+        try {
+            //Recupera o caminho padrão do SDCARD
+           // File root = Environment.getExternalStorageDirectory();
+             ftp= new FTPClient();
+            //Cria arquivo para gravar o texto
+            // File file= new File(root, "/teste.txt");
 
+            //Faz a conexão com o servidor ftp
+            ftp.connect("ftp.zanthus.com.br",2142);
+
+            //Autenticação se necessario
+            //ftp.login("user", "passwd");
+
+            //Muda o diretorio dentro do ftp
+            //ftp.changeWorkingDirectory("/appservers/apache-tomcat-6x/webapps");
+
+            //Faz o download do arquivo passando o nome dele(dentro o servidor) e local onde ele vai ser guardado
+            // ftpDownload("teste.txt", file.getAbsolutePath()+"/"+file.getName());
+
+            //Disconecta do ftp
+            ftp.disconnect();
+
+            //Faço a leitura do do arquivo
+            // FileReader fileReader= new FileReader(file);
+            // BufferedReader leitor= new BufferedReader(fileReader);
+            // String linha = null;
+
+            //Loop para ler e inserir no editText
+            // while((linha = leitor.readLine()) != null) {
+            //  editText.append(linha);
+            //}
+
+            //Informo que o procedimento foi finalizado
+            //  view.setText("Finalizado");
+
+        } catch (Exception e) {
+            // TODO: handle exception
+
+        }
+
+    }
     public void SelcSuporte(View view) {
 
 
@@ -4089,7 +4223,7 @@ public void inserNcm(View view){
         }
     }
 
-
+    
     public void pausa(){
         try {
             TimeUnit.SECONDS.sleep(3);
@@ -4098,9 +4232,8 @@ public void inserNcm(View view){
         }
     }
 
-@RequiresApi(api = Build.VERSION_CODES.O)
 public void consultarStatusOperacional(View view){
- //   consultarStatusOperacionall();
+    consultarStatusOperacionall();
     //conectImpControlid();
     String consultarsttusat ="";
     int cooIni=0;
