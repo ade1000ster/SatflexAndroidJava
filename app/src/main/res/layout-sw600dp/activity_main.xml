@@ -569,6 +569,17 @@
                 tools:ignore="MissingConstraints" />
 
             <Button
+                android:id="@+id/btninserirncm"
+                android:layout_width="280dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="8dp"
+                android:background="#4169E1"
+                android:onClick="inserNcm"
+                android:text=" inserir ncm"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnFecharAplicacao" />
+            <Button
                 android:id="@+id/btnvoltarmenuant"
                 android:layout_width="280dp"
                 android:layout_height="100dp"
@@ -578,7 +589,7 @@
                 android:onClick="ConfigMenuAnterior"
                 android:text=" ao menu anterior"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnFecharAplicacao" />
+                app:layout_constraintTop_toBottomOf="@+id/btninserirncm" />
 
             <Button
                 android:id="@+id/btnFecharAplicacao"
@@ -652,17 +663,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </android.support.constraint.ConstraintLayout>
-
-        <Button
-            android:id="@+id/getExternalStorage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="350dp"
-            android:layout_marginTop="90dp"
-            android:text="Lerarquivo"
-            android:visibility="invisible"
-            app:layout_constraintStart_toStartOf="@+id/button13"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/myInputText"
