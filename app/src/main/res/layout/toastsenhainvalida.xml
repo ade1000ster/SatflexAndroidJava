@@ -7,13 +7,12 @@
 
     <TextView
         android:id="@+id/tvmsginfo"
-        android:layout_width="839dp"
+        android:layout_width="500dp"
         android:layout_height="177dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="Senha inválida"
-        android:textScaleX="4"
-        android:textSize="18sp"
+        android:textSize="38dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

@@ -3,12 +3,14 @@
     <color name="colorPrimary">#1A9D13</color>
     <color name="colorPrimaryDark">#1F6130</color>
     <color name="colorAccent">#FFFFFF</color>
-    <color name="selecionado">#31ED27</color>
+    <color name="selecionado">#269636</color>
     <color name="semfoco">#747372</color>
     <color name="orcamento">#4682B4</color>
     <color name="finalizarorc">#191970</color>
     <color name="corparametroselect">#6873DF</color>
     <color name="corparametrosemfoco">#FFFFFF</color>
+    <color name="confirma">#269636</color>
+    <color name="cancelar">#CA2626</color>
     <style name="AlertDialogCustom" parent="@android:style/Theme.Dialog">
         <item name="android:windowTitleStyle">@style/MyOwnDialogTitle</item>
         <item name="android:textSize">28sp</item>

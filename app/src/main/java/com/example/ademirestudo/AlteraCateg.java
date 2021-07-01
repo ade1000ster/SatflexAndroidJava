@@ -9,6 +9,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
@@ -88,7 +89,6 @@ public class AlteraCateg extends AppCompatActivity implements AdapterView.OnItem
                                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                                     | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                                     | View.SYSTEM_UI_FLAG_IMMERSIVE);
-                    //        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
                 }
             }
         });
@@ -99,7 +99,6 @@ public class AlteraCateg extends AppCompatActivity implements AdapterView.OnItem
         descricao = (EditText) findViewById( R.id.textViewDescrCateg);
         cor = (EditText) findViewById( R.id.txtviewcorcateg);
         altera = (Button) findViewById( R.id.alterarcor);
-        dthrcriacao = (EditText) findViewById(R.id.tvCriadoem);
         origemCateg = (Spinner) findViewById(R.id.spOrigem);
         csosn = (Spinner) findViewById(R.id.spCsosn);
         cfop = (EditText) findViewById(R.id.tvCfop);
@@ -110,12 +109,13 @@ public class AlteraCateg extends AppCompatActivity implements AdapterView.OnItem
         aliqcofins = (EditText) findViewById(R.id.tvAliqcofins);
         codcontribsocial = (EditText) findViewById(R.id.tvContribsocial);
         cest = (EditText) findViewById(R.id.tvCest);
-        codNcm = (EditText) findViewById(R.id.tvNcm );
+        codNcm = (EditText) findViewById(R.id.tvEan);
         cbtribut = (CheckBox) findViewById(R.id.cbTribut );
+        dthrcriacao = (EditText) findViewById(R.id.tvCriadoem);
+        dthrcriacao.setEnabled(false);
         conectarBanco();
         final modelCategorias c = (modelCategorias) getIntent().getExtras().getSerializable("Dados");
         codigo = String.valueOf(c.getIdcategoria());
-        //ncm = String.valueOf(c.getCodigoNcm());
         produtos = String.valueOf(c.getQuantidade());
         descricao.setText(c.getDescricao());
         altera.setBackgroundColor(Color.parseColor(c.getCor()));
@@ -205,7 +205,6 @@ public class AlteraCateg extends AppCompatActivity implements AdapterView.OnItem
 
                     } catch (Exception ex) {
 
-                       // AlertDialog.Builder builder = new AlertDialog.Builder();
                         //define o titulo
                         builder.setTitle("NCM não encontrado");
 
@@ -425,43 +424,74 @@ public class AlteraCateg extends AppCompatActivity implements AdapterView.OnItem
     public void gravarcategoria (View view)
     {
         long retorno =0;
-        try {
-            ColorDrawable viewColor = (ColorDrawable) altera.getBackground();
-            int colorId = viewColor.getColor();
-            String hexColor = String.format("#%06X", (0xFFFFFF & colorId));
-            modelCategorias categ = new modelCategorias();
-            categ.setIdcategoria(Integer.parseInt(codigo));
-            //categ.setNcm(ncm);
-            categ.setCor(hexColor);
-            //categ.setQuantidade(produtos);
-            categ.setDescricao(descricao.getText().toString() );
-            //categ.setDthrcriacao(dthrcriacao.getText().toString());
-            categ.setOrigem(origemCateg.getSelectedItemPosition());
-            categ.setCfop(cfop.getText().toString());
-            categ.setCsosn(Integer.parseInt(csosn.getSelectedItem().toString()));
-            categ.setAliqicms(Double.parseDouble(formatPriceSave(aliqicms.getText().toString())));
-            categ.setCstpis(cstpis.getText().toString());
-            categ.setAliqpis(Double.parseDouble(formatPriceSave(aliqpis.getText().toString())));
-            categ.setCstcofins(cstcofins.getText().toString());
-            categ.setAliqcofins(Double.parseDouble(formatPriceSave(aliqcofins.getText().toString())));
-            categ.setCodcontribsocial(codcontribsocial.getText().toString());
-          //  categ.setCest(cest.getText().toString());
+        if(descricao.getText().length()>0) {
+            try {
+                ColorDrawable viewColor = (ColorDrawable) altera.getBackground();
+                int colorId = viewColor.getColor();
+                String hexColor = String.format("#%06X", (0xFFFFFF & colorId));
+                modelCategorias categ = new modelCategorias();
+                categ.setIdcategoria(Integer.parseInt(codigo));
+                //categ.setNcm(ncm);
+                categ.setCor(hexColor);
+                //categ.setQuantidade(produtos);
+                categ.setDescricao(descricao.getText().toString().toUpperCase());
+                //categ.setDthrcriacao(dthrcriacao.getText().toString());
+                categ.setOrigem(origemCateg.getSelectedItemPosition());
+                categ.setCfop(cfop.getText().toString());
+                categ.setCsosn(Integer.parseInt(csosn.getSelectedItem().toString()));
+                categ.setAliqicms(Double.parseDouble(formatPriceSave(aliqicms.getText().toString())));
+                categ.setCstpis(cstpis.getText().toString());
+                categ.setAliqpis(Double.parseDouble(formatPriceSave(aliqpis.getText().toString())));
+                categ.setCstcofins(cstcofins.getText().toString());
+                categ.setAliqcofins(Double.parseDouble(formatPriceSave(aliqcofins.getText().toString())));
+                categ.setCodcontribsocial(codcontribsocial.getText().toString());
+                //  categ.setCest(cest.getText().toString());
 
                 categ.setIdNcm(dadosOpenHelper.selecionarNCM(codNcm.getText().toString()));
                 retorno = dadosOpenHelper.addalteracateg(categ);
-            Toast toast = Toast.makeText(getApplicationContext(), "  ", Toast.LENGTH_LONG);
-            toast.setGravity(Gravity.CENTER, 0, 0);
-            toast.setView(toastLayout);
-            toast.show();
-            instance=null;
-            if (retorno == 0) {
+                Toast toast = Toast.makeText(getApplicationContext(), "  ", Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.setView(toastLayout);
+                toast.show();
+                instance = null;
+                if (retorno == 0) {
 
-                Toast.makeText(getApplicationContext(), +retorno + " Categoria já existente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), +retorno + " Categoria já existente", Toast.LENGTH_SHORT).show();
+                }
+                this.setResult(RESULT_OK);
+                this.finish();
+            } catch (Exception ex) {
+                Toast.makeText(getApplicationContext(), +retorno + "Não foi possível cadastrar" + retorno + ex.getCause() + ex.getLocalizedMessage(), Toast.LENGTH_LONG).show();
             }
-            this.setResult(RESULT_OK);
-            this.finish();
-        } catch (Exception ex) {
-            Toast.makeText(getApplicationContext(), +retorno+ "Não foi possível cadastrar" + retorno+ ex.getCause() + ex.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+        }
+        else{
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            builder.setCancelable(false);
+            builder.setTitle("Atenção");
+            builder.setMessage(" O Campo Descrição Não Pode Ser Vazio!");
+
+            final AlertDialog.Builder sim = builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface arg0, int arg1) {
+                    GradientDrawable gdDefault = new GradientDrawable();
+                    gdDefault.setColor(Color.parseColor("#fffff0"));
+                    gdDefault.setCornerRadius(10);
+                    gdDefault.setStroke(6, Color.parseColor("#ff3333"));
+                    descricao.setBackground(gdDefault);
+
+                }
+            });
+            AlertDialog alerta = builder.create();
+
+            alerta.show();
+
+            Button pbutton = alerta.getButton(DialogInterface.BUTTON_POSITIVE);
+            pbutton.setBackgroundColor(Color.BLUE);
+            pbutton.setTextSize(20);
+            pbutton.setScaleY(1);
+            pbutton.setScaleX(1);
+            pbutton.setX(-40);
+            pbutton.setTextColor(Color.WHITE);
         }
 
     }

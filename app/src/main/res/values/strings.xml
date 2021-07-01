@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Flex Remarca</string>
+    <string name="app_name">Remarca Flex</string>
     <string-array name="spStatus">
         <item>Ativo</item>
         <item>Inativo</item>
@@ -31,11 +31,9 @@
     </string-array>
 
 
-
     <string-array name="spprecovariavel">
-        <item>Não</item>
-        <item>Sim</item>
-
+        <item>SIM</item>
+        <item>NÃO</item>
     </string-array>
 
 

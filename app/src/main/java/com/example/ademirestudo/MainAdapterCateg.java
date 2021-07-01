@@ -2,13 +2,17 @@
 package com.example.ademirestudo;
 
 import android.content.Context;
+import android.database.SQLException;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.example.ademirestudo.database.DadosOpenHelper;
 
 import java.util.ArrayList;
 
@@ -16,7 +20,7 @@ import model.modelCategorias;
 
 class MainAdapterCateg extends ArrayAdapter<modelCategorias> {
     MainActivity m = new MainActivity();
-
+    public DadosOpenHelper dadosOpenHelper;
     private Context context;
     private ArrayList<modelCategorias> lista = null;
 
@@ -30,6 +34,18 @@ class MainAdapterCateg extends ArrayAdapter<modelCategorias> {
 
 
     }
+    private void conectarBanc() {
+        try {
+            dadosOpenHelper = new DadosOpenHelper(this.context);
+
+        } catch (SQLException ex) {
+            AlertDialog.Builder dlg = new AlertDialog.Builder(this.context);
+            dlg.setTitle("Erro");
+            dlg.setMessage(ex.getMessage());
+            dlg.setNeutralButton("OK", null);
+            dlg.show();
+        }
+    }
 
     @Override
     public View getView(final int position, View convertVieww, ViewGroup parent) {
@@ -40,7 +56,6 @@ class MainAdapterCateg extends ArrayAdapter<modelCategorias> {
         GradientDrawable gdDefault = new GradientDrawable();
         gdDefault.setColor(Color.parseColor(itemposicao.getCor()));
         gdDefault.setCornerRadius(10);
-        //gdDefault.setShape(GradientDrawable.OVAL);
         gdDefault.setStroke(3, Color.parseColor("#000301"));
         final TextView descricao = (TextView) convertVieww.findViewById(R.id.button);
         descricao.setText(itemposicao.getDescricao());
@@ -49,14 +64,13 @@ class MainAdapterCateg extends ArrayAdapter<modelCategorias> {
             @Override
             public void onClick(View v) {
 
-            m.consultarProd(itemposicao.getIdcategoria() );
+                m.consultarProd(itemposicao.getIdcategoria() );
 
             }
 
 
 
         });
-      //  m.atualizarlista();
         return convertVieww;
     }
 

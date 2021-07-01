@@ -1,10 +1,14 @@
 package com.example.ademirestudo;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -17,6 +21,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -24,8 +29,12 @@ import android.widget.Toast;
 
 import com.example.ademirestudo.database.DadosOpenHelper;
 
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import model.modelProdutos;
 import util.CriarProdTrib;
@@ -63,7 +72,6 @@ public class CriarProd extends AppCompatActivity implements AdapterView.OnItemSe
                                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                                     | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                                     | View.SYSTEM_UI_FLAG_IMMERSIVE);
-                    //        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
                 }
             }
         });
@@ -78,12 +86,20 @@ public class CriarProd extends AppCompatActivity implements AdapterView.OnItemSe
         getWindow().setGravity( Gravity.TOP);
         getWindow().setLayout( (int)(width*.7),(int)(height*.6) );
         descricaoProd = (TextView) findViewById( R.id.textViewDescrProd);
+        descricaoProd.setPaintFlags(descricaoProd.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
         precovenda = (EditText) findViewById( R.id.editTextPrecoVenda);
-        ean = (EditText) findViewById(R.id.tvNcm );
+        ean = (EditText) findViewById(R.id.tvEan);
+
         listCategoria();
         listUnidade();
         status = (Spinner) findViewById(R.id.spStatus);
         PrecoVariavel = (Spinner) findViewById(R.id.spprecovariavel);
+        TextView criadoem = (EditText) findViewById(R.id.tvCriadoEm);
+        criadoem.setEnabled(false);
+        SimpleDateFormat formataData = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        Date data = new Date();
+        String dataFormatada = formataData.format(data);
+        criadoem.setText(dataFormatada);
 
         ArrayAdapter<CharSequence> adapterstatus = ArrayAdapter.createFromResource(this, R.array.spStatus, android.R.layout.simple_spinner_item);
         adapterstatus.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -96,7 +112,33 @@ public class CriarProd extends AppCompatActivity implements AdapterView.OnItemSe
         PrecoVariavel.setOnItemSelectedListener(this);
         LayoutInflater layoutInflater = getLayoutInflater();
         toastLayout = layoutInflater.inflate(R.layout.toastdadosgravado, (ViewGroup) findViewById(R.id.toastdadosgravado));
+        PrecoVariavel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
+                if (PrecoVariavel.getSelectedItemPosition()==1){
+                    precovenda.setEnabled(true);
+                    if(objProdutos.getPreco()==0) {
+                        if (Tecladonumerico.instance==null) {
+                            mainActivity.controleteclado=19;
+                            Intent intent = new Intent(getApplication(), Tecladonumerico.class);
+                            startActivityForResult(intent, 1);
+                        }
+                    }
+                }
+                else{
+                    precovenda.setText("0,00");
+                    objProdutos.setPreco(0);
+                    precovenda.setEnabled(false);
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
     public void esconderTeclado(View view){
         InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -124,7 +166,87 @@ public class CriarProd extends AppCompatActivity implements AdapterView.OnItemSe
     public void gravarProduto (View view)
     {
         instance=null;
-        inserirprod( conexao );
+        if(descricaoProd.getText().length()>0){
+            if (PrecoVariavel.getSelectedItemPosition()==1){
+                objProdutos.setPreco(  Double.parseDouble(formatPriceSave( precovenda.getText().toString() )));
+                if(objProdutos.getPreco()!=0) {
+
+                    instance = null;
+                    inserirprod(conexao);
+                    this.setResult(RESULT_OK);
+                    this.finish();
+                }
+                else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+                    builder.setCancelable(false);
+                    builder.setTitle("Atenção");
+                    builder.setIcon(R.drawable.reimrimircupom);
+                    builder.setMessage(" O Campo Preço Não Pode Ser Igual a Zero!");
+
+
+                    final AlertDialog.Builder sim = builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            GradientDrawable gdDefault = new GradientDrawable();
+                            gdDefault.setColor(Color.parseColor("#fffff0"));
+                            gdDefault.setCornerRadius(10);
+                            gdDefault.setStroke(6, Color.parseColor("#ff3333"));
+                            precovenda.setBackground(gdDefault);
+
+                        }
+                    });
+                    AlertDialog alerta = builder.create();
+
+                    alerta.show();
+
+                    Button pbutton = alerta.getButton(DialogInterface.BUTTON_POSITIVE);
+                    pbutton.setBackgroundColor(Color.BLUE);
+                    pbutton.setTextSize(20);
+                    pbutton.setScaleY(1);
+                    pbutton.setScaleX(1);
+                    pbutton.setX(-40);
+                    pbutton.setTextColor(Color.WHITE);
+                }
+
+            }
+            else{
+                instance = null;
+                inserirprod(conexao);
+                this.setResult(RESULT_OK);
+                this.finish();
+            }
+
+        }
+        else{
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            builder.setCancelable(false);
+            builder.setTitle("Atenção");
+            builder.setMessage(" O Campo Descrição Não Pode Ser Vazio!");
+
+            final AlertDialog.Builder sim = builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface arg0, int arg1) {
+                    GradientDrawable gdDefault = new GradientDrawable();
+                    gdDefault.setColor(Color.parseColor("#fffff0"));
+                    gdDefault.setCornerRadius(10);
+                    gdDefault.setStroke(6, Color.parseColor("#ff3333"));
+                    descricaoProd.setBackground(gdDefault);
+
+                }
+            });
+            AlertDialog alerta = builder.create();
+
+            alerta.show();
+
+            Button pbutton = alerta.getButton(DialogInterface.BUTTON_POSITIVE);
+            pbutton.setBackgroundColor(Color.BLUE);
+            pbutton.setTextSize(20);
+            pbutton.setScaleY(1);
+            pbutton.setScaleX(1);
+            pbutton.setX(-40);
+            pbutton.setTextColor(Color.WHITE);
+        }
+
     }
 
 
@@ -214,16 +336,12 @@ public class CriarProd extends AppCompatActivity implements AdapterView.OnItemSe
     }}
     public void inserirprod (SQLiteDatabase db) {
         try {
-            //db.execSQL("CREATE TABLE produto ( id INTEGER PRIMARY KEY AUTOINCREMENT, descricao TEXT , precoprod DOUBLE(6,2), codigocateg INTEGER, FOREIGN KEY (codigocateg) REFERENCES categoria (id))");
             int codCateg = 0;
             String descrCateg = "";
             long statusSelec = 0;
             String descrUnid = "";
             int codUnidade = 0;
 
-
-
-           // List<String> items = new ArrayList<String>();
             categoria = (Spinner) findViewById( R.id.spCsosn );
             Unidade = (Spinner) findViewById(R.id.spUnidade);
             descrCateg = categoria.getSelectedItem().toString();
@@ -232,10 +350,14 @@ public class CriarProd extends AppCompatActivity implements AdapterView.OnItemSe
             precoVariavelSelec = PrecoVariavel.getSelectedItemId();
             codCateg = dadosOpenHelper.selecionarcateg( descrCateg );
             codUnidade = dadosOpenHelper.selecionarUnidade( descrUnid );
-           // modelProdutos prod = new modelProdutos();
             objProdutos.setIdcategoria( codCateg );
-            objProdutos.setPreco( Double.parseDouble( precovenda.getText().toString() ) );
-            objProdutos.setDescricao( descricaoProd.getText().toString() );
+            if (PrecoVariavel.getSelectedItemPosition()==0){
+                objProdutos.setPreco(0);
+            }
+            else {
+                objProdutos.setPreco(  Double.parseDouble(formatPriceSave( precovenda.getText().toString() )));
+            }
+            objProdutos.setDescricao( descricaoProd.getText().toString().toUpperCase() );
             if (ean.length() != 0 ) {
                 objProdutos.setCodigoean(ean.getText().toString());
             }
@@ -249,12 +371,12 @@ public class CriarProd extends AppCompatActivity implements AdapterView.OnItemSe
 
 
             if (precoVariavelSelec == 0) {
-                objProdutos.setPrecovariavel( "N" );
+                objProdutos.setPrecovariavel( "S" );
 
             }
             else {
                 if (precoVariavelSelec == 1)
-                    objProdutos.setPrecovariavel( "S" );
+                    objProdutos.setPrecovariavel( "N" );
 
 
 
@@ -271,6 +393,20 @@ public class CriarProd extends AppCompatActivity implements AdapterView.OnItemSe
         }catch (Exception ex) {
             Toast.makeText(getApplicationContext(), "Não foi possível cadastrar" + ex.getMessage()+ ex.getCause() + ex.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
         }
+    }
+    private static String getCurrencySymbol() {
+        return NumberFormat.getCurrencyInstance( Locale.getDefault()).getCurrency().getSymbol();
+
+    }
+    private static String formatPriceSave(String price) {
+        //Ex - price = $ 5555555
+        //return = 55555.55 para salvar no banco de dados
+        String replaceable = String.format("[%s,.\\s]", getCurrencySymbol());
+        String cleanString = price.replaceAll(replaceable, "");
+        StringBuilder stringBuilder = new StringBuilder(cleanString.replaceAll(" ", ""));
+
+        return String.valueOf(stringBuilder.insert(cleanString.length() - 2, '.'));
+
     }
 
     @Override

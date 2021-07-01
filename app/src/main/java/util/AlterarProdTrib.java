@@ -63,7 +63,6 @@ public class AlterarProdTrib extends AppCompatActivity implements AdapterView.On
                                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                                     | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                                     | View.SYSTEM_UI_FLAG_IMMERSIVE);
-                    //        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
                 }
             }
         });
@@ -86,7 +85,7 @@ public class AlterarProdTrib extends AppCompatActivity implements AdapterView.On
         codcontribsocial = (EditText) findViewById(R.id.tvCodContribSocial);
         cest = (EditText) findViewById(R.id.tvCest);
         cfop = (EditText) findViewById(R.id.tvCfop);
-        codNcm = (EditText) findViewById(R.id.tvNcm );
+        codNcm = (EditText) findViewById(R.id.tvEan);
         cbtribut = (CheckBox) findViewById(R.id.cbTribut );
         ArrayAdapter<CharSequence> adapterstatus = ArrayAdapter.createFromResource(this, R.array.spcsons, android.R.layout.simple_spinner_item);
         adapterstatus.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -135,7 +134,6 @@ public class AlterarProdTrib extends AppCompatActivity implements AdapterView.On
                 aliqicofins.setText(String.valueOf(converte.format(tributacao.getDouble(4))));
                 codcontribsocial.setText(String.valueOf(tributacao.getString(5)));
                 cfop.setText(String.valueOf(tributacao.getString(8)));
-              //  cest.setText(String.valueOf(tributacao.getString(9)));
                 codNcm.setText(String.valueOf(codigoncm));
                 if (tributacao.getInt(6) == 500){
 
@@ -353,7 +351,6 @@ public class AlterarProdTrib extends AppCompatActivity implements AdapterView.On
 
             }
         instance =null;
-            // this.setResult(RESULT_OK, intent);
             this.finish();
 
     }

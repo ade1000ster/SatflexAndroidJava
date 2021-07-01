@@ -69,9 +69,6 @@ public class MascaraCFOP {
 
     private static String getDefaultMask(String str) {
         String defaultMask = maskCNPJ;
-        /*if (str.length() > 11){
-            defaultMask = maskCNPJ;
-        }*/
         return defaultMask;
     }
 }

@@ -2,10 +2,14 @@ package com.example.ademirestudo;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -19,6 +23,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -97,15 +102,17 @@ public class AlteraProd extends AppCompatActivity implements AdapterView.OnItemS
         conectarBanco();
         getWindowManager().getDefaultDisplay().getMetrics( dm );
         int width = dm.widthPixels;
-        DecimalFormat converte = new DecimalFormat("0.00");
+        final DecimalFormat converte = new DecimalFormat("0.00");
         int height = dm.heightPixels;
         getWindow().setGravity( Gravity.TOP);
         getWindow().setLayout( (int)(width*.7),(int)(height*.6) );
         descricaoProd = findViewById( id.textViewDescrProd);
         precovenda = findViewById( id.editTextPrecoVenda);
-        codigoprod = findViewById( id.tvNcm );
+        codigoprod = findViewById( id.tvEan);
         TextView textViewcriarprod = findViewById(id.textViewcriarprod);
         TextView criadoem = (EditText) findViewById(id.tvCriadoEm);
+        criadoem.setEnabled(false);
+
         String statusProd;
         final String precovarProd;
         listCategoria();
@@ -125,16 +132,11 @@ public class AlteraProd extends AppCompatActivity implements AdapterView.OnItemS
        PrecoVariavel.setOnItemSelectedListener(this);
 
         objProdutos = (modelProdutos) getIntent().getExtras().getSerializable("Dados");
-
-
            for (int i =0; i< items.size();i++ ) {
 
                if (items.get(i).equalsIgnoreCase(objProdutos.getDescricaocateg())  ){
                    categoria.setSelection(i);}
                    }
-
-
-
         statusProd = String.valueOf(  objProdutos.getStatus() );
         precovarProd = String.valueOf(  objProdutos.getPrecovariavel() );
 
@@ -142,12 +144,13 @@ public class AlteraProd extends AppCompatActivity implements AdapterView.OnItemS
         codigo = String.valueOf(objProdutos.getIdproduto());
 
         descricaoProd.setText (objProdutos.getDescricao());
+        descricaoProd.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
         precovenda.setText(String.valueOf (converte.format(objProdutos.getPreco()) ));
         codigoprod.setText(objProdutos.getCodigoean());
         criadoem.setText( objProdutos.getDthrcriacao() );
-        if (precovarProd.equalsIgnoreCase( "N" )){ PrecoVariavel.setSelection(0);}
+        if (precovarProd.equalsIgnoreCase( "S" )){ PrecoVariavel.setSelection(0);}
         else
-        if (precovarProd.equalsIgnoreCase( "S" )) {
+        if (precovarProd.equalsIgnoreCase( "N" )) {
             PrecoVariavel.setSelection( 1 );
         }
         LayoutInflater layoutInflater = getLayoutInflater();
@@ -156,7 +159,8 @@ public class AlteraProd extends AppCompatActivity implements AdapterView.OnItemS
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-if (PrecoVariavel.getSelectedItemPosition()==0){
+if (PrecoVariavel.getSelectedItemPosition()==1){
+    precovenda.setEnabled(true);
     if(objProdutos.getPreco()==0) {
         if (Tecladonumerico.instance==null) {
             mainActivity.controleteclado=19;
@@ -164,6 +168,11 @@ if (PrecoVariavel.getSelectedItemPosition()==0){
             startActivityForResult(intent, 1);
         }
     }
+}
+else{
+    precovenda.setText("0,00");
+    objProdutos.setPreco(0);
+    precovenda.setEnabled(false);
 }
             }
 
@@ -210,11 +219,86 @@ if (PrecoVariavel.getSelectedItemPosition()==0){
 
     public void gravarProduto (View view)
     {
-        instance = null;
-        alteraprod(  );
-        this.setResult(RESULT_OK);
-        this.finish();
+       if(descricaoProd.getText().length()>0){
+           if (PrecoVariavel.getSelectedItemPosition()==1){
+               objProdutos.setPreco(  Double.parseDouble(formatPriceSave( precovenda.getText().toString() )));
+               if(objProdutos.getPreco()!=0) {
+
+                   instance = null;
+                   alteraprod();
+                   this.setResult(RESULT_OK);
+                   this.finish();
+               }
+               else {
+                   AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+                   builder.setCancelable(false);
+                   builder.setTitle("Atenção");
+                   builder.setMessage(" O Campo Preço Não Pode Ser Igual a Zero!");
+
+                   final AlertDialog.Builder sim = builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                       public void onClick(DialogInterface arg0, int arg1) {
+                           GradientDrawable gdDefault = new GradientDrawable();
+                           gdDefault.setColor(Color.parseColor("#fffff0"));
+                           gdDefault.setCornerRadius(10);
+                           gdDefault.setStroke(6, Color.parseColor("#ff3333"));
+                           precovenda.setBackground(gdDefault);
+
+                       }
+                   });
+                   AlertDialog alerta = builder.create();
+
+                   alerta.show();
+
+                   Button pbutton = alerta.getButton(DialogInterface.BUTTON_POSITIVE);
+                   pbutton.setBackgroundColor(Color.BLUE);
+                   pbutton.setTextSize(20);
+                   pbutton.setScaleY(1);
+                   pbutton.setScaleX(1);
+                   pbutton.setX(-40);
+                   pbutton.setTextColor(Color.WHITE);
+               }
+
+       }
+           else{
+               instance = null;
+               alteraprod();
+               this.setResult(RESULT_OK);
+               this.finish();
+           }
+
     }
+       else{
+           AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+           builder.setCancelable(false);
+           builder.setTitle("Atenção");
+           builder.setMessage(" O Campo Descrição Não Pode Ser Vazio!");
+
+           final AlertDialog.Builder sim = builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+               public void onClick(DialogInterface arg0, int arg1) {
+                   GradientDrawable gdDefault = new GradientDrawable();
+                   gdDefault.setColor(Color.parseColor("#fffff0"));
+                   gdDefault.setCornerRadius(10);
+                   gdDefault.setStroke(6, Color.parseColor("#ff3333"));
+                   descricaoProd.setBackground(gdDefault);
+
+               }
+           });
+           AlertDialog alerta = builder.create();
+
+           alerta.show();
+
+           Button pbutton = alerta.getButton(DialogInterface.BUTTON_POSITIVE);
+           pbutton.setBackgroundColor(Color.BLUE);
+           pbutton.setTextSize(20);
+           pbutton.setScaleY(1);
+           pbutton.setScaleX(1);
+           pbutton.setX(-40);
+           pbutton.setTextColor(Color.WHITE);
+       }
+       }
+
 
     private void conectarBanco(){
         try {
@@ -322,7 +406,7 @@ if (PrecoVariavel.getSelectedItemPosition()==0){
 
             objProdutos.setIdproduto(Integer.parseInt(codigo));
             objProdutos.setIdcategoria(codCateg);
-            objProdutos.setDescricao( descricaoProd.getText().toString() );
+            objProdutos.setDescricao( descricaoProd.getText().toString().toUpperCase() );
             objProdutos.setPreco(  Double.parseDouble(formatPriceSave( precovenda.getText().toString() )));
             objProdutos.setCodigoean(codigoprod.getText().toString());
             objProdutos.setIdunidade( codUnidade);
@@ -334,12 +418,13 @@ if (PrecoVariavel.getSelectedItemPosition()==0){
 
 
             if (precovar == 0) {
-                objProdutos.setPrecovariavel( "N" );
+                objProdutos.setPrecovariavel( "S" );
 
             }
             else {
                 if (precovar == 1)
-                    objProdutos.setPrecovariavel( "S" );
+                    objProdutos.setPrecovariavel( "N" );
+
 
             }
 
@@ -351,10 +436,6 @@ if (PrecoVariavel.getSelectedItemPosition()==0){
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.setView(toastLayout);
             toast.show();
-
-
-
-
         } catch (Exception ex) {
             Toast.makeText(getApplicationContext(), "Não foi possível alterar" +ex.getMessage() +ex.getCause(), Toast.LENGTH_SHORT).show();
         }

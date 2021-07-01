@@ -99,10 +99,16 @@
         android:layout_height="51dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
+        android:paddingLeft = "20dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/bordasarredondadoscateg"
         android:gravity="center"
         android:text=""
+        android:inputType="text|textCapCharacters"
+        android:singleLine="true"
+        android:maxLength="40"
+        android:cursorVisible="true"
+        android:textCursorDrawable="@null"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
@@ -133,8 +139,8 @@
         android:layout_height="50dp"
         android:layout_marginStart="72dp"
         android:layout_marginLeft="72dp"
+        android:paddingLeft = "20dp"
         android:background="@drawable/bordasarredondadoscateg"
-        android:focusable="false"
         android:gravity="center"
         android:text="criado em"
         app:layout_constraintStart_toEndOf="@+id/alterarcor"
@@ -152,13 +158,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewDescrCateg" />
 
     <EditText
-        android:id="@+id/tvNcm"
+        android:id="@+id/tvEan"
         android:layout_width="220dp"
         android:layout_height="52dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/bordasarredondadoscateg"
         android:gravity="center"
         android:onClick="tecladoNcm"
+        android:singleLine="true"
         android:focusable="false"
         app:layout_constraintStart_toStartOf="@+id/textView19"
         app:layout_constraintTop_toBottomOf="@+id/textView19" />
@@ -169,8 +176,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Origem"
-        app:layout_constraintStart_toStartOf="@+id/tvNcm"
-        app:layout_constraintTop_toBottomOf="@+id/tvNcm" />
+        app:layout_constraintStart_toStartOf="@+id/tvEan"
+        app:layout_constraintTop_toBottomOf="@+id/tvEan" />
 
     <Spinner
         android:id="@+id/spOrigem"
@@ -194,7 +201,7 @@
         android:layout_marginTop="20dp"
         android:text="CFOP"
         app:layout_constraintStart_toEndOf="@+id/spOrigem"
-        app:layout_constraintTop_toBottomOf="@+id/tvNcm" />
+        app:layout_constraintTop_toBottomOf="@+id/tvEan" />
 
     <EditText
         android:id="@+id/tvCfop"
@@ -217,7 +224,7 @@
         android:layout_marginTop="20dp"
         android:text="CSOSN"
         app:layout_constraintStart_toEndOf="@+id/tvCfop"
-        app:layout_constraintTop_toBottomOf="@+id/tvNcm" />
+        app:layout_constraintTop_toBottomOf="@+id/tvEan" />
 
     <Spinner
         android:id="@+id/spCsosn"
@@ -390,7 +397,7 @@
         android:buttonTint="#000"
         android:checked="false"
         android:text="Usar as mesmas tributações do NCM"
-        app:layout_constraintStart_toEndOf="@+id/tvNcm"
-        app:layout_constraintTop_toTopOf="@+id/tvNcm" />
+        app:layout_constraintStart_toEndOf="@+id/tvEan"
+        app:layout_constraintTop_toTopOf="@+id/tvEan" />
 
 </android.support.constraint.ConstraintLayout>

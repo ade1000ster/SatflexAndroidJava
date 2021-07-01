@@ -14,7 +14,6 @@ import model.modelProdutos;
 
 class AdapterProd extends ArrayAdapter<modelProdutos>{
     MainActivity m = new MainActivity();
-   // AlteraProd alteraProd = new AlteraProd();
 
     private Context context;
 

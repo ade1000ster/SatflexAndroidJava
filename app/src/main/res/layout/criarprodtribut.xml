@@ -188,7 +188,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="116dp"
         android:text="NCM do produto"
-        app:layout_constraintStart_toStartOf="@+id/tvNcm"
+        app:layout_constraintStart_toStartOf="@+id/tvEan"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -213,7 +213,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/tvNcm"
+        android:id="@+id/tvEan"
         android:layout_width="239dp"
         android:layout_height="51dp"
         android:layout_marginStart="8dp"
@@ -252,7 +252,7 @@
         android:ellipsize="end"
         android:singleLine="true"
         android:spinnerMode="dialog"
-        app:layout_constraintStart_toEndOf="@+id/tvNcm"
+        app:layout_constraintStart_toEndOf="@+id/tvEan"
         app:layout_constraintTop_toBottomOf="@+id/textView44" />
 
     <Spinner
@@ -274,7 +274,7 @@
         android:layout_marginTop="30dp"
         android:text="CSOSN"
         app:layout_constraintStart_toStartOf="@+id/spCsosn"
-        app:layout_constraintTop_toBottomOf="@+id/tvNcm" />
+        app:layout_constraintTop_toBottomOf="@+id/tvEan" />
 
     <CheckBox
         android:id="@+id/cbTribut"

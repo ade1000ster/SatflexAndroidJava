@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/planodefundo1"
+    tools:context=".SplashActivity">
+
+
+    <TextView
+        android:id="@+id/tvcronometro"
+        android:layout_width="500dp"
+        android:layout_height="200dp"
+        android:layout_weight="1"
+        android:gravity="top|center"
+        android:text="00"
+        android:textColor="#fff"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+
+    <ImageView
+        android:id="@+id/ivsplash"
+        android:layout_width="1000dp"
+        android:layout_height="400dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:srcCompat="@tools:sample/avatars[12]" />
+
+    <ImageView
+        android:id="@+id/ivlogo"
+        android:layout_width="370dp"
+        android:layout_height="236dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/backgrounds/scenic[0]" />
+
+    <ImageView
+        android:id="@+id/ivpublicoalvo"
+        android:layout_width="350dp"
+        android:layout_height="280dp"
+        android:layout_marginStart="74dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/backgrounds/scenic[11]" />
+
+    <TextView
+        android:id="@+id/tvpublicoalvo"
+        android:layout_width="260dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="180dp"
+        android:text="PUBLICO ALVO"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivpublicoalvo" />
+
+    <Button
+        android:id="@+id/btnconremota"
+        android:layout_width="98dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="3dp"
+        android:background="@drawable/logo"
+        android:text="C. Remota"
+        android:onClick="conexRemota"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintCircleRadius="5dp"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnsuporteremot"
+        android:layout_width="88dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="9dp"
+        android:onClick="habilitarSuporteRemot"
+        android:text="Suporte Remoto"
+        app:layout_constraintCircleRadius="5dp"
+        android:background="@drawable/logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>

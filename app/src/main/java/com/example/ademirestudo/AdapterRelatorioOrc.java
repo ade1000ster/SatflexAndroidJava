@@ -44,7 +44,6 @@ class AdapterRelatorioOrc extends ArrayAdapter<modelRelatorioOrc>{
             double quantidade = itemposicao.getQuantidade();
             Quantidade.setText( String.valueOf( quantidade ) );
         }
-      //  Quantidade.setText(String.valueOf(converte.format( itemposicao.getQuantidade() )));
 
         TextView Total = (TextView) convertView.findViewById(R.id.tvTotallist);
         Total.setText("R$ " + converte.format(itemposicao.getTotal()).toString());
@@ -52,8 +51,6 @@ class AdapterRelatorioOrc extends ArrayAdapter<modelRelatorioOrc>{
         if (mainActivity.auxtipoRelatorio != 0){
             Cliente.setVisibility(View.INVISIBLE);
             Quantidade.setX(-200);
-
-           // TextView Resumo = (TextView) convertView.findViewById(R.id.tvResumo );
 
         }
         if (itemposicao.getIdproduto() == -1){
@@ -117,10 +114,6 @@ class AdapterRelatorioOrc extends ArrayAdapter<modelRelatorioOrc>{
             Quantidade.setX(-200);
             Total.setX(-150);
         }
-
-       // m.totValRelOrc.setText( String.valueOf  ( itemposicao.getValorTotalRel()) );
-       // m.totQuantRelOrc.setText( itemposicao.getTotal().toString() );
-
 
         return convertView;
 

@@ -2,15 +2,25 @@
 //noinspection GradleCompatible
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
-
 android {
+    packagingOptions {
+        pickFirst 'lib/armeabi-v7a/libsatprotocol.so'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.ademirestudo"
-        minSdkVersion 22
+        minSdkVersion 24
         targetSdkVersion 28
-        versionCode 6
-        versionName "1.0"
+        versionCode 2
+        versionName "1.0.1"
+        sourceSets.main.jniLibs.srcDirs = ['src/main/jniLibs']
+        ndk {
+            abiFilters  "armeabi-v7a", "x86", "arm64-v8a","armeabi","x86_64", "mips"
+        }
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -32,30 +42,28 @@ android {
 }
 
 dependencies {
+    implementation group: 'org.quartz-scheduler', name: 'quartz', version: '2.2.1'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-   //  implementation project(":ss2000sat-01.00.02")
-   // implementation(name: 'ss2000sat-01.00.02', ext: 'aar')
-    implementation 'br.com.controlid.satid:satid-library-1.0.4@aar'
+    implementation (name:'androiddimepsat-release', ext:'aar')
+    implementation (name:'satcontrolid1.0.4', ext:'aar')
     implementation 'br.com.controlid.printid:printid-release-040@aar'
-    // Import USB Support dependency
     implementation 'com.github.felHR85:UsbSerial:4.5.2'
-   implementation(name: 'satlibrary-release', ext: 'aar')
-   implementation(name: 'SWSIM-release', ext: 'aar')
-    implementation(name: 'si300library', ext: 'aar')
-  // implementation(name: 'satid-library-1.0.4', ext: 'aar')
+    implementation(name: 'satlibrary-release', ext: 'aar')
+    implementation(name: 'SWSIM-release', ext: 'aar')
     implementation 'com.android.volley:volley:1.1.1'
-    implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation 'com.google.firebase:firebase-database:16.0.4'
     implementation 'com.google.firebase:firebase-storage:16.0.4'
     implementation 'com.google.firebase:firebase-auth:16.0.5'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.android.support:design:28.0.0'
     implementation files('libs/ePOS2.jar')
     implementation files('libs/ePOSEasySelect.jar')
     implementation files('libs/apache-commons-net.jar')
+    def stetho_version = "1.5.1"
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
+    implementation 'com.facebook.stetho:stetho:1.5.1'
     testImplementation 'junit:junit:4.12'
-
-
+    implementation 'com.github.felHR85:UsbSerial:4.5.2'
+    api group: 'com.google.zxing', name: 'core', version: '3.4.1'
 }

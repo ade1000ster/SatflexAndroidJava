@@ -97,8 +97,6 @@ public class TecladoNCMProduto  extends AppCompatActivity
         tvTitulo.setText( "NCM do Produto" );
         R$.setText("");
         valor.setText("");
-        //  Locale mLocale = new Locale("pt", "BR");
-
         valor.addTextChangedListener(MascaraNCM.insert(valor));
 
     }
@@ -207,10 +205,13 @@ public class TecladoNCMProduto  extends AppCompatActivity
     }
 
         public void BotaoC(View view){
-        if (bool == false){
-            String str = valor.getText().toString();
-            valor.setText("");
-        }
+            if (bool == false){
+                String str = valor.getText().toString();
+                if (str.length()>0) {
+                    int indice = str.length()-1;
+                    valor.setText(str.substring(0,indice));
+                }
+            }
     }
 
         public static String getCurrencySymbol() {

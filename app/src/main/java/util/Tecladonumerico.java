@@ -58,7 +58,6 @@ public class Tecladonumerico extends AppCompatActivity implements AdapterView.On
                                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                                     | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                                     | View.SYSTEM_UI_FLAG_IMMERSIVE);
-                    //        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
                 }
             }
         });
@@ -70,7 +69,7 @@ public class Tecladonumerico extends AppCompatActivity implements AdapterView.On
         getWindowManager().getDefaultDisplay().getMetrics( dm );
         int width = dm.widthPixels;
         int height = dm.heightPixels;
-        getWindow().setGravity( Gravity.TOP );
+        getWindow().setGravity( Gravity.CENTER );
         getWindow().setLayout( (int) (width * .34), (int) (height * .55) );
         valor = (EditText) findViewById( R.id.calcula);
         botao1 = (Button) findViewById(R.id.button1);
@@ -180,7 +179,7 @@ public class Tecladonumerico extends AppCompatActivity implements AdapterView.On
         }
         if(mainActivity.controleteclado== 19) {
 
-            valor.setText(converte.format(mainActivity.objdocumento.getTotaldocumento()));
+            valor.setText(converte.format(0.00));
             tvTitulo.setText("Preço de venda");
 
         }
@@ -348,7 +347,10 @@ else{
     public void BotaoC(View view){
         if (bool == false){
             String str = valor.getText().toString();
-            valor.setText("0,00");
+            if (str.length()>0) {
+                int indice = str.length()-1;
+                valor.setText(str.substring(0,indice));
+            }
         }
     }
 

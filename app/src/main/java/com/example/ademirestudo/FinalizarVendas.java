@@ -27,7 +27,9 @@ import com.example.ademirestudo.database.DadosOpenHelper;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import model.modelDocumentoPagamento;
 import model.modelDocumentoProduto;
@@ -36,6 +38,7 @@ import util.DescontoCupom;
 import util.Tecladonumerico;
 
 import static com.example.ademirestudo.AlteraCateg.getCurrencySymbol;
+import static com.example.ademirestudo.MainActivity.objparam;
 import static com.example.ademirestudo.R.color.semfoco;
 
 public   class FinalizarVendas  extends AppCompatActivity {
@@ -44,7 +47,7 @@ public   class FinalizarVendas  extends AppCompatActivity {
     DadosOpenHelper db = new DadosOpenHelper(this);
     private static GridView containerGridViewFormPgto;;
     public static ArrayList<modelDocumentoPagamento> listadeFormPgto;
-    private static AdapterFormPgto itensFormPgto;
+   // private static AdapterFormPgto itensFormPgto;
     private SQLiteDatabase conexao;
     public DadosOpenHelper dadosOpenHelper;
     private EditText valortotal;
@@ -55,13 +58,14 @@ public   class FinalizarVendas  extends AppCompatActivity {
     private Button cheque;
     private Button cCredito;
     private Button cDebito;
-    private static SAT sweda;
+    private static SATsweda sweda;
     private Button valeAlim;
     private Button outros;
     private Button desconto;
     private Button acrescimo;
     private Button incluir10;
     private Button cancelar;
+    public EfetivarVenda efetuarvenda;
     public static int controle = 0;
     public double totrest = 0;
     private double totrec=0;
@@ -107,7 +111,7 @@ public   class FinalizarVendas  extends AppCompatActivity {
         getWindow().setLayout((int) (width * .704), (int) (height * .785));
         containerGridViewFormPgto =  findViewById(R.id.GridFormPag);
         listadeFormPgto = new ArrayList<>();
-        itensFormPgto = new AdapterFormPgto(this, listadeFormPgto);
+        //itensFormPgto = new AdapterFormPgto(this, listadeFormPgto);
         valortotal = (EditText) findViewById(R.id.etValorTot);
         totalrestante = findViewById(R.id.tvTotalRestante);
         dinheiro = (Button) findViewById(R.id.btnDinheiro);
@@ -135,12 +139,9 @@ public   class FinalizarVendas  extends AppCompatActivity {
         desconto.setOnClickListener(selecDesconto);
         acrescimo.setOnClickListener(selecAcrescimo);
         incluir10.setOnClickListener(selecInclui10);
-
+        incluir10.setVisibility(View.INVISIBLE);
         layoutInflater = getLayoutInflater();
         toastLayout = layoutInflater.inflate(R.layout.layouttoast, (ViewGroup) findViewById(R.id.layouttoast));
-
-
-
     }
 
     public static String formatPriceSave(String price) {
@@ -151,39 +152,36 @@ public   class FinalizarVendas  extends AppCompatActivity {
         StringBuilder stringBuilder = new StringBuilder(cleanString.replaceAll(" ", ""));
 
         return String.valueOf(stringBuilder.insert(cleanString.length() - 2, '.'));
-
     }
-
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+        efetuarvenda = new EfetivarVenda();
+
+        NumberFormat df = NumberFormat.getCurrencyInstance(Locale.US); ((DecimalFormat)df).applyPattern("0.00");
         if (resultCode == RESULT_OK && requestCode == 1) {
-            //totrest = m.objdocumento.getTotaldocumentocdesc();
             desconto.setBackgroundResource(semfoco);
             desconto.setOnClickListener(null);
             String retornoTeclado = data.getStringExtra("KEY");
-            dinheirorec.setVisibility(View.VISIBLE);
+
             double valorrecDin = 0;
             valorrecDin = Double.parseDouble(retornoTeclado);
-            //totrest = (m.objdocumento.getTotaldositens() - valorrecDin);
+
             totrec = totrec + Double.parseDouble(retornoTeclado);
             mainActivity.objdocumento.setTotalrestante(mainActivity.objdocumento.getTotalrestante() - Double.parseDouble(retornoTeclado));
-            //  totrest = (mainActivity.objdocumento.getTotalrestante() - totrec);
 
-
-            if ( mainActivity.objdocumento.getTotaldocumentocdesc() > totrec) {
+            if ( Double.parseDouble(df.format(mainActivity.objdocumento.getTotaldocumentocdesc())) > totrec) {
                 formPag = new modelDocumentoPagamento();
                 formPag.setTotalpagamento(valorrecDin);
                 formPag.setIdformapagamento(1);
                 formPag.setEspecieformapagaento("01");
                 formPag.setDescricao("Dinheiro");
+                formPag.setDthrcriacao(mainActivity.objdocumento.getDthrcriacao());
                 formPag.setIddocumento(db.selecionariddocumento());
                 listadeFormPgto.add(formPag);
-                // containerGridViewFormPgto.setAdapter(itensFormPgto);
                 totrest = (mainActivity.objdocumento.getTotalrestante() - totrec);
 
-            } else if ( mainActivity.objdocumento.getTotaldocumentocdesc() < totrec) {
+            } else if ( Double.parseDouble(df.format(mainActivity.objdocumento.getTotaldocumentocdesc())) < totrec)  {
                 double troco = (totrec - mainActivity.objdocumento.getTotaldocumentocdesc());
 
                 formPag = new modelDocumentoPagamento();
@@ -192,34 +190,33 @@ public   class FinalizarVendas  extends AppCompatActivity {
                 formPag.setIdformapagamento(1);
                 formPag.setEspecieformapagaento("01");
                 formPag.setDescricao("Dinheiro");
+                formPag.setDthrcriacao(mainActivity.objdocumento.getDthrcriacao());
                 mainActivity.objdocumento.setTotaltroco(troco);
                 formPag.setIddocumento(db.selecionariddocumento());
                 listadeFormPgto.add(formPag);
-                if(mainActivity.venderSatControlId( )==true){
-
+                if(mainActivity.efetuarVenda( )==true){
 
                 excluirOrc(conexao);
                 for (int i = 1; i <= listadeFormPgto.size(); i++) {
                     int ultimoDoc = 0;
                     objFormPgto = new modelDocumentoPagamento();
                     objFormPgto = listadeFormPgto.get(i - 1);
-                    //  objCupom2.setSequencial(i);
-
                     ultimoDoc = db.selecionariddocumento();
                     objFormPgto.setIddocumento(ultimoDoc);
-                    //   objFormPgto.setTotalpagamento(valorrecDin);
+                    objFormPgto.setDthrcriacao(mainActivity.objdocumento.getDthrcriacao());
                     db.adddocpagamento(objFormPgto);
-                    mainActivity.binformarCPF.setText("10");
+
 
                 }
                 for (int i = 1; i <= mainActivity.listadeItens.size(); i++) {
-                    mainActivity.binformarCPF.setText("11");
+
                     int ultimoDoc = 0;
                     objCupom2 = new modelDocumentoProduto();
                     objCupom2 = mainActivity.listadeItens.get(i - 1);
                     objCupom2.setSequencial(i);
                     ultimoDoc = db.selecionariddocumento();
                     objCupom2.setIddocumento(ultimoDoc);
+                    objCupom2.setDthrcriacao(mainActivity.objdocumento.getDthrcriacao());
                     db.adddocumentoproduto(objCupom2);
                 }
 
@@ -230,9 +227,8 @@ public   class FinalizarVendas  extends AppCompatActivity {
                 builder.setMessage("            Total de troco \n" + "\n" + "              R$ " + converte.format(troco));
                 //  formPag.setTotalpagamento(valorrec);
                 //define um botão como positivo
-                    if(mainActivity.objparam.getSatModelo().equalsIgnoreCase("sweda")){
-                        sweda = new SAT(this);
-                        sweda.desativarEthSat();
+                    if(objparam.getSatModelo().equalsIgnoreCase("2")){
+                        sweda = new SATsweda(this);
                     }
                 final AlertDialog.Builder sim = builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
@@ -253,54 +249,80 @@ public   class FinalizarVendas  extends AppCompatActivity {
                 pbutton.setScaleX(1);
                 pbutton.setX(-40);
                 pbutton.setTextColor(Color.WHITE);}
-                else{
+                else {
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    if (objparam.getSatModelo().equalsIgnoreCase("1")) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                        builder.setCancelable(false);
+                        builder.setTitle("              Venda Finalizada com sucesso!");
+                        builder.setMessage("            Total de troco \n" + "\n" + "              R$ " + converte.format(troco));
+                        //  formPag.setTotalpagamento(valorrec);
+                        //define um botão como positivo
+                        final AlertDialog.Builder sim = builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                mainActivity.inicianovodocumento();
 
-                    builder.setCancelable(false);
-                    builder.setTitle("Houve uma falha");
-                    builder.setMessage(mainActivity.erroconexãosat);
-                    //  formPag.setTotalpagamento(valorrec);
-                    //define um botão como positivo
-                    final AlertDialog.Builder sim = builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface arg0, int arg1) {
-                            //mainActivity.inicianovodocumento();
+                                finish();
 
-                            finish();
+                            }
+                        });
+                        AlertDialog alerta = builder.create();
 
-                        }
-                    });
-                    AlertDialog alerta = builder.create();
+                        alerta.show();
 
-                    alerta.show();
+                        Button pbutton = alerta.getButton(DialogInterface.BUTTON_POSITIVE);
+                        pbutton.setBackgroundColor(Color.BLUE);
+                        pbutton.setTextSize(20);
+                        pbutton.setScaleY(1);
+                        pbutton.setScaleX(1);
+                        pbutton.setX(-40);
+                        pbutton.setTextColor(Color.WHITE);
 
-                    Button pbutton = alerta.getButton(DialogInterface.BUTTON_POSITIVE);
-                    pbutton.setBackgroundColor(Color.BLUE);
-                    pbutton.setTextSize(20);
-                    pbutton.setScaleY(1);
-                    pbutton.setScaleX(1);
-                    pbutton.setX(-40);
-                    pbutton.setTextColor(Color.WHITE);
+                    } else {
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+                        builder.setCancelable(false);
+                        builder.setTitle("Houve uma falha");
+                        builder.setMessage(mainActivity.erroconexãosat);
+                        //define um botão como positivo
+                        final AlertDialog.Builder sim = builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                finish();
+                            }
+                        });
+                        AlertDialog alerta = builder.create();
+
+                        alerta.show();
+
+                        Button pbutton = alerta.getButton(DialogInterface.BUTTON_POSITIVE);
+                        pbutton.setBackgroundColor(Color.BLUE);
+                        pbutton.setTextSize(20);
+                        pbutton.setScaleY(1);
+                        pbutton.setScaleX(1);
+                        pbutton.setX(-40);
+                        pbutton.setTextColor(Color.WHITE);
+                    }
                 }
-            } else if ( mainActivity.objdocumento.getTotaldocumentocdesc() == totrec) {
+            } else if ( Double.parseDouble(df.format(mainActivity.objdocumento.getTotaldocumentocdesc())) == totrec) {
                 formPag = new modelDocumentoPagamento();
                 formPag.setTotalpagamento(valorrecDin );
                 formPag.setIdformapagamento(1);
                 formPag.setEspecieformapagaento("01");
                 formPag.setDescricao("Dinheiro");
+                formPag.setDthrcriacao(mainActivity.objdocumento.getDthrcriacao());
                 formPag.setIddocumento(db.selecionariddocumento());
                 listadeFormPgto.add(formPag);
-                if(mainActivity.venderSatControlId( )==true) {
+
+                if(mainActivity.efetuarVenda()== true) {
                     excluirOrc(conexao);
                     for (int i = 1; i <= listadeFormPgto.size(); i++) {
                         int ultimoDoc = 0;
                         objFormPgto = new modelDocumentoPagamento();
                         objFormPgto = listadeFormPgto.get(i - 1);
-                        //  objCupom2.setSequencial(i);
-
                         ultimoDoc = db.selecionariddocumento();
                         objFormPgto.setIddocumento(ultimoDoc);
-                        // objFormPgto.setTotalpagamento(valorrecDin);
+                        objFormPgto.setDthrcriacao(mainActivity.objdocumento.getDthrcriacao());
                         db.adddocpagamento(objFormPgto);
 
                     }
@@ -311,47 +333,60 @@ public   class FinalizarVendas  extends AppCompatActivity {
                         objCupom2.setSequencial(i);
                         ultimoDoc = db.selecionariddocumento();
                         objCupom2.setIddocumento(ultimoDoc);
+                        objCupom2.setDthrcriacao(mainActivity.objdocumento.getDthrcriacao());
                         db.adddocumentoproduto(objCupom2);
                     }
 
+
+
+                    mainActivity.inicianovodocumento();
+                    if(objparam.getSatModelo().equalsIgnoreCase("2")){
+                        //sweda = new SAT(this);
+                        //sweda.desativarEthSat();
+                    }
+                    finish();
                     Toast toast = Toast.makeText(getApplicationContext(), "  ", Toast.LENGTH_LONG);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.setView(toastLayout);
                     toast.show();
-                    mainActivity.inicianovodocumento();
-                    if(mainActivity.objparam.getSatModelo().equalsIgnoreCase("sweda")){
-                        sweda = new SAT(this);
-                        sweda.desativarEthSat();
-                    }
-                    finish();
                 }
-                else{
+                else {
+                    if (objparam.getSatModelo().equalsIgnoreCase("1")) {
+                        layoutInflater = getLayoutInflater();
+                        toastLayout = layoutInflater.inflate(R.layout.layouttoast, (ViewGroup) findViewById(R.id.layouttoast));
+                        Toast toast = Toast.makeText(getApplicationContext(), " ", Toast.LENGTH_LONG);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.setView(toastLayout);
+                        toast.show();
+                        mainActivity.inicianovodocumento();
+                        finish();
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    } else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-                    builder.setCancelable(false);
-                    builder.setTitle("Houve uma falha");
-                    builder.setMessage(mainActivity.erroconexãosat);
-                    //  formPag.setTotalpagamento(valorrec);
-                    //define um botão como positivo
-                    final AlertDialog.Builder sim = builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface arg0, int arg1) {
-                            mainActivity.inicianovodocumento();
-                            finish();
+                        builder.setCancelable(false);
+                        builder.setTitle("Houve uma falha");
+                        builder.setMessage(mainActivity.erroconexãosat);
+                        //  formPag.setTotalpagamento(valorrec);
+                        //define um botão como positivo
+                        final AlertDialog.Builder sim = builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                //  mainActivity.inicianovodocumento();
+                                finish();
 
-                        }
-                    });
-                    AlertDialog alerta = builder.create();
+                            }
+                        });
+                        AlertDialog alerta = builder.create();
+                        alerta.show();
 
-                    alerta.show();
-
-                    Button pbutton = alerta.getButton(DialogInterface.BUTTON_POSITIVE);
-                    pbutton.setBackgroundColor(Color.BLUE);
-                    pbutton.setTextSize(20);
-                    pbutton.setScaleY(1);
-                    pbutton.setScaleX(1);
-                    pbutton.setX(-40);
-                    pbutton.setTextColor(Color.WHITE);
+                        Button pbutton = alerta.getButton(DialogInterface.BUTTON_POSITIVE);
+                        pbutton.setBackgroundColor(Color.BLUE);
+                        pbutton.setTextSize(20);
+                        pbutton.setScaleY(1);
+                        pbutton.setScaleX(1);
+                        pbutton.setX(-40);
+                        pbutton.setTextColor(Color.WHITE);
+                    }
                 }
             }
         }
@@ -360,7 +395,6 @@ public   class FinalizarVendas  extends AppCompatActivity {
             desconto.setBackgroundResource(semfoco);
             desconto.setOnClickListener(null);
             String retornoTeclado = data.getStringExtra("KEY");
-            dinheirorec.setVisibility(View.VISIBLE);
             double valorrecCheq = 0;
             valorrecCheq = Double.parseDouble(retornoTeclado);
             totrec = totrec + Double.parseDouble(retornoTeclado);
@@ -373,22 +407,21 @@ public   class FinalizarVendas  extends AppCompatActivity {
                 formPag.setEspecieformapagaento("02");
                 formPag.setDescricao("Cheque");
                 formPag.setIddocumento(db.selecionariddocumento());
+                formPag.setDthrcriacao(mainActivity.objdocumento.getDthrcriacao());
                 listadeFormPgto.add(formPag);
                 totrest = (mainActivity.objdocumento.getTotalrestante() - totrec);
             }
             else if ( bd.doubleValue() < totrec) {
-                 valorrecCheq = 0;
+                valorrecCheq = 0;
                 totrec = totrec - Double.parseDouble(retornoTeclado);
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
                 builder.setCancelable(false);
                 builder.setTitle("Atenção!");
                 builder.setMessage("Essa forma de pagamento não permite troco, informe um valor menor ou igual ao total restante");
-                //  formPag.setTotalpagamento(valorrec);
                 //define um botão como positivo
                 final AlertDialog.Builder sim = builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
-                      //  mainActivity.inicianovodocumento();
                        // finish();
 
                     }
@@ -410,19 +443,18 @@ public   class FinalizarVendas  extends AppCompatActivity {
                 formPag.setIdformapagamento(2);
                 formPag.setEspecieformapagaento("02");
                 formPag.setDescricao("Cheque");
+                formPag.setDthrcriacao(mainActivity.objdocumento.getDthrcriacao());
                 formPag.setIddocumento(db.selecionariddocumento());
                 listadeFormPgto.add(formPag);
-                if(mainActivity.venderSatControlId( )==true) {
+                if(mainActivity.efetuarVenda( )==true) {
                 excluirOrc(conexao);
                 for (int i = 1; i <= listadeFormPgto.size(); i++) {
                     int ultimoDoc = 0;
                     objFormPgto = new modelDocumentoPagamento();
                     objFormPgto = listadeFormPgto.get(i - 1);
-                    //  objCupom2.setSequencial(i);
-
                     ultimoDoc = db.selecionariddocumento();
+                    objFormPgto.setDthrcriacao(mainActivity.objdocumento.getDthrcriacao());
                     objFormPgto.setIddocumento(ultimoDoc);
-                    // objFormPgto.setTotalpagamento(valorrecDin);
                     db.adddocpagamento(objFormPgto);
 
                 }
@@ -433,6 +465,7 @@ public   class FinalizarVendas  extends AppCompatActivity {
                     objCupom2.setSequencial(i);
                     ultimoDoc = db.selecionariddocumento();
                     objCupom2.setIddocumento(ultimoDoc);
+                    objCupom2.setDthrcriacao(mainActivity.objdocumento.getDthrcriacao());
                     db.adddocumentoproduto(objCupom2);
                 }
                 mainActivity.inicianovodocumento();
@@ -443,33 +476,43 @@ public   class FinalizarVendas  extends AppCompatActivity {
                     toast.setView(toastLayout);
                     toast.show();
                 }
-                else{
+                else {
+                    if (objparam.getSatModelo().equalsIgnoreCase("1")) {
+                        layoutInflater = getLayoutInflater();
+                        toastLayout = layoutInflater.inflate(R.layout.layouttoast, (ViewGroup) findViewById(R.id.layouttoast));
+                        Toast toast = Toast.makeText(getApplicationContext(), " ", Toast.LENGTH_LONG);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.setView(toastLayout);
+                        toast.show();
+                        mainActivity.inicianovodocumento();
+                        finish();
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    } else {
 
-                    builder.setCancelable(false);
-                    builder.setTitle("Houve uma falha");
-                    builder.setMessage(mainActivity.erroconexãosat);
-                    //  formPag.setTotalpagamento(valorrec);
-                    //define um botão como positivo
-                    final AlertDialog.Builder sim = builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface arg0, int arg1) {
-                            mainActivity.inicianovodocumento();
-                            finish();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-                        }
-                    });
-                    AlertDialog alerta = builder.create();
+                        builder.setCancelable(false);
+                        builder.setTitle("Houve uma falha");
+                        builder.setMessage(mainActivity.erroconexãosat);
+                        //define um botão como positivo
+                        final AlertDialog.Builder sim = builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                finish();
 
-                    alerta.show();
+                            }
+                        });
+                        AlertDialog alerta = builder.create();
 
-                    Button pbutton = alerta.getButton(DialogInterface.BUTTON_POSITIVE);
-                    pbutton.setBackgroundColor(Color.BLUE);
-                    pbutton.setTextSize(20);
-                    pbutton.setScaleY(1);
-                    pbutton.setScaleX(1);
-                    pbutton.setX(-40);
-                    pbutton.setTextColor(Color.WHITE);
+                        alerta.show();
+
+                        Button pbutton = alerta.getButton(DialogInterface.BUTTON_POSITIVE);
+                        pbutton.setBackgroundColor(Color.BLUE);
+                        pbutton.setTextSize(20);
+                        pbutton.setScaleY(1);
+                        pbutton.setScaleX(1);
+                        pbutton.setX(-40);
+                        pbutton.setTextColor(Color.WHITE);
+                    }
                 }
             }
         }
@@ -478,7 +521,6 @@ public   class FinalizarVendas  extends AppCompatActivity {
             desconto.setBackgroundResource(semfoco);
             desconto.setOnClickListener(null);
             String retornoTeclado = data.getStringExtra("KEY");
-            dinheirorec.setVisibility(View.VISIBLE);
             double valorrecCc = 0;
             valorrecCc = Double.parseDouble(retornoTeclado);
             totrec = totrec + Double.parseDouble(retornoTeclado);
@@ -495,7 +537,6 @@ public   class FinalizarVendas  extends AppCompatActivity {
                 totrest = (mainActivity.objdocumento.getTotalrestante() - totrec);
 
             } else if ( bd.doubleValue() < totrec) {
-                MainActivity.VENDER.setText(String.valueOf((bd.doubleValue())  +"_"+String.valueOf(totrec)));
                 valorrecCc = 0;
                 totrec = totrec - Double.parseDouble(retornoTeclado);
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -503,7 +544,6 @@ public   class FinalizarVendas  extends AppCompatActivity {
                 builder.setCancelable(false);
                 builder.setTitle("Atenção!");
                 builder.setMessage("Essa forma de pagamento não permite troco, informe um valor menor ou igual ao total restante");
-                //  formPag.setTotalpagamento(valorrec);
                 //define um botão como positivo
                 final AlertDialog.Builder sim = builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
@@ -530,19 +570,18 @@ public   class FinalizarVendas  extends AppCompatActivity {
                 formPag.setIdformapagamento(3);
                 formPag.setEspecieformapagaento("03");
                 formPag.setDescricao("Cartao de credito");
+                formPag.setDthrcriacao(mainActivity.objdocumento.getDthrcriacao());
                 formPag.setIddocumento(db.selecionariddocumento());
                 listadeFormPgto.add(formPag);
-                if(mainActivity.venderSatControlId( )==true) {
+                if(mainActivity.efetuarVenda( )==true) {
                     excluirOrc(conexao);
                     for (int i = 1; i <= listadeFormPgto.size(); i++) {
                         int ultimoDoc = 0;
                         objFormPgto = new modelDocumentoPagamento();
                         objFormPgto = listadeFormPgto.get(i - 1);
-                        //  objCupom2.setSequencial(i);
-
                         ultimoDoc = db.selecionariddocumento();
+                        objFormPgto.setDthrcriacao(mainActivity.objdocumento.getDthrcriacao());
                         objFormPgto.setIddocumento(ultimoDoc);
-                        // objFormPgto.setTotalpagamento(valorrecDin);
                         db.adddocpagamento(objFormPgto);
 
                     }
@@ -552,6 +591,7 @@ public   class FinalizarVendas  extends AppCompatActivity {
                         objCupom2 = mainActivity.listadeItens.get(i - 1);
                         objCupom2.setSequencial(i);
                         ultimoDoc = db.selecionariddocumento();
+                        objCupom2.setDthrcriacao(mainActivity.objdocumento.getDthrcriacao());
                         objCupom2.setIddocumento(ultimoDoc);
                         db.adddocumentoproduto(objCupom2);
                     }
@@ -563,33 +603,44 @@ public   class FinalizarVendas  extends AppCompatActivity {
                     mainActivity.inicianovodocumento();
                     finish();
                 }
-                else{
+                else {
+                    if (objparam.getSatModelo().equalsIgnoreCase("1")) {
+                        layoutInflater = getLayoutInflater();
+                        toastLayout = layoutInflater.inflate(R.layout.layouttoast, (ViewGroup) findViewById(R.id.layouttoast));
+                        Toast toast = Toast.makeText(getApplicationContext(), " ", Toast.LENGTH_LONG);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.setView(toastLayout);
+                        toast.show();
+                        mainActivity.inicianovodocumento();
+                        finish();
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    } else {
 
-                    builder.setCancelable(false);
-                    builder.setTitle("Houve uma falha");
-                    builder.setMessage(mainActivity.erroconexãosat);
-                    //  formPag.setTotalpagamento(valorrec);
-                    //define um botão como positivo
-                    final AlertDialog.Builder sim = builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface arg0, int arg1) {
-                            mainActivity.inicianovodocumento();
-                            finish();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-                        }
-                    });
-                    AlertDialog alerta = builder.create();
+                        builder.setCancelable(false);
+                        builder.setTitle("Houve uma falha");
+                        builder.setMessage(mainActivity.erroconexãosat);
+                        //define um botão como positivo
+                        final AlertDialog.Builder sim = builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                //  mainActivity.inicianovodocumento();
+                                finish();
 
-                    alerta.show();
+                            }
+                        });
+                        AlertDialog alerta = builder.create();
 
-                    Button pbutton = alerta.getButton(DialogInterface.BUTTON_POSITIVE);
-                    pbutton.setBackgroundColor(Color.BLUE);
-                    pbutton.setTextSize(20);
-                    pbutton.setScaleY(1);
-                    pbutton.setScaleX(1);
-                    pbutton.setX(-40);
-                    pbutton.setTextColor(Color.WHITE);
+                        alerta.show();
+
+                        Button pbutton = alerta.getButton(DialogInterface.BUTTON_POSITIVE);
+                        pbutton.setBackgroundColor(Color.BLUE);
+                        pbutton.setTextSize(20);
+                        pbutton.setScaleY(1);
+                        pbutton.setScaleX(1);
+                        pbutton.setX(-40);
+                        pbutton.setTextColor(Color.WHITE);
+                    }
                 }
             }
         }
@@ -598,7 +649,6 @@ public   class FinalizarVendas  extends AppCompatActivity {
             desconto.setBackgroundResource(semfoco);
             desconto.setOnClickListener(null);
             String retornoTeclado = data.getStringExtra("KEY");
-            dinheirorec.setVisibility(View.VISIBLE);
             double valorrecCd = 0;
             valorrecCd = Double.parseDouble(retornoTeclado);
             totrec = totrec + Double.parseDouble(retornoTeclado);
@@ -611,9 +661,9 @@ public   class FinalizarVendas  extends AppCompatActivity {
                 formPag.setIdformapagamento(4);
                 formPag.setEspecieformapagaento("04");
                 formPag.setDescricao("Cartao de debito");
+                formPag.setDthrcriacao(mainActivity.objdocumento.getDthrcriacao());
                 formPag.setIddocumento(db.selecionariddocumento());
                 listadeFormPgto.add(formPag);
-                // containerGridViewFormPgto.setAdapter(itensFormPgto);
                 totrest = (mainActivity.objdocumento.getTotalrestante() - totrec);
 
             } else if ( bd.doubleValue() < totrec) {
@@ -624,7 +674,6 @@ public   class FinalizarVendas  extends AppCompatActivity {
                 builder.setCancelable(false);
                 builder.setTitle("Atenção!");
                 builder.setMessage("Essa forma de pagamento não permite troco, informe um valor menor ou igual ao total restante");
-                //  formPag.setTotalpagamento(valorrec);
                 //define um botão como positivo
                 final AlertDialog.Builder sim = builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
@@ -651,19 +700,18 @@ public   class FinalizarVendas  extends AppCompatActivity {
                 formPag.setIdformapagamento(4);
                 formPag.setEspecieformapagaento("04");
                 formPag.setDescricao("Cartao de debito");
+                formPag.setDthrcriacao(mainActivity.objdocumento.getDthrcriacao());
                 formPag.setIddocumento(db.selecionariddocumento());
                 listadeFormPgto.add(formPag);
-                if(mainActivity.venderSatControlId( )==true) {
+                if(mainActivity.efetuarVenda( )==true) {
                     excluirOrc(conexao);
                     for (int i = 1; i <= listadeFormPgto.size(); i++) {
                         int ultimoDoc = 0;
                         objFormPgto = new modelDocumentoPagamento();
                         objFormPgto = listadeFormPgto.get(i - 1);
-                        //  objCupom2.setSequencial(i);
-
                         ultimoDoc = db.selecionariddocumento();
+                        objFormPgto.setDthrcriacao(mainActivity.objdocumento.getDthrcriacao());
                         objFormPgto.setIddocumento(ultimoDoc);
-                        // objFormPgto.setTotalpagamento(valorrecDin);
                         db.adddocpagamento(objFormPgto);
 
                     }
@@ -673,6 +721,7 @@ public   class FinalizarVendas  extends AppCompatActivity {
                         objCupom2 = mainActivity.listadeItens.get(i - 1);
                         objCupom2.setSequencial(i);
                         ultimoDoc = db.selecionariddocumento();
+                        objCupom2.setDthrcriacao(mainActivity.objdocumento.getDthrcriacao());
                         objCupom2.setIddocumento(ultimoDoc);
                         db.adddocumentoproduto(objCupom2);
                     }
@@ -684,33 +733,43 @@ public   class FinalizarVendas  extends AppCompatActivity {
                     mainActivity.inicianovodocumento();
                     finish();
                 }
-                else{
+                else {
+                    if (objparam.getSatModelo().equalsIgnoreCase("1")) {
+                        layoutInflater = getLayoutInflater();
+                        toastLayout = layoutInflater.inflate(R.layout.layouttoast, (ViewGroup) findViewById(R.id.layouttoast));
+                        Toast toast = Toast.makeText(getApplicationContext(), " ", Toast.LENGTH_LONG);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.setView(toastLayout);
+                        toast.show();
+                        mainActivity.inicianovodocumento();
+                        finish();
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    } else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-                    builder.setCancelable(false);
-                    builder.setTitle("Houve uma falha");
-                    builder.setMessage(mainActivity.erroconexãosat);
-                    //  formPag.setTotalpagamento(valorrec);
-                    //define um botão como positivo
-                    final AlertDialog.Builder sim = builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface arg0, int arg1) {
-                            mainActivity.inicianovodocumento();
-                            finish();
+                        builder.setCancelable(false);
+                        builder.setTitle("Houve uma falha");
+                        builder.setMessage(mainActivity.erroconexãosat);
+                        //define um botão como positivo
+                        final AlertDialog.Builder sim = builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                //mainActivity.inicianovodocumento();
+                                finish();
 
-                        }
-                    });
-                    AlertDialog alerta = builder.create();
+                            }
+                        });
+                        AlertDialog alerta = builder.create();
 
-                    alerta.show();
+                        alerta.show();
 
-                    Button pbutton = alerta.getButton(DialogInterface.BUTTON_POSITIVE);
-                    pbutton.setBackgroundColor(Color.BLUE);
-                    pbutton.setTextSize(20);
-                    pbutton.setScaleY(1);
-                    pbutton.setScaleX(1);
-                    pbutton.setX(-40);
-                    pbutton.setTextColor(Color.WHITE);
+                        Button pbutton = alerta.getButton(DialogInterface.BUTTON_POSITIVE);
+                        pbutton.setBackgroundColor(Color.BLUE);
+                        pbutton.setTextSize(20);
+                        pbutton.setScaleY(1);
+                        pbutton.setScaleX(1);
+                        pbutton.setX(-40);
+                        pbutton.setTextColor(Color.WHITE);
+                    }
                 }
             }
         }
@@ -719,7 +778,6 @@ public   class FinalizarVendas  extends AppCompatActivity {
             desconto.setBackgroundResource(semfoco);
             desconto.setOnClickListener(null);
             String retornoTeclado = data.getStringExtra("KEY");
-            dinheirorec.setVisibility(View.VISIBLE);
             double valorrecVal = 0;
             valorrecVal = Double.parseDouble(retornoTeclado);
             totrec = totrec + Double.parseDouble(retornoTeclado);
@@ -733,9 +791,9 @@ public   class FinalizarVendas  extends AppCompatActivity {
                 formPag.setIdformapagamento(6);
                 formPag.setEspecieformapagaento("10");
                 formPag.setDescricao("Vale alimentacao");
+                formPag.setDthrcriacao(mainActivity.objdocumento.getDthrcriacao());
                 formPag.setIddocumento(db.selecionariddocumento());
                 listadeFormPgto.add(formPag);
-                // containerGridViewFormPgto.setAdapter(itensFormPgto);
                 totrest = (mainActivity.objdocumento.getTotalrestante() - totrec);
 
             } else if ( bd.doubleValue() < totrec) {
@@ -746,7 +804,6 @@ public   class FinalizarVendas  extends AppCompatActivity {
                 builder.setCancelable(false);
                 builder.setTitle("Atenção!");
                 builder.setMessage("Essa forma de pagamento não permite troco, informe um valor menor ou igual ao total restante");
-                //  formPag.setTotalpagamento(valorrec);
                 //define um botão como positivo
                 final AlertDialog.Builder sim = builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
@@ -772,19 +829,18 @@ public   class FinalizarVendas  extends AppCompatActivity {
                 formPag.setIdformapagamento(6);
                 formPag.setEspecieformapagaento("10");
                 formPag.setDescricao("Vale alimentacao");
+                formPag.setDthrcriacao(mainActivity.objdocumento.getDthrcriacao());
                 formPag.setIddocumento(db.selecionariddocumento());
                 listadeFormPgto.add(formPag);
-                if(mainActivity.venderSatControlId( )==true) {
+                if(mainActivity.efetuarVenda( )==true) {
                     excluirOrc(conexao);
                     for (int i = 1; i <= listadeFormPgto.size(); i++) {
                         int ultimoDoc = 0;
                         objFormPgto = new modelDocumentoPagamento();
                         objFormPgto = listadeFormPgto.get(i - 1);
-                        //  objCupom2.setSequencial(i);
-
                         ultimoDoc = db.selecionariddocumento();
+                        objFormPgto.setDthrcriacao(mainActivity.objdocumento.getDthrcriacao());
                         objFormPgto.setIddocumento(ultimoDoc);
-                        // objFormPgto.setTotalpagamento(valorrecDin);
                         db.adddocpagamento(objFormPgto);
 
                     }
@@ -794,6 +850,7 @@ public   class FinalizarVendas  extends AppCompatActivity {
                         objCupom2 = mainActivity.listadeItens.get(i - 1);
                         objCupom2.setSequencial(i);
                         ultimoDoc = db.selecionariddocumento();
+                        objCupom2.setDthrcriacao(mainActivity.objdocumento.getDthrcriacao());
                         objCupom2.setIddocumento(ultimoDoc);
                         db.adddocumentoproduto(objCupom2);
                     }
@@ -805,34 +862,44 @@ public   class FinalizarVendas  extends AppCompatActivity {
                     mainActivity.inicianovodocumento();
                     finish();
                 }
-                else{
+                else {
+                    if (objparam.getSatModelo().equalsIgnoreCase("1")) {
+                        layoutInflater = getLayoutInflater();
+                        toastLayout = layoutInflater.inflate(R.layout.layouttoast, (ViewGroup) findViewById(R.id.layouttoast));
+                        Toast toast = Toast.makeText(getApplicationContext(), " ", Toast.LENGTH_LONG);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.setView(toastLayout);
+                        toast.show();
+                        mainActivity.inicianovodocumento();
+                        finish();
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    } else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-                    builder.setCancelable(false);
-                    builder.setTitle("Houve uma falha");
-                    builder.setMessage(mainActivity.erroconexãosat);
-                    //  formPag.setTotalpagamento(valorrec);
-                    //define um botão como positivo
-                    final AlertDialog.Builder sim = builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface arg0, int arg1) {
-                            mainActivity.inicianovodocumento();
-                            finish();
+                        builder.setCancelable(false);
+                        builder.setTitle("Houve uma falha");
+                        builder.setMessage(mainActivity.erroconexãosat);
+                        //define um botão como positivo
+                        final AlertDialog.Builder sim = builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                //  mainActivity.inicianovodocumento();
+                                finish();
 
-                        }
-                    });
-                    AlertDialog alerta = builder.create();
+                            }
+                        });
+                        AlertDialog alerta = builder.create();
 
 
-                    alerta.show();
+                        alerta.show();
 
-                    Button pbutton = alerta.getButton(DialogInterface.BUTTON_POSITIVE);
-                    pbutton.setBackgroundColor(Color.BLUE);
-                    pbutton.setTextSize(20);
-                    pbutton.setScaleY(1);
-                    pbutton.setScaleX(1);
-                    pbutton.setX(-40);
-                    pbutton.setTextColor(Color.WHITE);
+                        Button pbutton = alerta.getButton(DialogInterface.BUTTON_POSITIVE);
+                        pbutton.setBackgroundColor(Color.BLUE);
+                        pbutton.setTextSize(20);
+                        pbutton.setScaleY(1);
+                        pbutton.setScaleX(1);
+                        pbutton.setX(-40);
+                        pbutton.setTextColor(Color.WHITE);
+                    }
                 }
             }
         }
@@ -841,7 +908,6 @@ public   class FinalizarVendas  extends AppCompatActivity {
             desconto.setBackgroundResource(semfoco);
             desconto.setOnClickListener(null);
             String retornoTeclado = data.getStringExtra("KEY");
-            dinheirorec.setVisibility(View.VISIBLE);
             double valorrecOut = 0;
             valorrecOut = Double.parseDouble(retornoTeclado);
             totrec = totrec + Double.parseDouble(retornoTeclado);
@@ -854,9 +920,9 @@ public   class FinalizarVendas  extends AppCompatActivity {
                 formPag.setIdformapagamento(10);
                 formPag.setEspecieformapagaento("99");
                 formPag.setDescricao("Outros");
+                formPag.setDthrcriacao(mainActivity.objdocumento.getDthrcriacao());
                 formPag.setIddocumento(db.selecionariddocumento());
                 listadeFormPgto.add(formPag);
-                // containerGridViewFormPgto.setAdapter(itensFormPgto);
                 totrest = (mainActivity.objdocumento.getTotalrestante() - totrec);
 
             } else if ( bd.doubleValue() < totrec) {
@@ -867,7 +933,6 @@ public   class FinalizarVendas  extends AppCompatActivity {
                 builder.setCancelable(false);
                 builder.setTitle("Atenção!");
                 builder.setMessage("Essa forma de pagamento não permite troco, informe um valor menor ou igual ao total restante");
-                //  formPag.setTotalpagamento(valorrec);
                 //define um botão como positivo
                 final AlertDialog.Builder sim = builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
@@ -894,9 +959,10 @@ public   class FinalizarVendas  extends AppCompatActivity {
                 formPag.setIdformapagamento(10);
                 formPag.setEspecieformapagaento("99");
                 formPag.setDescricao("Outros");
+                formPag.setDthrcriacao(mainActivity.objdocumento.getDthrcriacao());
                 formPag.setIddocumento(db.selecionariddocumento());
                 listadeFormPgto.add(formPag);
-                if(mainActivity.venderSatControlId( )==true) {
+                if(mainActivity.efetuarVenda( )==true) {
                     excluirOrc(conexao);
                     for (int i = 1; i <= listadeFormPgto.size(); i++) {
                         int ultimoDoc = 0;
@@ -905,8 +971,8 @@ public   class FinalizarVendas  extends AppCompatActivity {
                         //  objCupom2.setSequencial(i);
 
                         ultimoDoc = db.selecionariddocumento();
+                        objFormPgto.setDthrcriacao(mainActivity.objdocumento.getDthrcriacao());
                         objFormPgto.setIddocumento(ultimoDoc);
-                        // objFormPgto.setTotalpagamento(valorrecDin);
                         db.adddocpagamento(objFormPgto);
 
                     }
@@ -915,6 +981,7 @@ public   class FinalizarVendas  extends AppCompatActivity {
                         objCupom2 = new modelDocumentoProduto();
                         objCupom2 = mainActivity.listadeItens.get(i - 1);
                         objCupom2.setSequencial(i);
+                        objCupom2.setDthrcriacao(mainActivity.objdocumento.getDthrcriacao());
                         ultimoDoc = db.selecionariddocumento();
                         objCupom2.setIddocumento(ultimoDoc);
                         db.adddocumentoproduto(objCupom2);
@@ -927,33 +994,44 @@ public   class FinalizarVendas  extends AppCompatActivity {
                     mainActivity.inicianovodocumento();
                     finish();
                 }
-                else{
+                else {
+                    if (objparam.getSatModelo().equalsIgnoreCase("1")) {
+                        layoutInflater = getLayoutInflater();
+                        toastLayout = layoutInflater.inflate(R.layout.layouttoast, (ViewGroup) findViewById(R.id.layouttoast));
+                        Toast toast = Toast.makeText(getApplicationContext(), " ", Toast.LENGTH_LONG);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.setView(toastLayout);
+                        toast.show();
+                        mainActivity.inicianovodocumento();
+                        finish();
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    } else {
 
-                    builder.setCancelable(false);
-                    builder.setTitle("Houve uma falha");
-                    builder.setMessage(mainActivity.erroconexãosat);
-                    //  formPag.setTotalpagamento(valorrec);
-                    //define um botão como positivo
-                    final AlertDialog.Builder sim = builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface arg0, int arg1) {
-                            mainActivity.inicianovodocumento();
-                            finish();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-                        }
-                    });
-                    AlertDialog alerta = builder.create();
+                        builder.setCancelable(false);
+                        builder.setTitle("Houve uma falha");
+                        builder.setMessage(mainActivity.erroconexãosat);
+                        //define um botão como positivo
+                        final AlertDialog.Builder sim = builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                //  mainActivity.inicianovodocumento();
+                                finish();
 
-                    alerta.show();
+                            }
+                        });
+                        AlertDialog alerta = builder.create();
 
-                    Button pbutton = alerta.getButton(DialogInterface.BUTTON_POSITIVE);
-                    pbutton.setBackgroundColor(Color.BLUE);
-                    pbutton.setTextSize(20);
-                    pbutton.setScaleY(1);
-                    pbutton.setScaleX(1);
-                    pbutton.setX(-40);
-                    pbutton.setTextColor(Color.WHITE);
+                        alerta.show();
+
+                        Button pbutton = alerta.getButton(DialogInterface.BUTTON_POSITIVE);
+                        pbutton.setBackgroundColor(Color.BLUE);
+                        pbutton.setTextSize(20);
+                        pbutton.setScaleY(1);
+                        pbutton.setScaleX(1);
+                        pbutton.setX(-40);
+                        pbutton.setTextColor(Color.WHITE);
+                    }
                 }
             }}
         if (resultCode == RESULT_OK  && requestCode == 7){
@@ -1069,9 +1147,9 @@ public   class FinalizarVendas  extends AppCompatActivity {
 
     };
 
-    public SAT getSAT() {
+    public SATsweda getSAT() {
         if (sweda == null) {
-            sweda = new SAT(getApplicationContext());
+            sweda = new SATsweda(getApplicationContext());
         }
 
         return sweda;
@@ -1079,9 +1157,9 @@ public   class FinalizarVendas  extends AppCompatActivity {
 
     public void cancelarFinalizarVenda(View view)
     {
-        if(mainActivity.objparam.getSatModelo().equalsIgnoreCase("sweda")){
-            sweda = new SAT(this);
-            sweda.desativarEthSat();
+        if(objparam.getSatModelo().equalsIgnoreCase("2")){
+            sweda = new SATsweda(this);
+            //sweda.desativarEthSat();
         }
         instance =null;
         this.finish();

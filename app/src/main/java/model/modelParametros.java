@@ -28,10 +28,102 @@ public class modelParametros {
     private double impostofederal=0.00;
     private String revendaTelefone="2755-7911";
     private String impressoraConfirm ="N";
+    private String impressoraNome = "4";
+    private String impressoraModelo = "epson";
     private String senhaConfiguracao = "";
     private String ethLocal = "eth0";
     private String ethSat = "eth1";
     private String ipLocal = "127.0.0.1";
+    private int dtVerificacao = 0;
+    private String Status = "0000";
+    private int codversao = 0;
+    private String portaSmtp ="587";
+    private String dataBackup1 = "";
+    private String dataBackup2 = "";
+    private String dataBackup3 = "";
+    private String checarBackup = "";
+    private String NumeroVias = "";
+    private int horaReiniciar = 0;
+
+
+    public int getHoraReiniciar() {
+        return horaReiniciar;
+    }
+
+    public void setHoraReiniciar(int horaReiniciar) {
+        this.horaReiniciar = horaReiniciar;
+    }
+
+    public String getNumeroVias() {
+        return NumeroVias;
+    }
+
+    public void setNumeroVias(String numeroVias) {
+        NumeroVias = numeroVias;
+    }
+
+    public String getDataBackup1() {
+        return dataBackup1;
+    }
+    public void setDataBackup1(String dataBackup1) {
+        this.dataBackup1 = dataBackup1;
+    }
+    public String getDataBackup2() {
+        return dataBackup2;
+    }
+    public void setDataBackup2(String dataBackup2) {
+        this.dataBackup2 = dataBackup2;
+    }
+    public String getDataBackup3() {
+        return dataBackup3;
+    }
+    public void setDataBackup3(String dataBackup3) {
+        this.dataBackup3 = dataBackup3;
+    }
+
+    public String getChecarBackup() {
+        return checarBackup;
+    }
+    public void setChecarBackup(String checarBackup) {
+        this.checarBackup = checarBackup;
+    }
+
+    public String getPortaSmtp() {
+        return portaSmtp;
+    }
+
+    public void setPortaSmtp(String portaSmtp) {
+        this.portaSmtp = portaSmtp;
+    }
+
+
+    public int getCodversao() {
+        return codversao;
+    }
+
+    public void setCodversao(int codversao) {
+        this.codversao = codversao;
+    }
+
+
+
+    public int getDtVerificacao() {
+        return dtVerificacao;
+    }
+
+    public void setDtVerificacao(int dtVerificacao) {
+        this.dtVerificacao = dtVerificacao;
+    }
+
+
+
+    public String getStatus() {
+        return Status;
+    }
+
+    public void setStatus(String status) {
+        Status = status;
+    }
 
     public String getIpLocal() {
         return ipLocal;
@@ -71,6 +163,14 @@ public class modelParametros {
 
     public void setSenhaConfiguracao(String senhaConfiguracao) {
         this.senhaConfiguracao = senhaConfiguracao;
+    }
+
+    public String getImpressoraModelo() {
+        return impressoraModelo;
+    }
+
+    public void setImpressoraModelo(String impressoraModelo) {
+        this.impressoraModelo = impressoraModelo;
     }
 
     public String getImpressoraConfirm() {
@@ -280,4 +380,14 @@ public class modelParametros {
     public void setSelect(String select) {
         this.select = select;
     }
+
+    public String getImpressoraNome() {
+        return impressoraNome;
+    }
+
+    public void setImpressoraNome(String impressoraNome) {
+        this.impressoraNome = impressoraNome;
+    }
+
+
 }

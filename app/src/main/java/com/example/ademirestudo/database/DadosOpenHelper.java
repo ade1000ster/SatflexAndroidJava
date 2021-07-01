@@ -6,12 +6,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import model.modelCategorias;
 import model.modelDocumento;
 import model.modelDocumentoPagamento;
 import model.modelDocumentoProduto;
-import model.modelProdutos;
-import model.modelCategorias;
 import model.modelParametros;
+import model.modelProdutos;
 
 public class DadosOpenHelper extends SQLiteOpenHelper {
 
@@ -19,14 +19,9 @@ public class DadosOpenHelper extends SQLiteOpenHelper {
     private static final String BANCO_CLIENTE = "satflex";
     String teste;
     String test2;
-
-
-
     public DadosOpenHelper(Context context){
         super( context,  BANCO_CLIENTE, null, VERSAO_BANCO );
     }
-
-
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -84,7 +79,7 @@ public class DadosOpenHelper extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE IF NOT EXISTS categoria (idcategoria INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "dthrcriacao DATE DEFAULT (datetime('now','localtime'))," +
-                "descricao  varyingcharacter(100) NOT NULL UNIQUE," +
+                "descricao varyingcharacter(100) NOT NULL UNIQUE COLLATE NOCASE,"+
                 "  padrao character(1) NOT NULL DEFAULT 'N'," +
                 "  idncm integer NOT NULL DEFAULT 0,"+       //DEFAULT 0
                 "  sinctributacao character(1) NOT NULL DEFAULT 'S'," +
@@ -102,15 +97,7 @@ public class DadosOpenHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY (idncm) REFERENCES ncm (idncm))");
 
 
-        db.execSQL("INSERT INTO categoria (idcategoria, dthrcriacao, descricao, padrao, idncm, sinctributacao, origem, csosn, aliqicms, cstpis, aliqpis, cstcofins, aliqcofins, codcontribsocial, cor, cest, cfop) VALUES (1, '2019-08-09 14:39:18', 'REMARCA', 'N', 1, 'S', '0', '102', 0, '49', 0, '49', 0, '01', '#FF4500', NULL, '5.102')");
-        db.execSQL("INSERT INTO categoria (idcategoria, dthrcriacao, descricao, padrao, idncm, sinctributacao, origem, csosn, aliqicms, cstpis, aliqpis, cstcofins, aliqcofins, codcontribsocial, cor, cest, cfop) VALUES (7, '2018-02-09 15:05:48.178265', 'BEBIDAS', 'N', 1, 'S', '0', '400', 0, '49', 0, '49', 0, '01', '#D15C5C', NULL, '5.102')");
-        db.execSQL("INSERT INTO categoria (idcategoria, dthrcriacao, descricao, padrao, idncm, sinctributacao, origem, csosn, aliqicms, cstpis, aliqpis, cstcofins, aliqcofins, codcontribsocial, cor, cest, cfop) VALUES (8, '2018-02-09 15:05:48.178265', 'SUCOS', 'N', 1, 'S', '0', '102', 0, '49', 0, '49', 0, '01', '#4CADE0', NULL, '5.102')");
-        db.execSQL("INSERT INTO categoria (idcategoria, dthrcriacao, descricao, padrao, idncm, sinctributacao, origem, csosn, aliqicms, cstpis, aliqpis, cstcofins, aliqcofins, codcontribsocial, cor, cest, cfop) VALUES (9, '2018-02-09 15:05:48.178265', 'ÁGUA', 'N', 1, 'S', '0', '102', 0, '49', 0, '49', 0, '01', '#96E04C', NULL, '5.102')");
-        db.execSQL("INSERT INTO categoria (idcategoria, dthrcriacao, descricao, padrao, idncm, sinctributacao, origem, csosn, aliqicms, cstpis, aliqpis, cstcofins, aliqcofins, codcontribsocial, cor, cest, cfop) VALUES (10, '2018-02-09 15:05:48.178265', 'VITAMINAS', 'N', 1, 'S', '0', '102', 0, '49', 0, '49', 0, '01', '#F0C94A', NULL, '5.102')");
-        db.execSQL("INSERT INTO categoria (idcategoria, dthrcriacao, descricao, padrao, idncm, sinctributacao, origem, csosn, aliqicms, cstpis, aliqpis, cstcofins, aliqcofins, codcontribsocial, cor, cest, cfop) VALUES (11, '2018-02-09 15:05:48.178265', 'CAFÉ DA MANHÃ', 'N', 1, 'S', '0', '102', 0, '49', 0, '49', 0, '01', '#60E0DE', NULL, '5.102')");
-        db.execSQL("INSERT INTO categoria (idcategoria, dthrcriacao, descricao, padrao, idncm, sinctributacao, origem, csosn, aliqicms, cstpis, aliqpis, cstcofins, aliqcofins, codcontribsocial, cor, cest, cfop) VALUES (12, '2018-02-09 15:05:48.178265', 'SALGADOS', 'N', 1, 'S', '0', '102', 0, '49', 0, '49', 0, '01', '#DE50DB', NULL, '5.102')");
-        db.execSQL("INSERT INTO categoria (idcategoria, dthrcriacao, descricao, padrao, idncm, sinctributacao, origem, csosn, aliqicms, cstpis, aliqpis, cstcofins, aliqcofins, codcontribsocial, cor, cest, cfop) VALUES (13, '2018-02-09 15:05:48.178265', 'CIGARRO', 'N', 1, 'S', '0', '102', 0, '49', 0, '49', 0, '01', '#ADADAD', NULL, '5.102')");
-        db.execSQL("INSERT INTO categoria (idcategoria, dthrcriacao, descricao, padrao, idncm, sinctributacao, origem, csosn, aliqicms, cstpis, aliqpis, cstcofins, aliqcofins, codcontribsocial, cor, cest, cfop) VALUES (14, '2018-02-09 15:05:48.178265', 'DOÇES', 'N', 1, 'S', '0', '102', 0, '49', 0, '49', 0, '01', '#E8F04D', NULL, '5.102')");
+        db.execSQL("INSERT INTO categoria (idcategoria, dthrcriacao, descricao, padrao, idncm, sinctributacao, origem, csosn, aliqicms, cstpis, aliqpis, cstcofins, aliqcofins, codcontribsocial, cor, cest, cfop) VALUES (1, '2019-08-09 14:39:18', 'CATEGORIA TESTE', 'N', 1, 'S', '0', '102', 0, '49', 0, '49', 0, '01', '#FF4500', NULL, '5.102')");
 
 
 
@@ -118,7 +105,7 @@ public class DadosOpenHelper extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE IF NOT EXISTS produto ( idproduto INTEGER PRIMARY KEY AUTOINCREMENT,"+
                 "dthrcriacao DATE DEFAULT (datetime('now','localtime'))," +
-                "descricao varyingcharacter(100) NOT NULL UNIQUE,"+
+                "descricao varyingcharacter(100) NOT NULL UNIQUE COLLATE NOCASE,"+
                 "idcategoria integer NOT NULL ,"+
                 "preco numeric(12,2) NOT NULL DEFAULT 0,"+
                 "codigoean varyingcharacter(20),"+
@@ -142,23 +129,9 @@ public class DadosOpenHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY (idncm) REFERENCES ncm (idncm),"+
                 "FOREIGN KEY (idunidade) REFERENCES unidade (idunidade))");
 
-        db.execSQL("INSERT INTO produto (idproduto,descricao, idcategoria, preco, codigoean, precovariavel, favorito, sinctributacao, idncm, origem, csosn, aliqicms, cstpis, aliqpis, cstcofins, aliqcofins, codcontribsocial, cest, cfop, status, idunidade) VALUES (1,  'TMT-20', 1, 8, '', 'N', 'N', 'S', 1, '0', '900', 0, '99', 0, '99', 0, '01', NULL, '5.102', 'A', 1)");
-        db.execSQL("INSERT INTO produto (idproduto, dthrcriacao, descricao, idcategoria, preco, codigoean, precovariavel, favorito, sinctributacao, idncm, origem, csosn, aliqicms, cstpis, aliqpis, cstcofins, aliqcofins, codcontribsocial, cest, cfop, status, idunidade) VALUES (2, '2017-03-08 12:12:24.30624', 'GRAXAS', 1, 5, '12', 'S', 'N', 'N', 1, '0', '102', 0, '49', 0, '49', 0, '00', '28.056.00', '5.102', 'A', 1)");
-        db.execSQL("INSERT INTO produto (idproduto, dthrcriacao, descricao, idcategoria, preco, codigoean, precovariavel, favorito, sinctributacao, idncm, origem, csosn, aliqicms, cstpis, aliqpis, cstcofins, aliqcofins, codcontribsocial, cest, cfop, status, idunidade) VALUES (3, '2017-03-08 12:12:58.334254', 'PALMILHAS', 1, 1.2, '1', 'S', 'N', 'N', 1, '0', '102', 0, '49', 0, '49', 0, '00', '28.059.00', '5.102', 'A', 1)");
-        db.execSQL("INSERT INTO produto (idproduto, dthrcriacao, descricao, idcategoria, preco, codigoean, precovariavel, favorito, sinctributacao, idncm, origem, csosn, aliqicms, cstpis, aliqpis, cstcofins, aliqcofins, codcontribsocial, cest, cfop, status, idunidade) VALUES (4, '2017-03-08 13:09:21.159284', 'MEIAS', 1, 0, NULL, 'S', 'N', 'N', 5, '0', '102', 0, '49', 0, '49', 0, '00', '28.059.00', '5.102', 'A', 1)");
-        db.execSQL("INSERT INTO produto (idproduto, dthrcriacao, descricao, idcategoria, preco, codigoean, precovariavel, favorito, sinctributacao, idncm, origem, csosn, aliqicms, cstpis, aliqpis, cstcofins, aliqcofins, codcontribsocial, cest, cfop, status, idunidade) VALUES (5, '2017-03-08 13:10:56.038526', 'PROTEÇÃO PARA OS PÉS', 1, 0, NULL, 'S', 'N', 'N', 4, '0', '102', 0, '49', 0, '49', 0, '00', '28.059.00', '5.102', 'A', 1)");
-        db.execSQL("INSERT INTO produto (idproduto, dthrcriacao, descricao, idcategoria, preco, codigoean, precovariavel, favorito, sinctributacao, idncm, origem, csosn, aliqicms, cstpis, aliqpis, cstcofins, aliqcofins, codcontribsocial, cest, cfop, status, idunidade) VALUES (6, '2017-03-08 13:12:06.945821', 'ESCOVAS', 1, 0, NULL, 'S', 'N', 'N', 6, '0', '102', 0, '49', 0, '49', 0, '00', '28.057.00', '5.102', 'A', 1)");
-        db.execSQL("INSERT INTO produto (idproduto, dthrcriacao, descricao, idcategoria, preco, codigoean, precovariavel, favorito, sinctributacao, idncm, origem, csosn, aliqicms, cstpis, aliqpis, cstcofins, aliqcofins, codcontribsocial, cest, cfop, status, idunidade) VALUES (7, '2017-03-08 14:30:58.234655', 'IMPERMEABILIZANTES', 1, 0, NULL, 'S', 'N', 'N', 7, '0', '102', 0, '49', 0, '49', 0, '00', '28.063.00', '5.102', 'A', 1)");
-        db.execSQL("INSERT INTO produto (idproduto, dthrcriacao, descricao, idcategoria, preco, codigoean, precovariavel, favorito, sinctributacao, idncm, origem, csosn, aliqicms, cstpis, aliqpis, cstcofins, aliqcofins, codcontribsocial, cest, cfop, status, idunidade) VALUES (8, '2017-03-08 14:31:42.996265', 'LIMPEZA PARA COURO', 1, 0, NULL, 'S', 'N', 'N', 8, '0', '102', 0, '49', 0, '49', 0, '00', '28.063.00', '5.102', 'A', 1)");
-        db.execSQL("INSERT INTO produto (idproduto, dthrcriacao, descricao, idcategoria, preco, codigoean, precovariavel, favorito, sinctributacao, idncm, origem, csosn, aliqicms, cstpis, aliqpis, cstcofins, aliqcofins, codcontribsocial, cest, cfop, status, idunidade) VALUES (9, '2017-03-08 14:32:24.713344', 'LIMPEZA TENIS', 1, 0, NULL, 'S', 'N', 'N', 9, '0', '102', 0, '49', 0, '49', 0, '00', '28.063.00', '5.102', 'A', 1)");
-        db.execSQL("INSERT INTO produto (idproduto, dthrcriacao, descricao, idcategoria, preco, codigoean, precovariavel, favorito, sinctributacao, idncm, origem, csosn, aliqicms, cstpis, aliqpis, cstcofins, aliqcofins, codcontribsocial, cest, cfop, status, idunidade) VALUES (10, '2017-03-08 14:33:10.722404', 'CALÇADEIRAS', 1, 0, NULL, 'S', 'N', 'N', 10, '0', '102', 0, '49', 0, '49', 0, '00', '28.057.00', '5.102', 'A', 1)");
-        db.execSQL("INSERT INTO produto (idproduto, dthrcriacao, descricao, idcategoria, preco, codigoean, precovariavel, favorito, sinctributacao, idncm, origem, csosn, aliqicms, cstpis, aliqpis, cstcofins, aliqcofins, codcontribsocial, cest, cfop, status, idunidade) VALUES (11, '2017-03-08 14:34:36.065177', 'LASSEADOR SAPATOS', 1, 0, NULL, 'S', 'N', 'N', 7, '0', '102', 0, '49', 0, '49', 0, '00', '28.063.00', '5.102', 'A', 1)");
-        db.execSQL("INSERT INTO produto (idproduto, dthrcriacao, descricao, idcategoria, preco, codigoean, precovariavel, favorito, sinctributacao, idncm, origem, csosn, aliqicms, cstpis, aliqpis, cstcofins, aliqcofins, codcontribsocial, cest, cfop, status, idunidade) VALUES (12, '2017-03-08 14:35:21.272699', 'TINTAS', 1, 0, NULL, 'S', 'N', 'N', 11, '0', '102', 0, '49', 0, '49', 0, '00', '24.001.00', '5.102', 'A', 1)");
-        db.execSQL("INSERT INTO produto (idproduto, dthrcriacao, descricao, idcategoria, preco, codigoean, precovariavel, favorito, sinctributacao, idncm, origem, csosn, aliqicms, cstpis, aliqpis, cstcofins, aliqcofins, codcontribsocial, cest, cfop, status, idunidade) VALUES (13, '2017-03-08 14:36:09.184387', 'FORMAS', 1, 0, NULL, 'S', 'N', 'N', 12, '0', '102', 0, '49', 0, '49', 0, '00', '28.057.00', '5.102', 'A', 1)");
-        db.execSQL("INSERT INTO produto (idproduto, dthrcriacao, descricao, idcategoria, preco, codigoean, precovariavel, favorito, sinctributacao, idncm, origem, csosn, aliqicms, cstpis, aliqpis, cstcofins, aliqcofins, codcontribsocial, cest, cfop, status, idunidade) VALUES (46, '2018-02-09 15:05:48.178265', 'CERVEJA 600 ML', 7, 0, NULL, 'S', 'N', 'N', 128, '0', '500', 0, '49', 0, '49', 0, '01', '49', '5.405', 'A', 1)");
-        db.execSQL("INSERT INTO produto (idproduto, dthrcriacao, descricao, idcategoria, preco, codigoean, precovariavel, favorito, sinctributacao, idncm, origem, csosn, aliqicms, cstpis, aliqpis, cstcofins, aliqcofins, codcontribsocial, cest, cfop, status, idunidade) VALUES (50, '2018-02-09 15:05:48.178265', 'AGUA', 9, 2.5, '11', 'S', 'N', 'N', 1, '0', '50', 0, '49', 0, '49', 0, '01', '49', '5.405', 'A', 1)");
-        db.execSQL("INSERT INTO produto (idproduto, dthrcriacao, descricao, idcategoria, preco, codigoean, precovariavel, favorito, sinctributacao, idncm, origem, csosn, aliqicms, cstpis, aliqpis, cstcofins, aliqcofins, codcontribsocial, cest, cfop, status, idunidade) VALUES (52, '2018-02-09 15:05:48.178265', 'CAFÉ', 11, 7.0, NULL, 'N', 'S', 'N', 168, '0', '102', 0, '49', 0, '49', 0, '01', '49', '5.102', 'A', 1)");
-        db.execSQL("INSERT INTO produto (idproduto, dthrcriacao, descricao, idcategoria, preco, codigoean, precovariavel, favorito, sinctributacao, idncm, origem, csosn, aliqicms, cstpis, aliqpis, cstcofins, aliqcofins, codcontribsocial, cest, cfop, status, idunidade) VALUES (53, '2018-02-09 15:05:48.178265', 'CAFÉ COM LEITE', 11, 4.0, NULL, 'N', 'S', 'N', 128, '0', '102', 0, '49', 0, '49', 0, '01', '49', '5.102', 'A', 1)");
+
+        db.execSQL("INSERT INTO produto (idproduto, dthrcriacao, descricao, idcategoria, preco, codigoean, precovariavel, favorito, sinctributacao, idncm, origem, csosn, aliqicms, cstpis, aliqpis, cstcofins, aliqcofins, codcontribsocial, cest, cfop, status, idunidade) VALUES (2, '2017-03-08 12:12:24.30624', 'PRODUTO TESTE', 1, 5, '0', 'S', 'N', 'N', 1, '0', '102', 0, '49', 0, '49', 0, '00', '00.000.00', '5.102', 'A', 1)");
+
 
         db.execSQL(" CREATE TABLE IF NOT EXISTS documento (iddocumento INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "dthrcriacao DATE DEFAULT (datetime('now','localtime'))," +
@@ -195,8 +168,8 @@ public class DadosOpenHelper extends SQLiteOpenHelper {
                 "modfrete integer NOT NULL DEFAULT 9," +
                 "idparceirotransp integer," +
                 "pesobruto numeric(12,3)," +
-                " pesoliquido numeric(12,3)," +
-                " qtdevolume integer," +
+                "pesoliquido numeric(12,3)," +
+                "qtdevolume integer," +
                 "chaveref varyingcharacter(50),"+
                 "FOREIGN KEY (idparceiro) REFERENCES parceiro (idparceiro))");
 
@@ -227,7 +200,8 @@ public class DadosOpenHelper extends SQLiteOpenHelper {
                 "basecofins numeric(12,2) NOT NULL DEFAULT 0,"+
                 "totalcofins numeric(12,2) NOT NULL DEFAULT 0,"+
                 "codcontribsocial character(2) NOT NULL DEFAULT '99',"+    //DEFAULT '99'
-                "cfop varyingcharacter(5) NOT NULL DEFAULT '99',"+    //DEFAULT '99'
+                "cest varyingcharacter(10) NOT NULL DEFAULT '0',"+
+                "cfop varyingcharacter(5) NOT NULL DEFAULT '99',"+
                 "acrescimounitario numeric(12,2) NOT NULL DEFAULT 0,"+
                 "totalacrescimo numeric(12,2) NOT NULL DEFAULT 0,"+
                 "FOREIGN KEY (idproduto) REFERENCES produto (idproduto),"+
@@ -337,7 +311,7 @@ public class DadosOpenHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (26, '2017-03-06 11:49:44.086728', 'NOME', 'REVENDA', 'Remarca automação', 'Nome da revendedora do sistema.', 'S', NULL)");
         db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (3, '2017-03-06 11:49:44.086728', 'UF', 'DESENVOLVEDORA', 'SP', 'União Federativa da desenvolvedora da aplicação comercial. (Exemplo: SP)', 'S', NULL)");
         db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (5, '2017-03-06 11:49:44.086728', 'ASSINATURA', 'DESENVOLVEDORA', 'SGR-SAT SISTEMA DE GESTAO E RETAGUARDA DO SAT', 'Assinatura digital da desenvolvedora.', 'S', NULL)");
-        db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (23, '2017-03-06 11:49:44.086728', 'ENDERECO', 'REVENDA', 'Rua Pio XI, 576 - Lapa  São Paulo - SP                CEP: 05060-000', 'Endereço da revendedora do sistema.', 'S', NULL)");
+        db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (23, '2017-03-06 11:49:44.086728', 'ENDERECO', 'REVENDA', ' Largo da Matriz Velha, 69 - Freguesia do Ó, São Paulo - SP, 02925-060', 'Endereço da revendedora do sistema.', 'S', NULL)");
         db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (10, '2017-03-06 11:49:44.086728', 'COMPLEMENTO', 'EMITENTE', 'Rua Pio XI', 'Complemento do endereço do emitente dos documentos fiscais.', 'S', 11)");
         db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (2, '2017-03-06 11:49:44.086728', 'RAZAOSOCIAL', 'EMITENTE', 'REMARCA AUTOMAÇÃO COMERCIAL LTDA', 'Razão social do emitente dos documentos fiscais.', 'S', 2)");
         db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (16, '2017-03-06 11:49:44.086728', 'UF', 'EMITENTE', 'SP', 'União Federativa do emitente dos documentos fiscais.', 'S', 6)");
@@ -349,13 +323,13 @@ public class DadosOpenHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (19, '2017-03-06 11:49:44.086728', 'IMPOSTOFEDERAL', 'EMITENTE', '3,20', 'Alíquota média de impostos federais.', 'S', NULL)");
         db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (13, '2017-03-06 11:49:44.086728', 'CEP', 'EMITENTE', '04104-040', 'CEP do emitente dos documentos fiscais.', 'S', 5)");
         db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (33, '2017-03-16 15:14:54.145404', 'NOMEFANTASIA', 'EMITENTE', 'REMARCA AUTOMAÇÃO COMERCIAL LTDA', 'Nome fantasia do emitente dos documentos fiscais.', 'S', 1)");
-        db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (46, '2018-11-19 11:51:11.85', 'HOST', 'BACKUP', 'websac.net', 'Endereço de IP do FTP de onde será efetuado backup do banco de dados.', 'S', NULL)");
-        db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (35, '2018-11-19 11:51:02.022', 'SERIE', 'NOTAFISCAL', '1', 'Serie utilizada para notas fiscais.', 'S', NULL)");
+        db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (46, '2018-11-19 11:51:11.85', 'DATAULTIMACOM', 'SISTEMA', '00/00/00', 'Endereço de IP do FTP de onde será efetuado backup do banco de dados.', 'S', NULL)");
+        db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (35, '2018-11-19 11:51:02.022', 'REINICIAREQUIPAMENTO', 'DIVERSOS', '0', 'HORA PARA REINICIAR O EQUIPAMENTO\nINFORMAR VALORES ENTRE 0 E 23\nPADRÃO 0 = MEIA NOITE', 'S', NULL)");
         db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (42, '2018-11-19 11:51:03.822', 'BOTAO10PORCENTO', 'DIVERSOS', 'N', 'Habilita o botão de acesso rápido para incluir a taxa de 10% de serviço.', 'S', NULL)");
         db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (36, '2018-11-19 11:51:02.133', 'MUNICIPIOIBGE', 'NOTAFISCAL', '355030', 'Código do município do emitente de acordo com a tabela IBGE.', 'S', NULL)");
         db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (43, '2018-11-19 11:51:03.904', 'ATIVO', 'NOTAFISCAL', 'N', 'Habilita o módulo de nota fiscal.', 'N', NULL)");
         db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (38, '2018-11-19 11:51:02.286', 'CAMINHOCERTIFICADO', 'NOTAFISCAL', '', 'Caminho completo ate o arquivo do certificado digital do emitente das notas fiscais.', 'S', NULL)");
-        db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (47, '2018-11-19 11:51:11.85', 'PORTA', 'BACKUP', '21', 'Porta do FTP de onde será efetuado backup do banco de dados.', 'S', NULL)");
+        db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (47, '2018-11-19 11:51:11.85', 'PORTA', 'BACKUP', '1', 'Porta do FTP de onde será efetuado backup do banco de dados.', 'S', NULL)");
         db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (44, '2018-11-19 11:51:11.372', 'NUMERO', 'NOTAFISCAL', '1', 'Número da próxima nota fiscal a ser transmitida.', 'S', NULL)");
         db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (41, '2018-11-19 11:51:02.614', 'CONFIRMACAO', 'IMPRESSORA', 'N', 'Exigir confirmação do usuário para imprimir o cupom.', 'S', NULL)");
         db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (51, '2018-11-19 11:51:12.381', 'SENHACERTIFICADO', 'NOTAFISCAL', '', 'Senha do certificado digital utilizado para transmissão da NF-e.', 'S', NULL)");
@@ -377,21 +351,19 @@ public class DadosOpenHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (29, '2017-03-06 11:49:44.086728', 'NOME', 'IMPRESSORA', 'COM4', 'Nome da impressora configurada no sistema operacional.', 'S', NULL)");
         db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (37, '2018-11-19 11:51:02.208', 'NUMEROVIAS', 'IMPRESSORA', 'venda=1  cancelamento=1  orcamento=2', 'Número de vias a ser impressa para cada tipo de operação.', 'S', NULL)");
         db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (15, '2017-03-06 11:49:44.086728', 'AMBIENTE', 'SAT', '2', 'Tipo de ambiente para transmissão dos documentos fiscais:\n1 - Produção\n2 - Homologação', 'S', NULL)");
-        db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (40, '2018-11-19 11:51:02.358', 'DTVERIFICACAO', 'SISTEMA', '2019-01-23', 'Data da última verificação do terminal no servidor SAT-Flex.', 'N', NULL)");
-        db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (18, '2017-03-06 11:49:44.086728', 'MODELO', 'SAT', 'controlid', 'Modelo do equipamento fiscal SAT:\nnenhum, sweda, controlid', 'S', NULL)");
-        db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (27, '2017-03-06 11:49:44.086728', 'MODELO', 'IMPRESSORA', 'escpos', 'Modelo da impressora:\nnenhum, escpos', 'S', NULL)");
+        db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (40, '2018-11-19 11:51:02.358', 'DTVERIFICACAO', 'SISTEMA', 1, 'Data da última verificação do terminal no servidor SAT-Flex.', 'N', NULL)");
+        db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (18, '2017-03-06 11:49:44.086728', 'MODELO', 'SAT', '3', 'Modelo do equipamento fiscal SAT:\n1=nenhum, 2=sweda, 3=controlid', 'S', NULL)");
+        db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (27, '2017-03-06 11:49:44.086728', 'MODELO', 'IMPRESSORA', '3', 'Modelo da impressora:\n1=nenhum, 2=sweda, 3=controlid, " +
+                "4=epson', 'S', NULL)");
         db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (32, '2017-03-06 12:00:55.827362', 'EMAIL', 'CONTADOR', 'contador@contador.com.br', 'E-mail de contato do contador.', 'S', NULL)");
         db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (39, '2018-11-19 11:51:02.358', 'STATUS', 'SISTEMA', '0000', 'Status do terminal, de acordo com o servidor SAT-Flex.', 'N', NULL)");
-
-
-
-
-
+        db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (53, '2018-11-19 11:51:02.358', 'DATABACKUP1', 'BACKUP', '', 'Data do backup.', 'N', NULL)");
+        db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (54, '2018-11-19 11:51:02.358', 'DATABACKUP2', 'BACKUP', '', 'Data do backup.', 'N', NULL)");
+        db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (55, '2018-11-19 11:51:02.358', 'DATABACKUP3', 'BACKUP', '', 'Data do backup.', 'N', NULL)");
+        db.execSQL("INSERT INTO parametro (idparametro, dthrcriacao, nome, grupo, valor, observacao, visivel, ordem) VALUES (58, '2018-11-19 11:51:02.358', 'CHECABACKUP', 'BACKUP', '0', 'Status do backup, 1 backup feito e 0 backup não feito.', 'N', NULL)");
     }
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
-
     {
         db.execSQL( "CREATE TABLE IF NOT EXISTS ademirmonstro(iddocumentopagamento INTEGER PRIMARY KEY AUTOINCREMENT,"+
                 "dthrcriacao DATE DEFAULT (datetime('now','localtime'))," +
@@ -400,14 +372,8 @@ public class DadosOpenHelper extends SQLiteOpenHelper {
                 "totalpagamento numeric(12,2) NOT NULL,"+
                 "FOREIGN KEY (iddocumento) REFERENCES documento (iddocumento),"+
                 "FOREIGN KEY (idformapagamento) REFERENCES formapagamento (idformapagamento))");
+
     }
-
-
-    /*
-    Objetivo =Cadastrar novo produto
-    parametro = objeto modelProduto
-    Retorno = void
-     */
     public void addProduto(modelProdutos criar ){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues(  );
@@ -431,10 +397,7 @@ public class DadosOpenHelper extends SQLiteOpenHelper {
         values.put( "idncm", criar.getIdNcm() );
         db.insert( "produto" ,null, values  );
         db.close();
-
-
     }
-
     public void addalteraprod(modelProdutos altera ){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues(  );
@@ -463,7 +426,6 @@ public class DadosOpenHelper extends SQLiteOpenHelper {
         db.update( "produto", values, "idproduto=?", args);
         db.close();
     }
-
     public long addalteracateg(modelCategorias altera ){
         SQLiteDatabase db = this.getWritableDatabase();
         long retorno =0;
@@ -495,10 +457,7 @@ public class DadosOpenHelper extends SQLiteOpenHelper {
             e.printStackTrace();
         }
         return retorno;
-
     }
-
-
     public void addCategoria(modelCategorias criar ){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues(  );
@@ -519,18 +478,6 @@ public class DadosOpenHelper extends SQLiteOpenHelper {
         db.close();
 
     }
-
-    public void adddocpagamento(modelDocumentoPagamento docpag ){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues(  );
-        values.put( "iddocumento", docpag.getIddocumento() );
-        values.put( "idformapagamento", docpag.getIdformapagamento() );
-        values.put( "totalpagamento", docpag.getTotalpagamento() );
-        db.insert( "documentopagamento" ,null, values  );
-        db.close();
-
-    }
-
     public int selecionarcateg ( String descrCat){
         SQLiteDatabase db = getReadableDatabase();
         int retorno = 0;
@@ -640,7 +587,6 @@ public class DadosOpenHelper extends SQLiteOpenHelper {
 
         return  cursor;
     }
-
     public Cursor selecParametros ( ){
         SQLiteDatabase db = getReadableDatabase();
         String retorno = "";
@@ -655,7 +601,6 @@ public class DadosOpenHelper extends SQLiteOpenHelper {
 
         return  cursor;
     }
-
     public Cursor selecValorSuporte ( ){
         SQLiteDatabase db = getReadableDatabase();
         String retorno = "";
@@ -690,7 +635,7 @@ dados.moveToNext();
     public Cursor selecionarCadProd ( ) {
         SQLiteDatabase db = getReadableDatabase();
         String rawQuery = "SELECT produto.descricao, produto.codigoean, produto.status, produto.preco, categoria.descricao, produto.idproduto,strftime('%d/%m/%Y %H:%M',produto.dthrcriacao) , produto.csosn,produto.aliqicms,produto.cstpis,produto.aliqpis,produto.cstcofins,produto.aliqcofins,produto.codcontribsocial,produto.cest,produto.cfop, produto.idcategoria, ncm.codigoncm, produto.precovariavel, produto.idunidade, produto.origem FROM produto  " +
-                "LEFT JOIN categoria  ON categoria.idcategoria  = produto.idcategoria LEFT JOIN ncm  ON ncm.idncm  = produto.idncm LEFT JOIN unidade  ON unidade.idunidade  = produto.idunidade";
+                "LEFT JOIN categoria  ON categoria.idcategoria  = produto.idcategoria LEFT JOIN ncm  ON ncm.idncm  = produto.idncm LEFT JOIN unidade  ON unidade.idunidade  = produto.idunidade ORDER BY produto.descricao ASC";
         Cursor cursor = db.rawQuery(rawQuery, null);
         if (cursor != null) {
 
@@ -704,7 +649,7 @@ dados.moveToNext();
     public Cursor selecionarCadProd (String filtro ) {
         SQLiteDatabase db = getReadableDatabase();
         String rawQuery = "SELECT produto.descricao, produto.codigoean, produto.status, produto.preco, categoria.descricao, produto.idproduto,produto.dthrcriacao, produto.csosn, produto.aliqicms,produto.cstpis,produto.aliqpis,produto.cstcofins,produto.aliqcofins,produto.codcontribsocial,produto.cest, produto.cfop, produto.idcategoria, ncm.codigoncm, produto.precovariavel, produto.idunidade, produto.origem  FROM produto  " +
-                "LEFT JOIN categoria  ON categoria.idcategoria  = produto.idcategoria LEFT JOIN ncm  ON ncm.idncm  = produto.idncm LEFT JOIN unidade  ON unidade.idunidade  = produto.idunidade WHERE produto.descricao LIKE '%" + filtro + "%'";
+                "LEFT JOIN categoria  ON categoria.idcategoria  = produto.idcategoria LEFT JOIN ncm  ON ncm.idncm  = produto.idncm LEFT JOIN unidade  ON unidade.idunidade  = produto.idunidade WHERE produto.descricao LIKE '%" + filtro + "%' ";
         Cursor cursor = db.rawQuery(rawQuery, null);
         if (cursor != null) {
 
@@ -715,10 +660,24 @@ dados.moveToNext();
 
         return cursor;
     }
+    public Cursor selecionarCadProdEan (String filtro ) {
+        SQLiteDatabase db = getReadableDatabase();
+        String rawQuery = "SELECT produto.descricao, produto.codigoean, produto.status, produto.preco, categoria.descricao, produto.idproduto,produto.dthrcriacao, produto.csosn, produto.aliqicms,produto.cstpis,produto.aliqpis,produto.cstcofins,produto.aliqcofins,produto.codcontribsocial,produto.cest, produto.cfop, produto.idcategoria, ncm.codigoncm, produto.precovariavel, produto.idunidade, produto.origem  FROM produto  " +
+                "LEFT JOIN categoria  ON categoria.idcategoria  = produto.idcategoria LEFT JOIN ncm  ON ncm.idncm  = produto.idncm LEFT JOIN unidade  ON unidade.idunidade  = produto.idunidade WHERE produto.codigoean LIKE '%" + filtro + "%' ";
+        Cursor cursor = db.rawQuery(rawQuery, null);
+        if (cursor != null) {
+
+            cursor.moveToFirst();
+
+        }
+        db.close();
+
+        return cursor;
+    }
     public Cursor selecionarCadCateg ( ) {
         SQLiteDatabase db = getReadableDatabase();
         String rawQuery = "SELECT categoria.descricao, ncm.codigoncm, COUNT(produto.idproduto), categoria.cor, categoria.idcategoria, strftime('%d/%m/%Y %H:%M',categoria.dthrcriacao) ,  categoria.origem, categoria.cfop, categoria.csosn, categoria.aliqicms, categoria.cstpis, categoria.aliqpis, categoria.cstcofins, categoria.aliqcofins, categoria.codcontribsocial, categoria.cest FROM categoria  " +
-                "LEFT JOIN produto  ON produto.idcategoria  = categoria.idcategoria LEFT JOIN ncm  ON ncm.idncm  = categoria.idncm GROUP BY categoria.descricao ";
+                "LEFT JOIN produto  ON produto.idcategoria  = categoria.idcategoria LEFT JOIN ncm  ON ncm.idncm  = categoria.idncm GROUP BY categoria.descricao ORDER BY categoria.descricao ASC ";
         Cursor cursor = db.rawQuery(rawQuery, null);
         if (cursor != null) {
 
@@ -760,7 +719,7 @@ dados.moveToNext();
         String rawQuery = "SELECT produto.idproduto, produto.descricao, categoria.cor, produto.preco, ncm.codigoncm, produto.origem, produto.csosn, " +
                 "produto.aliqicms, produto.cstpis, produto.aliqpis, produto.cstcofins, produto.aliqcofins, produto.codcontribsocial, produto.cest, produto.cfop, " +
                 " produto.precovariavel, produto.idunidade FROM produto  " +
-                "LEFT JOIN categoria  ON categoria.idcategoria  = produto.idcategoria LEFT JOIN ncm  ON ncm.idncm  = produto.idncm LEFT JOIN unidade  ON unidade.idunidade  = produto.idunidade WHERE produto.status = 'A' and produto.idcategoria = " + idcateg;
+                "LEFT JOIN categoria  ON categoria.idcategoria  = produto.idcategoria LEFT JOIN ncm  ON ncm.idncm  = produto.idncm LEFT JOIN unidade  ON unidade.idunidade  = produto.idunidade WHERE produto.status = 'A'and produto.idcategoria =  "+idcateg+"  ORDER BY produto.descricao ASC";
         Cursor cursor = db.rawQuery(rawQuery, null);
         if (cursor != null) {
 
@@ -782,8 +741,6 @@ dados.moveToNext();
             cursor.moveToFirst();
 
         }
-       // db.close();
-
         return cursor;
     }
     public Cursor selecDocCancbyCoo (int coo ) {
@@ -801,7 +758,6 @@ dados.moveToNext();
 
         return cursor;
     }
-
     public void alterdocCancela(String [] alterarDocCanc ){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues(  );
@@ -809,13 +765,10 @@ dados.moveToNext();
         values.put("status", "C");
         values.put("xmlcanc", alterarDocCanc[2]);
         values.put("dthrcancelamento",alterarDocCanc[3]);
-     //   teste = String.valueOf(alterarDocCanc[0]);
         String[] args = {alterarDocCanc[0]};
         db.update( "documento", values, "iddocumento=?", args);
         db.close();
     }
-
-
     public void addalterparametro(modelParametros alterarParam ){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues(  );
@@ -848,7 +801,17 @@ dados.moveToNext();
         db.insert( "documento" ,null, values  );
         db.close();
     }
+    public void adddocpagamento(modelDocumentoPagamento docpag ){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues(  );
+        values.put( "iddocumento", docpag.getIddocumento() );
+        values.put( "idformapagamento", docpag.getIdformapagamento() );
+        values.put( "totalpagamento", docpag.getTotalpagamento() );
+        values.put( "dthrcriacao", docpag.getDthrcriacao() );
+        db.insert( "documentopagamento" ,null, values  );
+        db.close();
 
+    }
     public void adddocumentoproduto(modelDocumentoProduto docProd ){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues(  );
@@ -869,22 +832,92 @@ dados.moveToNext();
         values.put( "codigoncm",docProd.getCodigoNcm() );
         values.put( "aliqicms",docProd.getAliqicms() );
         values.put( "totalproduto",docProd.getTotalprodutocdesc() );
-
-
-
-
         values.put ("totalacrescimo",docProd.getTotalacrescimo());
         values.put ("acrescimounitario",docProd.getAcrescimounitario());
+        values.put( "dthrcriacao", docProd.getDthrcriacao() );
 
          db.insert( "documentoproduto" ,null, values  );
         db.close();
     }
+    public void adddtVerificacao(String dtVerificar){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues(  );
+        values.put("valor", dtVerificar);
+        String idparametro =String.valueOf(40);
 
-public void inserirNcm(String ncm)
-{
+        String[] args = {"40"};
+        db.update( "parametro", values, "idparametro=?", args);
+        db.close();
+
+    }
+    public void addStatus(String alterarStatus){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues(  );
+        values.put("valor", alterarStatus);
+
+        String[] args = {"39"};
+        db.update( "parametro", values, "idparametro=?", args);
+        db.close();
+    }
+    public void dataBackup1(String dataBackup1){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues(  );
+        values.put("valor", dataBackup1);
+
+        String[] args = {"53"};
+        db.update( "parametro", values, "idparametro=?", args);
+        db.close();
+    }
+    public void dataBackup2(String dataBackup2){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues(  );
+        values.put("valor", dataBackup2);
+
+        String[] args = {"54"};
+        db.update( "parametro", values, "idparametro=?", args);
+        db.close();
+    }
+    public void dataBackup3(String dataBackup3){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues(  );
+        values.put("valor", dataBackup3);
+
+        String[] args = {"55"};
+        db.update( "parametro", values, "idparametro=?", args);
+        db.close();
+    }
+    public void checarBackup(String checarBackup){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues(  );
+        values.put("valor", checarBackup);
+
+        String[] args = {"58"};
+        db.update( "parametro", values, "idparametro=?", args);
+        db.close();
+    }
+    public void inserirNcm(String ncm){
     SQLiteDatabase db = this.getWritableDatabase();
-    //String Ncm = "INSERT INTO ncm (idncm, dthrcriacao, codigoncm, descricao, origem, csosn, aliqicms, cstpis, aliqpis, cstcofins, aliqcofins, codcontribsocial, cest, cfop) VALUES (15380, '2017-03-16 16:45:53.942203', '0210.99.00', 'OUTS.CARNES E MIUD.COMEST.FARINH.E PÓS,SALG.OU EM SALM.', '0', '102', 0, '49', 0, '49', 0, '01', NULL, '5.102')";
     db.execSQL(ncm);
+    }
 
-}
+    public void addVersao(int codVersao) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues(  );
+        values.put("valor", codVersao);
+        String idparametro =String.valueOf(39);
+
+        String[] args = {"47"};
+        db.update( "parametro", values, "idparametro=?", args);
+        db.close();
+    }
+
+    public void addSuporte(int numSat) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues(  );
+        values.put("valor", numSat);
+        String[] args = {"18"};
+        db.update( "parametro", values, "idparametro=?", args);
+        db.close();
+    }
+
 }

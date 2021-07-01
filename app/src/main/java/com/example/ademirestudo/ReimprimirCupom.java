@@ -9,10 +9,13 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.ademirestudo.database.DadosOpenHelper;
 
@@ -40,6 +43,8 @@ public class ReimprimirCupom extends AppCompatActivity {
     private  ArrayList<modelDocumentoProduto> listadeItens;
     private  ArrayList<modelDocumentoPagamento> listadeFormPgto;
     private String data, horario;
+    View toastLayout;
+    LayoutInflater layoutInflater;
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         NumberFormat df = NumberFormat.getCurrencyInstance(Locale.US); ((DecimalFormat)df).applyPattern("0");
@@ -55,15 +60,12 @@ public class ReimprimirCupom extends AppCompatActivity {
                                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                                     | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                                     | View.SYSTEM_UI_FLAG_IMMERSIVE);
-                    //        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
                 }
             }
         });
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         setContentView(R.layout.reimprimircupom);
-        // instance =this;
         DisplayMetrics dm = new DisplayMetrics();
-        //  conectarBanco();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width = dm.widthPixels;
         int height = dm.heightPixels;
@@ -73,6 +75,7 @@ public class ReimprimirCupom extends AppCompatActivity {
         horario = "";
         conectarBanc();
         listarDocImprimir();
+
 
 
     }
@@ -97,7 +100,10 @@ public class ReimprimirCupom extends AppCompatActivity {
 
 
     public void listarDocImprimir() {
-
+       final DecimalFormat converte = new DecimalFormat("0.00");
+        NumberFormat df = NumberFormat.getCurrencyInstance(Locale.US); ((DecimalFormat)df).applyPattern("0");
+        NumberFormat dff = NumberFormat.getCurrencyInstance(Locale.US); ((DecimalFormat)dff).applyPattern("0.000");
+        NumberFormat dfff = NumberFormat.getCurrencyInstance(Locale.US); ((DecimalFormat)dfff).applyPattern("0.00");
         ListView listCupomReimprimir = findViewById(R.id.listcupomreimprimir);
         ArrayList<modelDocumento> listadedocreimprimir;
         listadedocreimprimir = new ArrayList<>();
@@ -143,28 +149,44 @@ public class ReimprimirCupom extends AppCompatActivity {
                     modeldoc = (modelDocumento) parent.getItemAtPosition(position);
                     String dia  = (modeldoc.getDthrcriacao().substring(0,2));
                     String mes  = (modeldoc.getDthrcriacao().substring(3,5));
-                    String ano  = (modeldoc.getDthrcriacao().substring(6,11));
-                    String hora  = (modeldoc.getDthrcriacao().substring(12,13));
-                    String min  = (modeldoc.getDthrcriacao().substring(13,15));
-                    String seg  = (modeldoc.getDthrcriacao().substring(15,20));
+                    String ano  = (modeldoc.getDthrcriacao().substring(6,10));
+                    String hora  = (modeldoc.getDthrcriacao().substring(12,14));
+                    String min  = (modeldoc.getDthrcriacao().substring(15,17));
+                    String seg  = (modeldoc.getDthrcriacao().substring(18,20));
                     data = dia +"/"+ mes  + "/"+ ano ;
-                    horario = hora + min  + seg ;
-                    String[]  qrcode = modeldoc.getXml().split("assinaturaQRCODE>");
-                    mainActivity.qrCode = qrcode[1].toString();
+                    horario = hora +":"+ min  +":"+ seg ;
+                    String[]  qrcode =  modeldoc.getXml().split("assinaturaQRCODE>");
+
+                    String cpfCnpjContrib = "";
+                    if (modeldoc.getXml().contains("dest><CPF>")){
+                        //cpfCnpjContrib = "cpf";
+                        String[]  cpfContrib =  modeldoc.getXml().split("CPF>");
+                        cpfCnpjContrib = cpfContrib[1];
+                    if (cpfContrib[1].length()==13){
+                        cpfCnpjContrib = cpfContrib[1].substring(0,11);
+                    }}
+                    if (modeldoc.getXml().contains("dest><CNPJ>")){
+
+                        String[]  CNPJContrib =  modeldoc.getXml().split("CNPJ>");
+                   if (CNPJContrib[1].length()==16){
+                        cpfCnpjContrib = CNPJContrib[5].substring(0,14);
+                    }}
+
+                    mainActivity.qrCode =modeldoc.getChaveCfe()+"|"  +ano+mes+dia+hora+min+seg+"|" +converte.format(modeldoc.getTotaldocumentocdesc()).replace(",",".")+"|"+cpfCnpjContrib+"|" + qrcode[1].toString();
                     mainActivity.objCupomFiscal.setChaveCfe(modeldoc.getChaveCfe());
                     listarDcoProd();
                     listarFormPag();
                     montarCupom();
 
+                    layoutInflater = getLayoutInflater();
+                    toastLayout = layoutInflater.inflate(R.layout.toastreimprimir, (ViewGroup) findViewById(R.id.toastreimprimir));
+                    Toast toast = Toast.makeText(getApplicationContext(), " ", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.setView(toastLayout);
+                    toast.show();
+
                    mainActivity.reimprimirCupom(cupomFiscalSat);
-
-
-                 //   Toast.makeText(getApplicationContext(), modeldoc.getDthrcriacao(), Toast.LENGTH_SHORT).show();
-                    //    Intent intent = new Intent(getApplicationContext(), AlteraProd.class);
-
-                        //intent.putExtra("Dados", c);
-                     //   startActivity(intent);
-
+                   finish();
                 }
             });
         }
@@ -190,7 +212,7 @@ public class ReimprimirCupom extends AppCompatActivity {
                     modeldocProd.setPreco(cursor5.getDouble(2));
                     modeldocProd.setUndSigla(cursor5.getString(4));
                     modeldocProd.setIdunidade(cursor5.getInt(5));
-                    modeldocProd.setTotalproduto(modeldocProd.getPreco() * modeldocProd.getIdunidade());
+                    modeldocProd.setTotalproduto(cursor5.getDouble(3));
                     listadeItens.add(modeldocProd);
                 } while (cursor5.moveToNext());
             }
@@ -229,7 +251,7 @@ public class ReimprimirCupom extends AppCompatActivity {
         objCupomFiscal.setHora(horario);
         objCupomFiscal.setChaveCfe(modeldoc.getChaveCfe());
         objCupomFiscal.setSatSerie(objCupomFiscal.getChaveCfe().substring(22,31));
-        cupomFiscalSat.append( "       "+ mainActivity.objparam.getEmitenteRazaoSocial()+ "\n") ;
+        cupomFiscalSat.append( "       "+"\n"+ "       " +mainActivity.objparam.getEmitenteRazaoSocial()+ "\n") ;
         cupomFiscalSat.append("       "+  mainActivity. objparam.getEmitenteEndereco()+", " +mainActivity. objparam.getEmitenteNumero()+ "\n");
         cupomFiscalSat.append("       "+mainActivity. objparam.getEmitenteBairro()+" - "+mainActivity. objparam.getEmitenteMunicipio()+" - "+mainActivity.objparam.getEmitenteUf()+ "\n");
         cupomFiscalSat.append("    "+"CNPJ:" + mainActivity.objparam.getEmitenteCNPJ().substring(0, 2) + "." + mainActivity.objparam.getEmitenteCNPJ().substring(2, 5) + "." + mainActivity.objparam.getEmitenteCNPJ().substring(5, 8) + "/" + mainActivity.objparam.getEmitenteCNPJ().substring(8, 12) + "-" + mainActivity.objparam.getEmitenteCNPJ().substring(12, 14) );
@@ -251,7 +273,7 @@ public class ReimprimirCupom extends AppCompatActivity {
                 cupomFiscalSat.append("CPF/CNPJ do consumidor: " + modeldoc.getCpfcnpj()+ "\n");
             }}
         cupomFiscalSat.append("----------------------------------------------"+"\n");
-        cupomFiscalSat.append("#   Descricao         Qtde X VALOR     TOTAL\n");
+        cupomFiscalSat.append("#   Descricao         Qtde X Preco     TOTAL\n");
         cupomFiscalSat.append("----------------------------------------------\n");
 
         modelDocumentoProduto objCupom1 = new modelDocumentoProduto();
@@ -260,7 +282,7 @@ public class ReimprimirCupom extends AppCompatActivity {
 
             if (objCupom1.getIdunidade() == 1) {
 
-                cupomFiscalSat.append(String.format("%-3.3s", i + 1) + " " + String.format("%-13.13s", objCupom1.getDescricao()) + "  " + String.format("%-6.6s", df.format(objCupom1.getQuantidade())) + "  " +  String.format("%-2.2s", objCupom1.getUndSigla()) + " X " + String.format("%6.6s", converte.format(objCupom1.getPreco())) + "  " + String.format("%8.8s", converte.format(objCupom1.getTotalproduto())) + "\n");
+                cupomFiscalSat.append(String.format("%-3.3s", i + 1) + " " + String.format("%-13.13s", objCupom1.getDescricao()) + "  " + String.format("%-6.6s", df.format(objCupom1.getQuantidade())) + " " +  String.format("%-2.2s", objCupom1.getUndSigla()) + " X " + String.format("%6.6s", converte.format(objCupom1.getPreco())) + "  " + String.format("%8.8s", converte.format(objCupom1.getTotalproduto())) + "\n");
             }
             else{
                 if (objCupom1.getIdunidade() == 2) {
@@ -313,8 +335,12 @@ public class ReimprimirCupom extends AppCompatActivity {
         cupomFiscalSat.append(" Est\n");
         cupomFiscalSat.append("----------------------------------------------\n");
         cupomFiscalSat.append("      SAT No. "+objCupomFiscal.getSatSerie()+"\n");
-        cupomFiscalSat.append("      "+objCupomFiscal.getData()+" - "+objCupomFiscal.getHora()+"\n");
-        cupomFiscalSat.append(objCupomFiscal.getChaveCfe()+"\n");
+        cupomFiscalSat.append("      "+objCupomFiscal.getData()+" - "+objCupomFiscal.getHora()+"\n\n");
+
+            cupomFiscalSat.append(objCupomFiscal.getChaveCfe().substring(0,  4) + " "+objCupomFiscal.getChaveCfe().substring(4,  8) +" "+objCupomFiscal.getChaveCfe().substring(8,  12) + " "+
+                    objCupomFiscal.getChaveCfe().substring(12,  16) + " "+objCupomFiscal.getChaveCfe().substring(16,  20) + " "+objCupomFiscal.getChaveCfe().substring(20,  24) + " "+
+                    objCupomFiscal.getChaveCfe().substring(24,  28) + " "+objCupomFiscal.getChaveCfe().substring(28,  32) + " "+objCupomFiscal.getChaveCfe().substring(32,  36) + "\n"+objCupomFiscal.getChaveCfe().substring(36,  40) + " "+objCupomFiscal.getChaveCfe().substring(40,  44) + "\n\n");
+
     }
     public void cancelarReimprCupom(View view)
     {

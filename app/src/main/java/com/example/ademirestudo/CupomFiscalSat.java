@@ -20,7 +20,7 @@ public class CupomFiscalSat {
           NumberFormat df = NumberFormat.getCurrencyInstance(Locale.US); ((DecimalFormat)df).applyPattern("0");
           NumberFormat dff = NumberFormat.getCurrencyInstance(Locale.US); ((DecimalFormat)dff).applyPattern("0.000");
           NumberFormat dfff = NumberFormat.getCurrencyInstance(Locale.US); ((DecimalFormat)dfff).applyPattern("0.00");
-          cupomFiscalSat.append("       "+ mainActivity.objparam.getEmitenteRazaoSocial()+ "\n") ;
+          cupomFiscalSat.append("       "+"\n"+"       "+ mainActivity.objparam.getEmitenteRazaoSocial()+ "\n") ;
           cupomFiscalSat.append("       "+  mainActivity. objparam.getEmitenteEndereco()+", " +mainActivity. objparam.getEmitenteNumero()+ "\n");
           cupomFiscalSat.append("       "+mainActivity. objparam.getEmitenteBairro()+" - "+mainActivity. objparam.getEmitenteMunicipio()+" - "+mainActivity.objparam.getEmitenteUf()+ "\n");
           cupomFiscalSat.append("    "+"CNPJ:" + mainActivity.objparam.getEmitenteCNPJ().substring(0, 2) + "." + mainActivity.objparam.getEmitenteCNPJ().substring(2, 5) + "." + mainActivity.objparam.getEmitenteCNPJ().substring(5, 8) + "/" + mainActivity.objparam.getEmitenteCNPJ().substring(8, 12) + "-" + mainActivity.objparam.getEmitenteCNPJ().substring(12, 14) );
@@ -103,37 +103,45 @@ public class CupomFiscalSat {
        cupomFiscalSat.append("----------------------------------------------\n");
         mainActivity.objCupomFiscal.setSatSerie( mainActivity.objCupomFiscal.getChaveCfe().substring(22,31));
        cupomFiscalSat.append("      SAT No. "+mainActivity.objCupomFiscal.getSatSerie()+"\n");
-       cupomFiscalSat.append("      "+mainActivity.objCupomFiscal.getData()+" - "+mainActivity.objCupomFiscal.getHora()+"\n");
-       cupomFiscalSat.append(mainActivity.objCupomFiscal.getChaveCfe()+"\n");
+       cupomFiscalSat.append("      "+mainActivity.objCupomFiscal.getData()+" - "+mainActivity.objCupomFiscal.getHora()+"\n\n");
+
+           cupomFiscalSat.append(mainActivity.objCupomFiscal.getChaveCfe().substring(0,  4) + " "+mainActivity.objCupomFiscal.getChaveCfe().substring(4,  8) +" "+mainActivity.objCupomFiscal.getChaveCfe().substring(8,  12) + " "+
+                   mainActivity.objCupomFiscal.getChaveCfe().substring(12,  16) + " "+mainActivity.objCupomFiscal.getChaveCfe().substring(16,  20) + " "+mainActivity.objCupomFiscal.getChaveCfe().substring(20,  24) + " "+
+                   mainActivity.objCupomFiscal.getChaveCfe().substring(24,  28) + " "+mainActivity.objCupomFiscal.getChaveCfe().substring(28,  32) + " "+mainActivity.objCupomFiscal.getChaveCfe().substring(32,  36) + "\n"+mainActivity.objCupomFiscal.getChaveCfe().substring(36,  40) + " "+mainActivity.objCupomFiscal.getChaveCfe().substring(40,  44) + "\n\n");
+
       }
     public  void montarCupomCanc()  {
         cupomFiscalCancelado = new StringBuilder();
         cupomFiscalCancelamento = new StringBuilder();
         DecimalFormat converte = new DecimalFormat("0.00");
 
-        cupomFiscalCancelado.append(String.format( "%37.37s", mainActivity.objparam.getEmitenteRazaoSocial())+ "\n") ;
+        cupomFiscalCancelado.append(String.format( "%37.37s","\n" + "       " + mainActivity.objparam.getEmitenteRazaoSocial())+ "\n") ;
         cupomFiscalCancelado.append("       "+  mainActivity. objparam.getEmitenteEndereco()+", " +mainActivity. objparam.getEmitenteNumero()+ "\n");
         cupomFiscalCancelado.append("       "+mainActivity. objparam.getEmitenteBairro()+" - "+mainActivity. objparam.getEmitenteMunicipio()+" - "+mainActivity.objparam.getEmitenteUf()+ "\n");
         cupomFiscalCancelado.append("    "+"CNPJ:" + mainActivity.objparam.getEmitenteCNPJ().substring(0, 2) + "." + mainActivity.objparam.getEmitenteCNPJ().substring(2, 5) + "." + mainActivity.objparam.getEmitenteCNPJ().substring(5, 8) + "/" + mainActivity.objparam.getEmitenteCNPJ().substring(8, 12) + "-" + mainActivity.objparam.getEmitenteCNPJ().substring(12, 14) );
         cupomFiscalCancelado.append(" "+"IE:" + mainActivity.objparam.getEmitenteIe().substring(0,3)+"."+ mainActivity.objparam.getEmitenteIe().substring(3,6)+"."+ mainActivity.objparam.getEmitenteIe().substring(6,9)+"."+mainActivity.objparam.getEmitenteIe().substring(9,12)+"\n");
-        cupomFiscalCancelado.append( "----------------------------------------------"+"\n");
+       cupomFiscalCancelado.append( "----------------------------------------------"+"\n");
         cupomFiscalCancelado.append("       "+ "CUPOM FISCAL ELETRONICO - SAT"+"\n");
         cupomFiscalCancelado.append("COO:"+String.format("%06d", mainActivity.objCupomFiscal.getCoo())+" Data: "+mainActivity.objCupomFiscal.getData()+" Hora: "+mainActivity.objCupomFiscal.getHora()+"\n");
         cupomFiscalCancelado.append("                     CANCELAMENTO"+"\n");
         cupomFiscalCancelado.append("----------------------------------------------"+"\n");
         cupomFiscalCancelado.append("Dados do cupom fiscal eletronico cancelado\n");
         cupomFiscalCancelado.append("      SAT No. "+mainActivity.objCupomFiscal.getSatSerie()+"\n");
-        //modelDocumentoProduto objCupom1 = new modelDocumentoProduto();
         cupomFiscalCancelado.append(String.format("%-39.39s","TOTAL R$")  +String.format("%-8.8s",converte.format(mainActivity.objdocumento.getTotaldocumentocdesc())) +"\n"+"\n");
-        cupomFiscalCancelado.append("      "+mainActivity.objCupomFiscal.getData()+" - "+mainActivity.objCupomFiscal.getHora()+"\n");
-        cupomFiscalCancelado.append(mainActivity.objCupomFiscal.getChaveCfe()+"\n");
+        cupomFiscalCancelado.append("      "+mainActivity.objCupomFiscal.getData()+" - "+mainActivity.objCupomFiscal.getHora()+"\n\n");
+       cupomFiscalCancelado.append(mainActivity.objCupomFiscal.getChaveCfe().substring(0,  4) + " "+mainActivity.objCupomFiscal.getChaveCfe().substring(4,  8) +" "+mainActivity.objCupomFiscal.getChaveCfe().substring(8,  12) + " "+
+                mainActivity.objCupomFiscal.getChaveCfe().substring(12,  16) + " "+mainActivity.objCupomFiscal.getChaveCfe().substring(16,  20) + " "+mainActivity.objCupomFiscal.getChaveCfe().substring(20,  24) + " "+
+                mainActivity.objCupomFiscal.getChaveCfe().substring(24,  28) + " "+mainActivity.objCupomFiscal.getChaveCfe().substring(28,  32) + " "+mainActivity.objCupomFiscal.getChaveCfe().substring(32,  36) + "\n"+mainActivity.objCupomFiscal.getChaveCfe().substring(36,  40) + " "+mainActivity.objCupomFiscal.getChaveCfe().substring(40,  44) + "\n\n");
 
-
-        cupomFiscalCancelamento.append("----------------------------------------------\n");
+         cupomFiscalCancelamento.append("----------------------------------------------\n");
         cupomFiscalCancelamento.append("Dados do cupom fiscal eletronico de cancelamento\n");
 
         cupomFiscalCancelamento.append("      SAT No. "+mainActivity.objCupomFiscal.getSatSerie()+"\n");
-        cupomFiscalCancelamento.append("      "+mainActivity.objCupomFiscal.getDataCanc()+" - "+mainActivity.objCupomFiscal.getHoraCanc()+"\n");
-        cupomFiscalCancelamento.append(mainActivity.objCupomFiscal.getChaveCfeCanc()+"\n");
+        cupomFiscalCancelamento.append("      "+mainActivity.objCupomFiscal.getDataCanc()+" - "+mainActivity.objCupomFiscal.getHoraCanc()+"\n\n");
+
+            cupomFiscalCancelamento.append(mainActivity.objCupomFiscal.getChaveCfeCanc().substring(0,  4) + " "+mainActivity.objCupomFiscal.getChaveCfeCanc().substring(4,  8) +" "+mainActivity.objCupomFiscal.getChaveCfeCanc().substring(8,  12) + " "+
+                    mainActivity.objCupomFiscal.getChaveCfeCanc().substring(12,  16) + " "+mainActivity.objCupomFiscal.getChaveCfe().substring(16,  20) + " "+mainActivity.objCupomFiscal.getChaveCfe().substring(20,  24) + " "+
+                    mainActivity.objCupomFiscal.getChaveCfeCanc().substring(24,  28) + " "+mainActivity.objCupomFiscal.getChaveCfeCanc().substring(28,  32) + " "+mainActivity.objCupomFiscal.getChaveCfeCanc().substring(32,  36) + "\n"+mainActivity.objCupomFiscal.getChaveCfeCanc().substring(36,  40) + " "+mainActivity.objCupomFiscal.getChaveCfeCanc().substring(40,  44) + "\n\n");
+
     }
 }

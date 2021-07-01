@@ -19,7 +19,7 @@
         android:id="@+id/tvClientelist"
         android:layout_width="103dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="180dp"
         android:text="Cliente"
         android:textSize="15sp"
         app:layout_constraintStart_toEndOf="@+id/tvNumerolist"

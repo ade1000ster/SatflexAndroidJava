@@ -20,6 +20,7 @@ import model.modelDocumentoProduto;
 public class DescontoItem extends AppCompatActivity {
     MainActivity m = new MainActivity();
     final DecimalFormat converte = new DecimalFormat("0.00");
+    public static Object instance;
     private TextView tvdescricao;
     private TextView tvquantidade;
     private TextView tvprecounitario;
@@ -54,8 +55,8 @@ public class DescontoItem extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width = dm.widthPixels;
         int height = dm.heightPixels;
-        getWindow().setGravity(Gravity.TOP);
-        getWindow().setLayout((int) (width * .41), (int) (height * .75));
+        getWindow().setGravity(Gravity.CENTER);
+        getWindow().setLayout((int) (width * .41), (int) (height * .67));
         objCupom2 = new modelDocumentoProduto();
         tvdescricao = (TextView) findViewById(R.id.tvdescricao);
         tvquantidade = (TextView) findViewById(R.id.tvquantidade);
@@ -102,6 +103,7 @@ public class DescontoItem extends AppCompatActivity {
         tvacresunitario.setOnClickListener(selecttvacresunitario);
         tvacrescpercent.setOnClickListener(selecttvtvacrescpercent);
         tvtotalacrescimo.setOnClickListener(selecttvtotalaacres);
+        instance=this;
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -313,10 +315,10 @@ public class DescontoItem extends AppCompatActivity {
         tvprecounitario.setText(String.valueOf(converte.format(precoUnitario)));
         tvvaloritem.setText(String.valueOf(converte.format(totalproduto)));
         tvdescontounitario.setText(String.valueOf(converte.format(descontounitario)));
-        tvdescontopercentual.setText(String.valueOf(converte.format(descontopercentual)));
+        tvdescontopercentual.setText(String.valueOf((int)descontopercentual)+"%");
         tvtotaldesconto.setText(String.valueOf(converte.format(totaldesconto)));
         tvacresunitario.setText(String.valueOf(converte.format(acrescimounitario)));
-        tvacrescpercent.setText(String.valueOf(converte.format(acrescimopercentual)));
+        tvacrescpercent.setText(String.valueOf((int)acrescimopercentual+"%"));
         tvtotalacrescimo.setText(String.valueOf(converte.format(totalacrescimo)));
         tvtotalfinal.setText(String.valueOf(converte.format(totalProdcDesc)));
     }
@@ -343,12 +345,14 @@ public class DescontoItem extends AppCompatActivity {
         m.objdocumento.setTotaldesconto(m.objdocumento.getTotaldesconto() +  totaldesconto);
         m.objdocumento.setTotalacrescimo(m.objdocumento.getTotalacrescimo() + totalacrescimo );
         m.atualizarlista();
+        instance=null;
 
         this.finish();
     }
 
 
     public void voltar(View v){
+        instance=null;
         this.finish();
     }
 }

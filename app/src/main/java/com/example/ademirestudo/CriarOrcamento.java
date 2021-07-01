@@ -204,8 +204,6 @@ public class CriarOrcamento extends AppCompatActivity implements View.OnClickLis
             db.adddocumento( mainActivity.objdocumento );
 
             imprimirorc(  );
-            //excluirOrc(conexao);
-            //String[] numOrcExcluir = {String.valueOf( mainActivity.numOrcamento )};
 
             Toast.makeText(getApplicationContext(), "Orcamento salvo com sucesso"+mainActivity.numOrcamento , Toast.LENGTH_SHORT).show();
 mainActivity.inicianovodocumento();
@@ -292,7 +290,7 @@ mainActivity.atualizarlista();
         cupomOrc.append("       "+mainActivity. objparam.getEmitenteBairro()+" - "+mainActivity. objparam.getEmitenteMunicipio()+" - "+mainActivity.objparam.getEmitenteUf()+ "\n");
         cupomOrc.append("    "+"CNPJ:" + mainActivity.objparam.getEmitenteCNPJ().substring(0, 2) + "." + mainActivity.objparam.getEmitenteCNPJ().substring(2, 5) + "." + mainActivity.objparam.getEmitenteCNPJ().substring(5, 8) + "/" + mainActivity.objparam.getEmitenteCNPJ().substring(8, 12) + "-" + mainActivity.objparam.getEmitenteCNPJ().substring(12, 14) );
         cupomOrc.append(" "+"IE:" + mainActivity.objparam.getEmitenteIe().substring(0,3)+"."+ mainActivity.objparam.getEmitenteIe().substring(3,6)+"."+ mainActivity.objparam.getEmitenteIe().substring(6,9)+"."+mainActivity.objparam.getEmitenteIe().substring(9,12)+"\n");
-        cupomOrc.append( "----------------------------------------------");
+        cupomOrc.append( "----------------------------------------------\n");
         cupomOrc.append("       "+ "ORCAMENTO  -  SEM VALOR FISCAL\n");
         cupomOrc.append("Num:   "+String.format("%06d",ultimoDoc)+ " Data: " +diaString+"/"+mesString+"/"+ano+"  Hora: " + horaString+":"+minutoString+":"+segundoString+"\n");
         cupomOrc.append( "----------------------------------------------\n");

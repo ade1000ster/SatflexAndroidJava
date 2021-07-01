@@ -216,40 +216,42 @@
 
     <Button
         android:id="@+id/btnDesconto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="41dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="12dp"
         android:text="Desconto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnAcrescimo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="177dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="12dp"
         android:text="Acréscimo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnDesconto" />
 
     <Button
         android:id="@+id/btnIncluir10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="166dp"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="12dp"
         android:text="Incluir 10%"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnAcrescimo" />
 
     <Button
         android:id="@+id/btnCancelar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
         android:layout_marginStart="110dp"
-        android:layout_marginBottom="7dp"
+        android:layout_marginBottom="16dp"
         android:background="@android:color/holo_red_dark"
+        android:textColor="#ffffff"
         android:onClick="cancelarFinalizarVenda"
         android:text="Cancelar"
         app:layout_constraintBottom_toBottomOf="parent"

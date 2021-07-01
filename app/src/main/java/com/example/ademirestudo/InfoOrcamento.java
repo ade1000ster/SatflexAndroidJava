@@ -62,7 +62,6 @@ public class InfoOrcamento extends AppCompatActivity {
                                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                                     | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                                     | View.SYSTEM_UI_FLAG_IMMERSIVE);
-                    //        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
                 }
             }
         });
@@ -81,7 +80,6 @@ public class InfoOrcamento extends AppCompatActivity {
 
         tvnumero.setText( String.valueOf( objRelOrc.getNumero() ) );
         tvcliente.setText( objRelOrc.getCliente() );
-        //tvquantidade.setText( String.valueOf( objRelOrc.getQuantidade()) );
 
         if (objRelOrc.getQuantidade() == Math.rint (objRelOrc.getQuantidade())) {
             int quantidade = (int)objRelOrc.getQuantidade();
@@ -197,13 +195,13 @@ public class InfoOrcamento extends AppCompatActivity {
              objProdOrc.setIddoproduto(tributacao.getInt(0));
              objProdOrc.setDescricao(String.valueOf(tributacao.getString(3)));
              objProdOrc.setPreco(tributacao.getDouble(2));
-             objProdOrc.setQuantidade(tributacao.getInt(1));
-             objProdOrc.setTotalproduto(tributacao.getDouble(2)*tributacao.getInt(1));
+             objProdOrc.setQuantidade(tributacao.getDouble(1));
+             objProdOrc.setTotalproduto(tributacao.getDouble(2)*tributacao.getDouble(1));
              objProdOrc.setTotaldesconto(tributacao.getDouble(5));
              objProdOrc.setDescontounitario(tributacao.getDouble(4));
              objProdOrc.setAcrescimounitario(tributacao.getDouble(6));
              objProdOrc.setTotalacrescimo(tributacao.getDouble(7));
-             objProdOrc.setTotalprodutocdesc((tributacao.getDouble(2)*tributacao.getInt(1))-tributacao.getDouble(5)+objProdOrc.getTotalacrescimo());
+             objProdOrc.setTotalprodutocdesc((tributacao.getDouble(2)*tributacao.getDouble(1))-tributacao.getDouble(5)+objProdOrc.getTotalacrescimo());
              objProdOrc.setCfop(tributacao.getString(8));
              objProdOrc.setCsosn(tributacao.getInt(9));
              objProdOrc.setCstcofins(tributacao.getString(10));

@@ -56,8 +56,8 @@ public class NovaCor extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics( dm );
         int width = dm.widthPixels;
         int height = dm.heightPixels;
-        getWindow().setGravity( Gravity.TOP );
-        getWindow().setLayout( (int) (width * .25  ), (int) (height * .29  ) );
+        getWindow().setGravity( Gravity.TOP  );
+        getWindow().setLayout( (int) (width * .30  ), (int) (height * .40  ) );
 
         botao1 = (Button) findViewById( R.id.btn1);
         botao2 = (Button) findViewById( R.id.btn2);

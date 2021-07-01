@@ -67,8 +67,8 @@ public class TecladoQuantInteiro extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics( dm );
         int width = dm.widthPixels;
         int height = dm.heightPixels;
-        getWindow().setGravity( Gravity.TOP );
-        getWindow().setLayout( (int) (width * .34), (int) (height * .52) );
+        getWindow().setGravity( Gravity.CENTER );
+        getWindow().setLayout( (int) (width * .34), (int) (height * .55) );
 
 
         valor = (EditText) findViewById( R.id.calcula);
@@ -92,9 +92,8 @@ public class TecladoQuantInteiro extends AppCompatActivity {
         tvTitulo.setText( "CST do Pis" );
         R$.setText("");
         valor.setText("");
-     //valor.addTextChangedListener(MascaraQuant.insert(valor));
-     //   valor.addTextChangedListener(new MascaraQuant(valor));
-      limitedigitos =4;
+
+        limitedigitos =4;
 
         if(MainActivity.controleteclado== 1) {
             limitedigitos =2;
@@ -226,8 +225,13 @@ public class TecladoQuantInteiro extends AppCompatActivity {
     }
 
     public void BotaoC(View view){
+
             String str = valor.getText().toString();
-            valor.setText("");
+            if (str.length()>0) {
+                int indice = str.length()-1;
+                valor.setText(str.substring(0,indice));
+
+        }
     }
 
     public static String getCurrencySymbol() {

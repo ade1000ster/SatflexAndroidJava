@@ -28,6 +28,7 @@ public class modelDocumento {
     final int minuto = calendar.get(Calendar.MINUTE);
     final int segundo = calendar.get(Calendar.SECOND);
     //final int hora = calendar.get(Calendar.)
+
     private String dthrcriacao = ano+"-"+mes+"-"+dia+" "+hora+":"+minuto+":"+segundo;
 
     public int getIddocumento() {

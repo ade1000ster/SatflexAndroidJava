@@ -56,7 +56,6 @@ public class TecladoContribSocial extends AppCompatActivity {
                                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                                     | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                                     | View.SYSTEM_UI_FLAG_IMMERSIVE);
-                    //        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
                 }
             }
         });
@@ -238,7 +237,10 @@ public class TecladoContribSocial extends AppCompatActivity {
     public void BotaoC(View view){
         if (bool == false){
             String str = valor.getText().toString();
-            valor.setText("");
+            if (str.length()>0) {
+                int indice = str.length()-1;
+                valor.setText(str.substring(0,indice));
+            }
         }
     }
 

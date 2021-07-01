@@ -9,39 +9,40 @@
 
     <TextView
         android:id="@+id/bExcluirProd"
-        android:layout_width="61dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_width="60dp"
+        android:layout_height="76dp"
+        android:layout_marginEnd="20dp"
         android:background="@android:color/holo_red_dark"
-        android:drawableBottom="@drawable/removerproduto"
+        android:drawableStart="@drawable/removerproduto"
         android:textColor="@color/colorAccent"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/bAddProd"
-        android:layout_width="59dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="6dp"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="5dp"
         android:background="@color/selecionado"
         android:keepScreenOn="true"
-        android:text="    +   "
+        android:text="+"
+        android:textAlignment="center"
         android:textColor="@color/colorAccent"
         android:textScaleX="1"
-        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textSize="28sp"
         app:layout_constraintEnd_toStartOf="@+id/bExcluirProd"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/bSubProd"
-        android:layout_width="59dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="70dp"
+        android:layout_height="38dp"
         android:background="@android:color/holo_red_dark"
-        android:text="   -   "
+        android:text="-"
+        android:textAlignment="center"
+        android:textStyle="bold"
         android:textColor="@color/colorAccent"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/bExcluirProd"
@@ -50,21 +51,24 @@
 
     <TextView
         android:id="@+id/tvDescCupom"
-        android:layout_width="200dp"
-        android:layout_height="19dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="300dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
         android:text="AÇUCAR"
+        android:textStyle="bold"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvValorItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_width="300dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="7dp"
         android:text="R$ 2,00 x 1 = "
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDescCupom" />
 

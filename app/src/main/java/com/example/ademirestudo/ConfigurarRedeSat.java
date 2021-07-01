@@ -21,12 +21,10 @@ public class ConfigurarRedeSat extends AppCompatActivity {
                                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                                     | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                                     | View.SYSTEM_UI_FLAG_IMMERSIVE);
-                    //        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
                 }
             }
         });
         setContentView( R.layout.configurarredesat);
-        //instance=this;
         DisplayMetrics dm = new DisplayMetrics();
 
         getWindowManager().getDefaultDisplay().getMetrics( dm );

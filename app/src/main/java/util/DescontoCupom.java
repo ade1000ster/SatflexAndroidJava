@@ -73,7 +73,6 @@ public class DescontoCupom extends AppCompatActivity {
             descontoperc = Double.parseDouble(retornoTeclado);
             descontoval = Double.parseDouble(df.format(descontoperc *(m.objdocumento.getTotaldocumento())/100 ));
             totfinal = (m.objdocumento.getTotaldocumento() - descontoval);
-            //double valorrecDin = 0;
             tvDescPerc.setText( retornoTeclado);
             tvDescVal.setText(String.valueOf(converte.format(descontoval)));
             tvTotFinal.setText(String.valueOf(converte.format(totfinal)));
@@ -199,12 +198,6 @@ public class DescontoCupom extends AppCompatActivity {
         this.setResult(RESULT_OK, intent);
         m.valorTotalOrc.setText( "R$ " + converte.format(m.objdocumento.getTotaldocumentocdesc()));
         m.valorTotalVendas.setText( "R$ " + converte.format(m.objdocumento.getTotaldocumentocdesc()));
-       /* m.valorTotalOrc.setText( "R$ " + converte.format(m.objdocumento.getTotaldocumento()));
-        m.valorTotalVendas.setText( "R$ " + converte.format(m.objdocumento.getTotaldocumento()));
-        m.totDescontoV.setText( "R$ " + converte.format(m.objdocumento.getTotaldesconto()));
-        m.totDescontoOcr.setText( "R$ " + converte.format(m.objdocumento.getTotaldesconto()));
-        */
-     //  m.atualizarlista();
         String tamanho= String.valueOf( m.listadeItens.size());
 
 

@@ -92,18 +92,31 @@ import util.DescontoItem;
             }
         }}
         int i =1;
+        tvDescCupom.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                if (DescontoItem.instance == null) {
+
+                    Intent intent = new Intent(context, DescontoItem.class);
+                    startActivity(intent);
+                    ((Activity) context).startActivity(intent);
+                    m.descontouniario = position;
+                    m.atualizarlista();
+                }
+            }
+        });
        tvValorItem.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-
-                Intent intent = new Intent(context, DescontoItem.class);
-                startActivity(intent);
-                ((Activity)context).startActivity(intent );
-                 m.descontouniario = position;
-                m.atualizarlista();
-
+                if (DescontoItem.instance == null) {
+                    Intent intent = new Intent(context, DescontoItem.class);
+                    startActivity(intent);
+                    ((Activity) context).startActivity(intent);
+                    m.descontouniario = position;
+                    m.atualizarlista();
+                }
        }
         });
 

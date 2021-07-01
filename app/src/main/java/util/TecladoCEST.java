@@ -62,8 +62,8 @@ public class TecladoCEST extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics( dm );
         int width = dm.widthPixels;
         int height = dm.heightPixels;
-        getWindow().setGravity( Gravity.TOP );
-        getWindow().setLayout( (int) (width * .34), (int) (height * .52) );
+        getWindow().setGravity( Gravity.CENTER );
+        getWindow().setLayout( (int) (width * .34), (int) (height * .55) );
 
 
 
@@ -174,7 +174,10 @@ public class TecladoCEST extends AppCompatActivity {
     public void BotaoC(View view){
         if (bool == false){
             String str = valor.getText().toString();
-            valor.setText("");
+            if (str.length()>0) {
+                int indice = str.length()-1;
+                valor.setText(str.substring(0,indice));
+            }
         }
     }
 

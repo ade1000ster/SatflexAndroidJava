@@ -11,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class VerificarInternetStatus extends AppCompatActivity {
+    MainActivity mainActivity = new MainActivity();
 
     public boolean isOnline() {
         try {

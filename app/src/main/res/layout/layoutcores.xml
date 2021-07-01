@@ -2,18 +2,18 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="300dp"
-    android:layout_height="215dp"
-    android:background="	#F0F8FF">
+    android:layout_width="340dp"
+    android:layout_height="300dp"
+    android:background="@drawable/bordasarredondados">
+
 
     <Button
         android:id="@+id/btn6"
-        android:layout_width="75dp"
-        android:layout_height="28dp"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginBottom="2dp"
-        android:background="#D15C5C"
+        android:layout_marginBottom="8dp"
+        android:background="#BF1717"
         android:onClick="botao6"
         android:textColor="	#F0F8FF"
         android:textIsSelectable="false"
@@ -24,12 +24,12 @@
 
     <Button
         android:id="@+id/btn5"
-        android:layout_width="75dp"
-        android:layout_height="28dp"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginBottom="8dp"
-        android:background="#4CADE0"
+        android:background="#35A4DF"
         android:onClick="botao5"
         android:textColor="	#F0F8FF"
         android:textIsSelectable="false"
@@ -40,12 +40,12 @@
 
     <Button
         android:id="@+id/btn4"
-        android:layout_width="75dp"
-        android:layout_height="28dp"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginBottom="8dp"
-        android:background="#F0C94A"
+        android:background="#BC9003"
         android:onClick="botao4"
         android:textColor="	#F0F8FF"
         android:textIsSelectable="false"
@@ -56,12 +56,12 @@
 
     <Button
         android:id="@+id/btn3"
-        android:layout_width="75dp"
-        android:layout_height="28dp"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginBottom="8dp"
-        android:background="#00FF7F"
+        android:background="#4CAF50"
         android:onClick="botao3"
         android:textColor="	#DE50DB"
         android:textIsSelectable="false"
@@ -72,8 +72,8 @@
 
     <Button
         android:id="@+id/btn2"
-        android:layout_width="75dp"
-        android:layout_height="28dp"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginBottom="8dp"
@@ -88,12 +88,12 @@
 
     <Button
         android:id="@+id/btn1"
-        android:layout_width="75dp"
-        android:layout_height="28dp"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginBottom="8dp"
-        android:background="#1C1C1C	"
+        android:background="#A4CD73"
         android:onClick="botao1"
         android:textColor="	#F0F8FF"
         android:textIsSelectable="false"
@@ -104,12 +104,12 @@
 
     <Button
         android:id="@+id/btn18"
-        android:layout_width="75dp"
-        android:layout_height="28dp"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginBottom="8dp"
-        android:background="#000000"
+        android:background="#3F51B5"
         android:onClick="botao18"
         android:textIsSelectable="false"
         android:visibility="visible"
@@ -118,12 +118,11 @@
 
     <Button
         android:id="@+id/btn13"
-        android:layout_width="75dp"
-        android:layout_height="28dp"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginBottom="8dp"
-        android:background="#FFA500"
+        android:background="#675DC5"
         android:onClick="botao13"
         android:textIsSelectable="false"
         android:visibility="visible"
@@ -132,12 +131,12 @@
 
     <Button
         android:id="@+id/btn14"
-        android:layout_width="75dp"
-        android:layout_height="28dp"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginBottom="8dp"
-        android:background="#FFFF00	"
+        android:background="#FDE507"
         android:onClick="botao14"
         android:textIsSelectable="false"
         android:visibility="visible"
@@ -146,12 +145,12 @@
 
     <Button
         android:id="@+id/btn15"
-        android:layout_width="75dp"
-        android:layout_height="28dp"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginBottom="8dp"
-        android:background="#00BFFF"
+        android:background="#9C27B0"
         android:onClick="botao15"
         android:textIsSelectable="false"
         android:visibility="visible"
@@ -160,12 +159,12 @@
 
     <Button
         android:id="@+id/btn17"
-        android:layout_width="75dp"
-        android:layout_height="28dp"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginBottom="8dp"
-        android:background="#8B4513	"
+        android:background="#FAF5F5"
         android:onClick="botao17"
         android:textIsSelectable="false"
         android:visibility="visible"
@@ -174,12 +173,12 @@
 
     <Button
         android:id="@+id/btn16"
-        android:layout_width="75dp"
-        android:layout_height="28dp"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginBottom="8dp"
-        android:background="#00FF00	"
+        android:background="#C57FB9"
         android:onClick="botao16"
         android:textIsSelectable="false"
         android:visibility="visible"
@@ -188,12 +187,11 @@
 
     <Button
         android:id="@+id/btn12"
-        android:layout_width="75dp"
-        android:layout_height="28dp"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
         android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginBottom="2dp"
-        android:background="#FF8C00	"
+        android:layout_marginBottom="8dp"
+        android:background="#FB8A00"
         android:onClick="botao12"
         android:textIsSelectable="false"
         android:visibility="visible"
@@ -202,8 +200,8 @@
 
     <Button
         android:id="@+id/btn7"
-        android:layout_width="75dp"
-        android:layout_height="28dp"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginBottom="8dp"
@@ -216,12 +214,12 @@
 
     <Button
         android:id="@+id/btn8"
-        android:layout_width="75dp"
-        android:layout_height="28dp"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginBottom="8dp"
-        android:background="#DC143C"
+        android:background="#F497B7"
         android:onClick="botao8"
         android:textIsSelectable="false"
         android:visibility="visible"
@@ -230,8 +228,8 @@
 
     <Button
         android:id="@+id/btn9"
-        android:layout_width="75dp"
-        android:layout_height="28dp"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginBottom="8dp"
@@ -244,12 +242,11 @@
 
     <Button
         android:id="@+id/btn11"
-        android:layout_width="75dp"
-        android:layout_height="28dp"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
         android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginBottom="2dp"
-        android:background="#FF4500	"
+        android:layout_marginBottom="8dp"
+        android:background="#2BA5A5"
         android:onClick="botao11"
         android:textIsSelectable="false"
         android:visibility="visible"
@@ -258,12 +255,12 @@
 
     <Button
         android:id="@+id/btn10"
-        android:layout_width="75dp"
-        android:layout_height="28dp"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginBottom="8dp"
-        android:background="#FF0000"
+        android:background="#E64646"
         android:onClick="botao10"
         android:textIsSelectable="false"
         android:visibility="visible"

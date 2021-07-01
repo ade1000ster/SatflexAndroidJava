@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
@@ -32,6 +33,8 @@ import com.example.ademirestudo.database.DadosOpenHelper;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 import model.modelCategorias;
@@ -87,7 +90,6 @@ public class CriarCateg extends AppCompatActivity implements AdapterView.OnItemS
                                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                                     | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                                     | View.SYSTEM_UI_FLAG_IMMERSIVE);
-                    //        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
                 }
             }
         });
@@ -98,7 +100,6 @@ public class CriarCateg extends AppCompatActivity implements AdapterView.OnItemS
         descricao = (EditText) findViewById( R.id.textViewDescrCateg);
         cor = (EditText) findViewById( R.id.txtviewcorcateg);
         altera = (Button) findViewById( R.id.alterarcor);
-        dthrcriacao = (EditText) findViewById(R.id.tvCriadoem);
         origemCateg = (Spinner) findViewById(R.id.spOrigem);
         cfop = (EditText) findViewById(R.id.tvCfop);
         csosn = (Spinner) findViewById(R.id.spCsosn);
@@ -109,8 +110,14 @@ public class CriarCateg extends AppCompatActivity implements AdapterView.OnItemS
         aliqcofins = (EditText) findViewById(R.id.tvAliqcofins);
         codcontribsocial = (EditText) findViewById(R.id.tvContribsocial);
         cest = (EditText) findViewById(R.id.tvCest);
-        codNcm = (EditText) findViewById(R.id.tvNcm );
+        codNcm = (EditText) findViewById(R.id.tvEan);
         cbtribut = (CheckBox) findViewById(R.id.cbTribut );
+        dthrcriacao = (EditText) findViewById(R.id.tvCriadoem);
+        dthrcriacao.setEnabled(false);
+        SimpleDateFormat formataData = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        Date data = new Date();
+        String dataFormatada = formataData.format(data);
+        dthrcriacao.setText(dataFormatada);
         conectarBanco();
         getWindowManager().getDefaultDisplay().getMetrics( dm );
 
@@ -136,7 +143,6 @@ public class CriarCateg extends AppCompatActivity implements AdapterView.OnItemS
                 if (cbtribut.isChecked())
                 try {
                     Cursor tributacao = (dadosOpenHelper.selecTribNcm(codNcm.getText().toString()));
-                    // String codigoncm = (dadosOpenHelper.selecionarCodNCM(tributacao.getString(10)));
 
                      aliqicms.setText(String.valueOf(converte.format(tributacao.getDouble(0))));
                     cstpis.setText(String.valueOf(tributacao.getString(1)));
@@ -145,8 +151,6 @@ public class CriarCateg extends AppCompatActivity implements AdapterView.OnItemS
                     aliqcofins.setText(String.valueOf(converte.format(tributacao.getDouble(4))));
                     codcontribsocial.setText(String.valueOf(tributacao.getString(5)));
                     cfop.setText(String.valueOf(tributacao.getString(8)));
-                   // cest.setText(String.valueOf(tributacao.getString(9)));
-                    //montecodNcm.setText(String.valueOf(codigoncm));
                     if (tributacao.getInt(6) == 500) {
 
                         csosn.setSelection(3);
@@ -168,7 +172,6 @@ public class CriarCateg extends AppCompatActivity implements AdapterView.OnItemS
                 }
                 catch (Exception ex) {
 
-                    // AlertDialog.Builder builder = new AlertDialog.Builder();
                     //define o titulo
                     builder.setTitle("NCM não encontrado");
 
@@ -391,13 +394,13 @@ public class CriarCateg extends AppCompatActivity implements AdapterView.OnItemS
     passando o objeto categ como parametro                                                                 */
     // *****************************************************************************************************
 
-    public void gravarcategoria (View view)
-    {
-        long retorno =0;
+    public void gravarcategoria (View view) {
+        long retorno = 0;
+        if(descricao.getText().length()>0){
         try {
             modelCategorias categ = new modelCategorias();
-            categ.setDescricao( descricao.getText().toString() );
-            categ.setCor( cor.getText().toString() );
+            categ.setDescricao(descricao.getText().toString().toUpperCase());
+            categ.setCor(cor.getText().toString());
             categ.setOrigem(origemCateg.getSelectedItemPosition());
             categ.setCfop(cfop.getText().toString());
             categ.setCsosn(Integer.parseInt(csosn.getSelectedItem().toString()));
@@ -407,24 +410,53 @@ public class CriarCateg extends AppCompatActivity implements AdapterView.OnItemS
             categ.setCstcofins(cstcofins.getText().toString());
             categ.setAliqcofins(Double.parseDouble(formatPriceSave(aliqcofins.getText().toString())));
             categ.setCodcontribsocial(codcontribsocial.getText().toString());
-           // categ.setCest(cest.getText().toString());
             categ.setIdNcm(dadosOpenHelper.selecionarNCM(codNcm.getText().toString()));
-           dadosOpenHelper.addCategoria(categ);
+            dadosOpenHelper.addCategoria(categ);
             Toast toast = Toast.makeText(getApplicationContext(), "  ", Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.setView(toastLayout);
             toast.show();
-            instance=null;
+            instance = null;
             if (retorno == 0) {
                 Toast.makeText(getApplicationContext(), +retorno + " Categoria já existente", Toast.LENGTH_SHORT).show();
             }
             this.setResult(RESULT_OK);
             this.finish();
             Toast.makeText(getApplicationContext(), "Cadastrado Categoria", Toast.LENGTH_SHORT).show();
-        }catch (Exception ex) {
-            Toast.makeText(getApplicationContext(), "Não foi possível cadastrar" +ex.getMessage() +ex.getCause(), Toast.LENGTH_SHORT).show();
+        } catch (Exception ex) {
+            Toast.makeText(getApplicationContext(), "Não foi possível cadastrar" + ex.getMessage() + ex.getCause(), Toast.LENGTH_SHORT).show();
 
         }
+    }
+        else{
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setCancelable(false);
+        builder.setTitle("Atenção");
+        builder.setMessage(" O Campo Descrição Não Pode Ser Vazio!");
+
+        final AlertDialog.Builder sim = builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface arg0, int arg1) {
+                GradientDrawable gdDefault = new GradientDrawable();
+                gdDefault.setColor(Color.parseColor("#fffff0"));
+                gdDefault.setCornerRadius(10);
+                gdDefault.setStroke(6, Color.parseColor("#ff3333"));
+                descricao.setBackground(gdDefault);
+
+            }
+        });
+        AlertDialog alerta = builder.create();
+
+        alerta.show();
+
+        Button pbutton = alerta.getButton(DialogInterface.BUTTON_POSITIVE);
+        pbutton.setBackgroundColor(Color.BLUE);
+        pbutton.setTextSize(20);
+        pbutton.setScaleY(1);
+        pbutton.setScaleX(1);
+        pbutton.setX(-40);
+        pbutton.setTextColor(Color.WHITE);
+    }
     }
 
 

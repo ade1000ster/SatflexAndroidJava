@@ -10,9 +10,9 @@ public class modelProdutos implements Serializable {
     private int idcategoria = 0;
     private double preco = 0;
     private double quantidade=1;
-    private String codigoean;
+    private String codigoean = "";
     private String precovariavel ="N";
-    private String codigoNcm = "0000.00.00";
+    private String codigoNcm = "0101.21.00";
     private int idNcm =1;
     private int origem =1;
     private int csosn = 0;

@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ademirestudo">
-
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.USB_PERMISSION"></uses-permission>
+    <uses-permission android:name="android.permission.USB_PERMISSION" />
+    <uses-feature android:name="android.hardware.usb.host" />
+
+    <uses-permission android:name="android.permission.ACCESS_SUPERUSER"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-feature android:name="android.hardware.usb.host"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <uses-permission android:name="android.permission.S@T-iD"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
-    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-
-
+    <uses-permission android:name="android.permission.S@T-iD" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
     <application
 
@@ -27,154 +29,158 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:networkSecurityConfig="@xml/network_security_config"
-
         android:theme="@style/AppTheme">
-
-        <activity
-            android:name=".CriarProd"
-            android:windowSoftInputMode="stateHidden"
-            android:label="@string/title_criarprod"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name=".CriarCateg"
-            android:windowSoftInputMode="stateHidden"
-            android:label="CriarCateg"
-            android:theme="@style/AppTheme.CustomTheme" />
-
-        <activity
-            android:name=".AlteraProd"
-            android:windowSoftInputMode="stateHidden"
-            android:label="AlteraProd"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name=".AlteraCateg"
-            android:windowSoftInputMode="stateHidden"
-            android:label="AlteraCateg"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name=".CriarOrcamento"
-            android:windowSoftInputMode="stateHidden"
-            android:label="CriarOrcamento"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-        android:name="util.DescontoItem"
-        android:windowSoftInputMode="stateHidden"
-        android:label="DescontoItem"
-        android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name="util.DescontoCupom"
-            android:windowSoftInputMode="stateHidden"
-            android:label="DescontoCupomItem"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name="util.AcrescimoCupom"
-            android:windowSoftInputMode="stateHidden"
-            android:label="DescontoItem"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name="util.NovaCor"
-            android:windowSoftInputMode="stateHidden"
-            android:label="NovaCor"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name="util.Tecladonumerico"
-            android:windowSoftInputMode="stateHidden"
-            android:label="Tecladonumerico"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name="util.TecladoCFOP"
-            android:windowSoftInputMode="stateHidden"
-            android:launchMode = "singleInstance"
-            android:label="Tecladonumerico"
-
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name="util.TecladoQuantInteiro"
-            android:windowSoftInputMode="stateHidden"
-            android:label="Tecladonumerico"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name="util.CriarProdTrib"
-            android:windowSoftInputMode="stateHidden"
-            android:label="criarProdTrib"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name="util.AlterarProdTrib"
-            android:windowSoftInputMode="stateHidden"
-            android:label="criarProdTrib"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name="util.Tecladocpfcnpj"
-            android:windowSoftInputMode="stateHidden"
-            android:label="Tecladocpfcnpj"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name="util.TecladoContribSocial"
-            android:windowSoftInputMode="stateHidden"
-            android:label="Tecladonumerico"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name="util.TecladoCEST"
-            android:windowSoftInputMode="stateHidden"
-            android:label="Tecladonumerico"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-        android:name="util.TecladoNCMProduto"
-        android:windowSoftInputMode="stateHidden"
-        android:label="Tecladonumerico"
-        android:theme="@style/AppTheme.CustomTheme" />
-
-        <activity
-            android:name=".InfoOrcamento"
-            android:windowSoftInputMode="stateHidden"
-            android:label="InfoOrcamento"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name=".FinalizarVendas"
-            android:windowSoftInputMode="stateHidden"
-            android:label="Tecladonumerico"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name=".ReimprimirCupom"
-            android:windowSoftInputMode="stateHidden"
-            android:label="ReimprimirCupom"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name=".ConfigurarRedeSat"
-            android:windowSoftInputMode="stateHidden"
-            android:label="ConfigurarRedeSat"
-            android:theme="@style/AppTheme.CustomTheme" />
-
-        <activity
-            android:name=".MainActivity"
-            android:launchMode="singleTask">
-
-
+        <activity android:name=".SplashActivity">
             <intent-filter>
-
-                    <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
-
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+                <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.HOME" />
                 <category android:name="android.intent.category.MONKEY" />
                 <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <meta-data
-            android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
-            android:resource="@xml/devices" />
-        <receiver android:enabled="true"
-            android:name="com.example.ademirestudo.BootUpReceiver"
-            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+        <activity
+            android:name=".CriarProd"
+            android:label="@string/title_criarprod"
+            android:theme="@style/AppTheme.CustomTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".CriarCateg"
+            android:label="CriarCateg"
+            android:theme="@style/AppTheme.CustomTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".AlteraProd"
+            android:label="AlteraProd"
+            android:theme="@style/AppTheme.CustomTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".AlteraCateg"
+            android:label="AlteraCateg"
+            android:theme="@style/AppTheme.CustomTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".CriarOrcamento"
+            android:label="CriarOrcamento"
+            android:theme="@style/AppTheme.CustomTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="util.DescontoItem"
+            android:label="DescontoItem"
+            android:theme="@style/AppTheme.CustomTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="util.DescontoCupom"
+            android:label="DescontoCupomItem"
+            android:theme="@style/AppTheme.CustomTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="util.AcrescimoCupom"
+            android:label="DescontoItem"
+            android:theme="@style/AppTheme.CustomTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="util.NovaCor"
+            android:label="NovaCor"
+            android:theme="@style/AppTheme.CustomTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="util.Tecladonumerico"
+            android:label="Tecladonumerico"
+            android:theme="@style/AppTheme.CustomTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="util.TecladoCFOP"
+            android:label="Tecladonumerico"
+            android:launchMode="singleInstance"
+            android:theme="@style/AppTheme.CustomTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="util.TecladoQuantInteiro"
+            android:label="Tecladonumerico"
+            android:theme="@style/AppTheme.CustomTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="util.CriarProdTrib"
+            android:label="criarProdTrib"
+            android:theme="@style/AppTheme.CustomTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="util.AlterarProdTrib"
+            android:label="criarProdTrib"
+            android:theme="@style/AppTheme.CustomTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="util.Tecladocpfcnpj"
+            android:label="Tecladocpfcnpj"
+            android:theme="@style/AppTheme.CustomTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="util.TecladoContribSocial"
+            android:label="Tecladonumerico"
+            android:theme="@style/AppTheme.CustomTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="util.TecladoCEST"
+            android:label="Tecladonumerico"
+            android:theme="@style/AppTheme.CustomTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="util.TecladoNCMProduto"
+            android:label="Tecladonumerico"
+            android:theme="@style/AppTheme.CustomTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".InfoOrcamento"
+            android:label="InfoOrcamento"
+            android:theme="@style/AppTheme.CustomTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".FinalizarVendas"
+            android:label="Tecladonumerico"
+            android:theme="@style/AppTheme.CustomTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ReimprimirCupom"
+            android:label="ReimprimirCupom"
+            android:theme="@style/AppTheme.CustomTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ConfigurarRedeSat"
+            android:label="ConfigurarRedeSat"
+            android:theme="@style/AppTheme.CustomTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".MainActivity"
+            android:noHistory="true"
+            android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
+            <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+        </intent-filter>
+            <meta-data android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" android:resource="@xml/device_filter" />
+
+        </activity>
+
+
+        <service
+            android:name="br.com.dimep.dimepsat.driver.USBService"
+            android:enabled="true"/>
+        <service
+            android:name="br.com.elgin.sat.USBService"
+            android:enabled="true" />
+        <receiver
+            android:name=".BootUpReceiver"
+            android:enabled="true"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+
         </receiver>
     </application>
 

@@ -5,15 +5,33 @@
 
     <item
         android:id="@+id/cancelarVenda"
+        android:icon="@drawable/excluircompra"
         android:title="@string/cancelarVenda"
-        app:showAsAction="never" />
+        app:showAsAction="always" />
     <item
         android:id="@+id/reimprimircupom"
-        android:title="@string/action_reimprimir" />
+        android:icon="@drawable/reimrimircupom"
+        android:title="@string/action_reimprimir"
+        app:showAsAction="always" />
     <item
         android:id="@+id/action_orçamento"
-        android:title="Alternar para orçamento" />
+        android:icon="@drawable/icone_orcamento"
+        android:title="Alternar para orçamento"
+        app:showAsAction="always"/>
+
     <item
-        android:id="@+id/efetivorcvend"
+        android:id="@+id/cancelarVenda2"
+        android:title="@string/cancelarVenda"
+        />
+    <item
+        android:id="@+id/reimprimircupom2"
+        android:title="@string/action_reimprimir"
+        />
+    <item
+        android:id="@+id/action_orçamento2"
+        android:title="Alternar para orçamento"
+       />
+    <item
+        android:id="@+id/efetivorcvenda2"
         android:title="Efetivar um orçamento" />
 </menu>

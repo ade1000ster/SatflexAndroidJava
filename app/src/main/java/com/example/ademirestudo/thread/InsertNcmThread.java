@@ -1,4 +1,4 @@
-package util;
+package com.example.ademirestudo.thread;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -11,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.widget.Button;
 
 import com.example.ademirestudo.MainActivity;
+import com.example.ademirestudo.R;
 import com.example.ademirestudo.database.DadosOpenHelper;
 
 import java.io.BufferedReader;
@@ -21,7 +22,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class IncertNcm extends AsyncTask<Void,Void,Void> {
+public class InsertNcmThread extends AsyncTask<Void,Void,Void> {
     MainActivity mainActivity = new MainActivity();
     private Context context;
     private ProgressDialog progressDialog;
@@ -32,23 +33,16 @@ public class IncertNcm extends AsyncTask<Void,Void,Void> {
     private   DadosOpenHelper dadosOpenHelper;
     //dadosOpenHelper = new DadosOpenHelper(this);
    // private ProgressDialog progressDialog;
-    public IncertNcm(Context context){
+    public InsertNcmThread(Context context){
         //Initializing variables
         this.context = context;
 
     }
     public void conectarBanco(){
         try {
-
             dadosOpenHelper = new DadosOpenHelper(mainActivity.getApplicationContext());
-            //conexao = dadosOpenHelper.getReadableDatabase();
-
         }catch (SQLException ex){
-          //  AlertDialog.Builder dlg = new AlertDialog.Builder (this);
-          //  dlg.setTitle("Erro");
-          //  dlg.setMessage(ex.getMessage());
-          //  dlg.setNeutralButton("OK",null);
-           // dlg.show();
+
         }
     }
     @Override
@@ -63,19 +57,22 @@ public class IncertNcm extends AsyncTask<Void,Void,Void> {
         super.onPostExecute(aVoid);
         //Dismissing the progress dialog
         progressDialog.dismiss();
-        //Showing a success message
+
         final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setIcon(R.drawable.ncm);
         builder.setTitle("Atualizado com sucesso");
-        builder.setMessage("A atualização da tabela NCM foi atualizada com sucesso");
+        builder.setMessage("A tabela NCM foi atualizada com sucesso");
         builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface arg0, int arg1) {
                 arg0.cancel();
             }
         });
         alerta = builder.create();
+
         alerta.show();
         Button nbutton = alerta.getButton(DialogInterface.BUTTON_NEGATIVE);
         nbutton.setBackgroundColor(Color.BLUE);
+
         nbutton.setTextSize(20);
         nbutton.setScaleY(1);
         nbutton.setScaleX(1);
@@ -86,21 +83,10 @@ public class IncertNcm extends AsyncTask<Void,Void,Void> {
     @Override
     protected Void doInBackground(Void... voids) {
 
-//dadosOpenHelper = new DadosOpenHelper(mainActivity.getApplicationContext());
-       //mainActivity.VENDER.setText("aa");
+
         diretorioTemp = new File(Environment.getExternalStorageDirectory() + "/satflex/temp/");
-       // FileInputStream fis;
-        //fis = openFileInput("test.txt");
-      //  StringBuffer fileContent = new StringBuffer("");
 
-       // byte[] buffer = new byte[1024];
-
-        //while ((n = fis.read(buffer)) != -1)
-       // {
-          //  fileContent.append(new String(buffer, 0, n));
-       // }
         try {
-//            SQLiteDatabase db = dadosOpenHelper.getReadableDatabase();
                 FileInputStream fis = new FileInputStream( diretorioTemp + "/" + "ncm" + ".txt");
                 DataInputStream in = new DataInputStream(fis);
                 BufferedReader br =
@@ -108,7 +94,6 @@ public class IncertNcm extends AsyncTask<Void,Void,Void> {
                 String strLine;
 
                 while ((strLine = br.readLine()) != null) {
-                   // myData.append(strLine);
                 mainActivity.addNcm(strLine);
 
                 }
@@ -118,13 +103,7 @@ public class IncertNcm extends AsyncTask<Void,Void,Void> {
                 e1.printStackTrace();
             } catch (IOException e) {
             e.printStackTrace();
-
         }
-
-
-
-     // mainActivity.VENDER.setText(myData);
-
         return null;
     }
 

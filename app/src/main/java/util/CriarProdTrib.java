@@ -10,12 +10,15 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.ademirestudo.CriarProd;
 import com.example.ademirestudo.MainActivity;
@@ -45,6 +48,8 @@ public class CriarProdTrib extends AppCompatActivity implements AdapterView.OnIt
     private EditText cest;
     private EditText cfop;
     private CheckBox cbtribut;
+    View toastLayout;
+    LayoutInflater layoutInflater;
     Boolean bool = false;
 
     @Override
@@ -87,7 +92,7 @@ public class CriarProdTrib extends AppCompatActivity implements AdapterView.OnIt
         codcontribsocial = (EditText) findViewById(R.id.tvCodContribSocial);
         cest = (EditText) findViewById(R.id.tvCest);
         cfop = (EditText) findViewById(R.id.tvCfop);
-        codNcm = (EditText) findViewById(R.id.tvNcm );
+        codNcm = (EditText) findViewById(R.id.tvEan);
         cbtribut = (CheckBox) findViewById(R.id.cbTribut );
 
         ArrayAdapter<CharSequence> adapterstatus = ArrayAdapter.createFromResource(this, R.array.spcsons, android.R.layout.simple_spinner_item);
@@ -112,7 +117,6 @@ public class CriarProdTrib extends AppCompatActivity implements AdapterView.OnIt
                 aliqicofins.setText(String.valueOf(converte.format(tributacao.getDouble(4))));
                 codcontribsocial.setText(String.valueOf(tributacao.getString(5)));
                 cfop.setText(String.valueOf(tributacao.getString(8)));
-                //cest.setText(String.valueOf(tributacao.getString(9)));
                 String codigoncm = (dadosOpenHelper.selecionarCodNCM(tributacao.getString(10)));
                 codNcm.setText(String.valueOf(codigoncm));}
                 if (tributacao.getInt(6) == 500){
@@ -135,7 +139,8 @@ public class CriarProdTrib extends AppCompatActivity implements AdapterView.OnIt
 
             }
         });
-
+        LayoutInflater layoutInflater = getLayoutInflater();
+        toastLayout = layoutInflater.inflate(R.layout.toastfaltacampos, (ViewGroup) findViewById(R.id.toastfaltacampos));
     }
 
 
@@ -330,32 +335,36 @@ public class CriarProdTrib extends AppCompatActivity implements AdapterView.OnIt
         String Cest= (cest.getText().toString());
         String CodNcm= (codNcm.getText().toString());
         if (AliqIcms.length()==0 || Cfop.length()==0|| CstPis.length()==0|| AliqPis.length()==0|| CstCofins.length()==0||
-                CodContribsocial.length()==0 || Cest.length()==0|| CodNcm.length()==0){
+                CodContribsocial.length()==0 || CodNcm.length()==0) {
+            Toast toast = Toast.makeText(getApplicationContext(), " ", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.setView(toastLayout);
+            toast.show();
             instance=null;
             this.finish();
-
-
         }
-        else {
-
-
+else{
             criarProd.objProdutos.setCsosn(Integer.parseInt(csosn.getSelectedItem().toString()));
             criarProd.objProdutos.setOrigem(origemProd.getSelectedItemPosition());
             criarProd.objProdutos.setCfop(cfop.getText().toString());
             criarProd.objProdutos.setCstcofins(cstcofins.getText().toString());
             criarProd.objProdutos.setCfop(cfop.getText().toString());
             criarProd.objProdutos.setCodigoNcm(codNcm.getText().toString());
-           // m.objProdutos.setCest(cest.getText().toString());
             criarProd.objProdutos.setCstpis(cstpis.getText().toString());
             criarProd.objProdutos.setCodcontribsocial(codcontribsocial.getText().toString());
             criarProd.objProdutos.setAliqicms(Double.parseDouble(formatPriceSave(aliqIcms.getText().toString())));
             criarProd.objProdutos.setAliqpis(Double.parseDouble(formatPriceSave(aliqpis.getText().toString())));
             criarProd.objProdutos.setAliqicofins(Double.parseDouble(formatPriceSave(aliqicofins.getText().toString())));
-            criarProd.objProdutos.setIdNcm(dadosOpenHelper.selecionarNCM(codNcm.getText().toString()));
+            try {
+               criarProd.objProdutos.setIdNcm(dadosOpenHelper.selecionarNCM(codNcm.getText().toString()));
+            }
+            catch (Exception e){
+
+            }
             instance=null;
-            // this.setResult(RESULT_OK, intent);
             this.finish();
         }
+
     }
 
 

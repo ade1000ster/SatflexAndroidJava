@@ -8,12 +8,12 @@
 
     <TextView
         android:id="@+id/tvmsginfo"
-        android:layout_width="500dp"
-        android:layout_height="50dp"
+        android:layout_width="725dp"
+        android:layout_height="90dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="Venda Finalizada com sucesso! "
-        android:textScaleX="2"
+        android:text="Venda finalizada com sucesso! "
+    android:textSize="48dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

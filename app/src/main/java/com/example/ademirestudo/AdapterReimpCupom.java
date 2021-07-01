@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import model.modelDocumento;
  class AdapterReimpCupom extends ArrayAdapter<modelDocumento> {
         MainActivity m = new MainActivity();
-        // AlteraProd alteraProd = new AlteraProd();
 
         private Context context;
 

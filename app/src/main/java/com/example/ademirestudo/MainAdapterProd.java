@@ -9,6 +9,8 @@ import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
@@ -20,7 +22,7 @@ import util.Tecladonumerico;
 
 public class MainAdapterProd  extends ArrayAdapter<modelProdutos> {
     MainActivity m = new MainActivity();
-
+    private Animation animSequential;
     private Context contextt;
     private ArrayList<modelProdutos> lista = null;
     private int requestCode;
@@ -44,7 +46,7 @@ public class MainAdapterProd  extends ArrayAdapter<modelProdutos> {
 
         convertVieww = LayoutInflater.from(contextt).inflate(R.layout.row_item, null);
 
-         TextView descricao = (TextView) convertVieww.findViewById(R.id.button);
+         final TextView descricao = (TextView) convertVieww.findViewById(R.id.button);
 
         m.atualizarlista();
         if (position == 0 ) {
@@ -66,14 +68,16 @@ public class MainAdapterProd  extends ArrayAdapter<modelProdutos> {
             gdDefault.setStroke(6, Color.parseColor(itemposicao.getCor()));
             descricao.setText(itemposicao.getDescricao());
             descricao.setBackground(gdDefault);
-           // descricao.setBackgroundColor(Color.parseColor(itemposicao.getCor()));
 
-           // descricao.setText(String.valueOf(itemposicao.getDescricao()));
             if (itemposicao.getPrecovariavel().equalsIgnoreCase("N")  ) {
                    descricao.setOnClickListener(new View.OnClickListener() {
+
                     @Override
                     public void onClick(View v) {
                         m.addprodvenda(itemposicao);
+                        animSequential = AnimationUtils.loadAnimation(contextt,
+                                R.anim.sequencial);
+                        descricao.startAnimation(animSequential);
 
                     }
 

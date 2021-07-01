@@ -2,8 +2,8 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="520dp"
-    android:layout_height="500dp"
+    android:layout_width="523dp"
+    android:layout_height="match_parent"
     android:background="@drawable/bordaestilos"
     android:clickable="true"
     android:focusable="auto"
@@ -11,11 +11,12 @@
 
     <TextView
         android:id="@+id/tvdescricao"
-        android:layout_width="123dp"
+        android:layout_width="200dp"
         android:layout_height="29dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="16dp"
         android:text="Café"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,8 +25,9 @@
         android:layout_width="125dp"
         android:layout_height="22dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:text="Quantidade"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvdescricao" />
 
@@ -35,6 +37,7 @@
         android:layout_height="22dp"
         android:layout_marginStart="50dp"
         android:text="Preço unitário"
+        android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toTopOf="@+id/textView7" />
 
@@ -44,6 +47,7 @@
         android:layout_height="22dp"
         android:layout_marginStart="50dp"
         android:text="Valor do item"
+        android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/textView8"
         app:layout_constraintTop_toTopOf="@+id/textView8" />
 
@@ -51,7 +55,7 @@
         android:id="@+id/tvquantidade"
         android:layout_width="135dp"
         android:layout_height="30dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/bordaestilos"
         android:gravity="center"
         app:layout_constraintStart_toStartOf="@+id/textView7"
@@ -61,7 +65,7 @@
         android:id="@+id/tvprecounitario"
         android:layout_width="135dp"
         android:layout_height="30dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/bordaestilos"
         android:gravity="center"
         app:layout_constraintStart_toStartOf="@+id/textView8"
@@ -71,37 +75,40 @@
         android:id="@+id/tvvaloritem"
         android:layout_width="135dp"
         android:layout_height="30dp"
-        android:layout_marginTop="2dp"
-        android:background="@drawable/bordaestilos"
+        android:layout_marginTop="5dp"
+        android:background="#D8D8D8"
         android:gravity="center"
         app:layout_constraintStart_toStartOf="@+id/textView28"
         app:layout_constraintTop_toBottomOf="@+id/textView28" />
 
     <TextView
         android:id="@+id/textView67"
-        android:layout_width="125dp"
+        android:layout_width="150dp"
         android:layout_height="22dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="50dp"
         android:text="Desconto unitário"
+        android:textSize="17dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvquantidade" />
 
     <TextView
         android:id="@+id/textView69"
-        android:layout_width="132dp"
+        android:layout_width="160dp"
         android:layout_height="22dp"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="16dp"
         android:text="Desconto percentual"
+        android:textSize="17dp"
         app:layout_constraintStart_toEndOf="@+id/textView67"
         app:layout_constraintTop_toTopOf="@+id/textView67" />
 
     <TextView
         android:id="@+id/textView77"
-        android:layout_width="125dp"
+        android:layout_width="148dp"
         android:layout_height="22dp"
-        android:layout_marginStart="45dp"
+        android:layout_marginStart="26dp"
         android:text="Total de desconto"
+        android:textSize="17dp"
         app:layout_constraintStart_toEndOf="@+id/textView69"
         app:layout_constraintTop_toTopOf="@+id/textView69" />
 
@@ -109,7 +116,7 @@
         android:id="@+id/tvdescontounitario"
         android:layout_width="135dp"
         android:layout_height="30dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/bordaestilos"
         android:gravity="center"
         app:layout_constraintStart_toStartOf="@+id/textView67"
@@ -119,7 +126,8 @@
         android:id="@+id/tvdescontopercentual"
         android:layout_width="135dp"
         android:layout_height="30dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/bordaestilos"
         android:gravity="center"
         app:layout_constraintStart_toStartOf="@+id/textView69"
@@ -129,6 +137,7 @@
         android:id="@+id/tvtotaldesconto"
         android:layout_width="135dp"
         android:layout_height="30dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="2dp"
         android:background="@drawable/bordaestilos"
         android:gravity="center"
@@ -137,29 +146,32 @@
 
     <TextView
         android:id="@+id/textView81"
-        android:layout_width="125dp"
+        android:layout_width="150dp"
         android:layout_height="22dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="50dp"
         android:text="Acréscimo unitário"
+        android:textSize="17dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvdescontounitario" />
 
     <TextView
         android:id="@+id/textView82"
-        android:layout_width="125dp"
+        android:layout_width="140dp"
         android:layout_height="22dp"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="30dp"
         android:text="Acrésc percentual"
+        android:textSize="17dp"
         app:layout_constraintStart_toEndOf="@+id/textView81"
         app:layout_constraintTop_toTopOf="@+id/textView81" />
 
     <TextView
         android:id="@+id/textView83"
-        android:layout_width="125dp"
+        android:layout_width="150dp"
         android:layout_height="22dp"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="35dp"
         android:text="Total de acréscimo"
+        android:textSize="17dp"
         app:layout_constraintStart_toEndOf="@+id/textView82"
         app:layout_constraintTop_toTopOf="@+id/textView82" />
 
@@ -167,7 +179,7 @@
         android:id="@+id/tvacresunitario"
         android:layout_width="135dp"
         android:layout_height="30dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/bordaestilos"
         android:gravity="center"
         app:layout_constraintStart_toStartOf="@+id/textView81"
@@ -177,7 +189,7 @@
         android:id="@+id/tvacrescpercent"
         android:layout_width="135dp"
         android:layout_height="30dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/bordaestilos"
         android:gravity="center"
         app:layout_constraintStart_toStartOf="@+id/textView82"
@@ -187,7 +199,7 @@
         android:id="@+id/tvtotalacrescimo"
         android:layout_width="135dp"
         android:layout_height="30dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/bordaestilos"
         android:gravity="center"
         app:layout_constraintStart_toStartOf="@+id/textView83"
@@ -197,41 +209,44 @@
         android:id="@+id/textView87"
         android:layout_width="wrap_content"
         android:layout_height="22dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="16dp"
         android:text="Total final"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="@+id/tvtotalacrescimo"
         app:layout_constraintTop_toBottomOf="@+id/tvtotalacrescimo" />
 
     <TextView
         android:id="@+id/tvtotalfinal"
-        android:layout_width="116dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="2dp"
-        android:background="@drawable/bordaestilos"
+        android:layout_width="130dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="5dp"
+        android:background="#D3D3D3"
         android:gravity="center"
         app:layout_constraintStart_toStartOf="@+id/textView87"
         app:layout_constraintTop_toBottomOf="@+id/textView87" />
 
     <Button
         android:id="@+id/button11"
-        android:layout_width="82dp"
-        android:layout_height="44dp"
+        android:layout_width="130dp"
+        android:layout_height="60dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
-        android:background="@android:color/holo_red_dark"
+        android:background="#6873DF"
         android:gravity="center"
         android:onClick="voltar"
+        android:drawableStart="@drawable/voltar"
         android:text="Voltar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/btnconfirmar"
-        android:layout_width="117dp"
-        android:layout_height="44dp"
+        android:layout_width="130dp"
+        android:layout_height="60dp"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="8dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/confirma"
         android:gravity="center"
         android:onClick="confirmar"
         android:text="Confirmar"

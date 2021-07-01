@@ -56,7 +56,6 @@ public class Tecladocpfcnpj extends AppCompatActivity {
                                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                                     | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                                     | View.SYSTEM_UI_FLAG_IMMERSIVE);
-                    //        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
                 }
             }
         });
@@ -67,8 +66,8 @@ public class Tecladocpfcnpj extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics( dm );
         int width = dm.widthPixels;
         int height = dm.heightPixels;
-        getWindow().setGravity( Gravity.TOP );
-        getWindow().setLayout( (int) (width * .4), (int) (height * .6) );
+        getWindow().setGravity( Gravity.CENTER );
+        getWindow().setLayout( (int) (width * .34), (int) (height * .55) );
 
 
 
@@ -88,7 +87,6 @@ public class Tecladocpfcnpj extends AppCompatActivity {
         botaoC = (Button) findViewById(R.id.buttonc);
 
         Locale mLocale = new Locale("pt", "BR");
-        //valor.addTextChangedListener(new Mascara(valor));
         valor.addTextChangedListener(MascaraCNPJCPF.insert(valor));
 
 
@@ -180,7 +178,10 @@ public class Tecladocpfcnpj extends AppCompatActivity {
     public void BotaoC(View view){
         if (bool == false){
             String str = valor.getText().toString();
-            valor.setText("");
+            if (str.length()>0) {
+                int indice = str.length()-1;
+                valor.setText(str.substring(0,indice));
+            }
         }
     }
 

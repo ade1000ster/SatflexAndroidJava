@@ -51,10 +51,32 @@ public class DadosVenda {
         for (int i = 1; i <= mainActivity.listadeItens.size(); i++) {
             objCupom = new modelDocumentoProduto();
             objCupom = mainActivity.listadeItens.get(i - 1);
-            //String j = "1";
+            String chavePisntAbre = "";
+            String chavePisntfecha = "";
+            String chaveCofinsntAbre = "";
+            String chaveCofinsntFecha = "";
+            if (objCupom.getCstpis().equalsIgnoreCase("49")){
+                chavePisntAbre = "<PISSN>";
+                chavePisntfecha = "</PISSN>";
+            }
+            else
+            if (objCupom.getCstpis().equalsIgnoreCase("04") || objCupom.getCstpis().equalsIgnoreCase("06") ||
+                    objCupom.getCstpis().equalsIgnoreCase("07") ||objCupom.getCstpis().equalsIgnoreCase("08") ||objCupom.getCstpis().equalsIgnoreCase("09")){
+                chavePisntAbre = "<PISNT>";
+                chavePisntfecha = "</PISNT>";
+            }
+            /// fim if  cstpis ------------------------------------------
+            if (objCupom.getCstcofins().equalsIgnoreCase("49")){
+                chaveCofinsntAbre = "<COFINSSN>";
+                chaveCofinsntFecha = "</COFINSSN>";
+            }
+            else
+            if (objCupom.getCstcofins().equalsIgnoreCase("04") || objCupom.getCstcofins().equalsIgnoreCase("06") ||
+                    objCupom.getCstcofins().equalsIgnoreCase("07") ||objCupom.getCstcofins().equalsIgnoreCase("08") ||objCupom.getCstcofins().equalsIgnoreCase("09")){
+                chaveCofinsntAbre = "<COFINSNT>";
+                chaveCofinsntFecha = "</COFINSNT>";
+            }
 
-           // objFormPgto = f.listadeFormPgto.get(0);
-           //m.binformarCPF.setText(String.valueOf(objFormPgto.getTotalpagamento()));
             dadosVenda.append("<det nItem=\"" + i + "\">" +
                     "<prod>" +
                     "<cProd>" + objCupom.getIddoproduto() + "</cProd>" +
@@ -76,14 +98,14 @@ public class DadosVenda {
                     "</ICMSSN102>" +
                     "</ICMS>" +
                     "<PIS>" +
-                    "<PISSN>" +
+                    chavePisntAbre +
                     "<CST>"+objCupom.getCstpis()+"</CST>" +
-                    "</PISSN>" +
+                    chavePisntfecha+
                     "</PIS>" +
                     "<COFINS>" +
-                    "<COFINSSN>" +
+                    chaveCofinsntAbre +
                     "<CST>"+objCupom.getCstcofins()+"</CST>" +
-                    "</COFINSSN>" +
+                    chaveCofinsntFecha +
                     "</COFINS>" +
                     "</imposto>" +
                     "</det>");
@@ -107,12 +129,10 @@ public class DadosVenda {
                         "</infAdic>"+
                        "</infCFe>" +
                        "</CFe>");
-       // StringBuilder dadosVenda = new StringBuilder();
         return dadosVenda;
     }
 
     public StringBuilder criarDadosVendaCanc(String cfecanc){
-        //String chavecfe = "CFe35200108238299000129599000196690000799624790";
         StringBuilder dadosVendaCanc = new StringBuilder();
         dadosVendaCanc.append("<CFeCanc>" +
                 "<infCFe chCanc=\""+cfecanc+"\">" +

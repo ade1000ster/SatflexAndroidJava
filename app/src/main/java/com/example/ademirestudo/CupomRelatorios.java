@@ -12,8 +12,8 @@ public class CupomRelatorios {
     DecimalFormat converte = new DecimalFormat("0.00");
     public static StringBuilder cupomRelatorios;
     MainActivity mainActivity = new MainActivity();
-    String diainicial  = (mainActivity.dataInicialAux.substring(8,10));
-    String mesinicial  = (mainActivity.dataInicialAux.substring(4,8));
+    String diainicial  = (mainActivity.dataInicialAux.substring(8,10) + "/");
+    String mesinicial  = (mainActivity.dataInicialAux.substring(5,7) + "/");
     String anoinicial  = (mainActivity.dataInicialAux.substring(0,4));
     int diafinalAux = Integer.parseInt(mainActivity.dataFinalAux.substring(8,10));
 
@@ -21,7 +21,7 @@ public class CupomRelatorios {
 
     String mesfinal  = (mainActivity.dataFinalAux.substring(4,8));
     String anofinal  = (mainActivity.dataFinalAux.substring(0,4));
-    //Remover acentos amtes de enviar a impressora
+    //Remover acentos antes de enviar a impressora
     public static String deAccent(String str) {
         String nfdNormalizedString = Normalizer.normalize(str, Normalizer.Form.NFD);
         Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
@@ -34,8 +34,8 @@ public class CupomRelatorios {
         if(diafinalAux <10){
             diafinal = "0" +diafinal;
         }
-        cupomRelatorios.append( "       "+ deAccent(mainActivity.objparam.getEmitenteRazaoSocial())+ "\n") ;
-        cupomRelatorios.append("ORCAMENTOS: "+ diainicial+mesinicial +anoinicial+ "  "+diafinal+mesfinal+anofinal  + "\n");
+        cupomRelatorios.append("\n"+ "       "+ deAccent(mainActivity.objparam.getEmitenteRazaoSocial())+ "\n") ;
+        cupomRelatorios.append("ORCAMENTOS: "+ diainicial+mesinicial +anoinicial+ " a "+diafinal+mesfinal+anofinal  + "\n");
         cupomRelatorios.append( "\n" );
         cupomRelatorios.append("Numero   Cliente             Qtde        TOTAL\n");
 
@@ -86,12 +86,11 @@ public class CupomRelatorios {
         }
 
 
-        cupomRelatorios.append( "       "+ mainActivity.objparam.getEmitenteRazaoSocial()+ "\n") ;
+        cupomRelatorios.append( "       "+"\n"+ mainActivity.objparam.getEmitenteRazaoSocial()+ "\n") ;
         cupomRelatorios.append("     "+"FECHAMENTO: "+ diainicial+mesinicial +anoinicial+ " a "+diafinal+mesfinal+anofinal  + "\n");
         cupomRelatorios.append( "\n" );
 
 int tamanhoListOrc = mainActivity.listadeorcamento.size();
-//mainActivity.VENDER.setText(String.valueOf(mainActivity.listadeorcamento.size()));
 
         for (int i = 1; i < mainActivity.listadeorcamento.size(); i++) {
 
@@ -100,10 +99,11 @@ int tamanhoListOrc = mainActivity.listadeorcamento.size();
             if ((objCupomRelOrc.getTotalquantidade() >= 0)&& (objCupomRelOrc.getIdproduto()!=-1) && i != tamanhoListOrc-9)  {
                 if (objCupomRelOrc.getQuantidade() == Math.rint (objCupomRelOrc.getQuantidade())) {
                     int quantidade = (int)objCupomRelOrc.getQuantidade();
-                    cupomRelatorios.append( String.format("%-30.30s",tipoFechamento) + String.format("%-7.7s","Qtde")    +   String.format("%-7.7s", "TOTAL") + "\n");
+                    if (i==1) {
+                        cupomRelatorios.append(String.format("%-16.13s", tipoFechamento) + String.format("%-7.7s", "Qtde") + String.format("%-7.7s", "TOTAL") + "\n");
+                    }
                     cupomRelatorios.append( String.format("%-30.30s", deAccent( objCupomRelOrc.getNumero()))+ String.format("%-7.7s", quantidade) + String.format("%-7.2f", objCupomRelOrc.getTotal()) + "\n");
                     cupomRelatorios.append("\n");
-                  //  cupomRelatorios.append("\n");
                     objCupomRelOrc.setQuantidade(quantidade);
                 }
                 else{

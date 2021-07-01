@@ -11,7 +11,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/layoutorcamento"
-        android:layout_width="470dp"
+        android:layout_width="500dp"
         android:layout_height="800dp"
         android:background="#f5da99"
         android:verticalScrollbarPosition="left"
@@ -22,7 +22,7 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbarOrc"
-            android:layout_width="470dp"
+            android:layout_width="match_parent"
             android:layout_height="64dp"
             android:background="@color/orcamento"
             android:minHeight="?attr/actionBarSize"
@@ -33,7 +33,7 @@
             app:title="ORÇAMENTO"
             app:titleMargin="120dp"
             app:titleMarginEnd="120dp"
-            app:titleMarginStart="100dp"
+            app:titleMarginStart="120dp"
             app:titleMargins="20dp"
             app:titleTextColor="@color/colorAccent" />
 
@@ -74,22 +74,23 @@
             android:id="@+id/bFinalizarOrc"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="167dp"
-            android:layout_height="0dp"
-            android:layout_marginEnd="8dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="30dp"
             android:layout_marginBottom="8dp"
             android:background="@color/semfoco"
             android:onClick="finalizaorcamento"
             android:text="FINALIZAR"
             android:textColor="@color/colorAccent"
+            android:textSize="24sp"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/toolbar2Orc" />
 
         <EditText
             style="@style/Widget.AppCompat.AutoCompleteTextView"
-            android:layout_width="176dp"
+            android:layout_width="178dp"
             android:layout_height="48dp"
-            android:layout_marginBottom="48dp"
+            android:layout_marginBottom="70dp"
             android:ems="10"
             android:focusable="false"
             android:inputType="textPersonName"
@@ -102,9 +103,9 @@
         <EditText
             android:id="@+id/etOrcTotItens"
             style="@style/Widget.AppCompat.AutoCompleteTextView"
-            android:layout_width="176dp"
+            android:layout_width="178dp"
             android:layout_height="48dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="18dp"
             android:ems="10"
             android:focusable="false"
             android:inputType="textPersonName"
@@ -117,7 +118,7 @@
         <EditText
             android:id="@+id/etOrcTotDesc"
             style="@style/Widget.AppCompat.AutoCompleteTextView"
-            android:layout_width="174dp"
+            android:layout_width="178dp"
             android:layout_height="39dp"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="60dp"
@@ -135,7 +136,7 @@
             android:id="@+id/tvValorTotalOrc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="104dp"
+            android:layout_marginStart="100dp"
             android:layout_marginBottom="116dp"
             android:text="R$ 0.00"
             android:textColor="@color/colorAccent"
@@ -146,7 +147,7 @@
 
         <TextView
             android:id="@+id/tvTotSemDescOrc"
-            android:layout_width="63dp"
+            android:layout_width="100dp"
             android:layout_height="21dp"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="32dp"
@@ -160,9 +161,9 @@
         <TextView
             android:id="@+id/tvQtdItensOrc"
             android:layout_width="47dp"
-            android:layout_height="19dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="72dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="85dp"
             android:text="0"
             android:textColor="@color/colorAccent"
             android:visibility="visible"
@@ -174,7 +175,7 @@
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:text="R$ 0.00"
             android:textColor="@color/colorAccent"
             android:visibility="visible"
@@ -196,12 +197,14 @@
 
         <EditText
             android:id="@+id/textviewinserirCat"
-            android:layout_width="205dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="65dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:enabled="true"
-            android:hint="Pesquise uma categoria"
+            android:hint="Pesquise uma categoria..."
+            android:cursorVisible="true"
+            android:textCursorDrawable="@null"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewcadCat" />
 
@@ -223,7 +226,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvNcm"
+            android:id="@+id/tvEan"
             android:layout_width="450dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
@@ -240,14 +243,13 @@
             android:id="@+id/textView25"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="70dp"
-            android:layout_marginLeft="70dp"
+            android:layout_marginStart="50dp"
             android:text="NCM"
             android:textAllCaps="false"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/tvNcm"
-            app:layout_constraintTop_toTopOf="@+id/tvNcm" />
+            app:layout_constraintStart_toEndOf="@+id/tvEan"
+            app:layout_constraintTop_toTopOf="@+id/tvEan" />
 
         <Button
             android:id="@+id/clearcateg"
@@ -275,7 +277,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/textView25"
-            app:layout_constraintTop_toTopOf="@+id/tvNcm" />
+            app:layout_constraintTop_toTopOf="@+id/tvEan" />
 
         <TextView
             android:layout_width="150dp"
@@ -301,12 +303,12 @@
 
         <Button
             android:id="@+id/bProd"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="400dp"
-            android:layout_marginLeft="400dp"
+            android:layout_width="150dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="280dp"
             android:background="@color/design_default_color_primary"
             android:text="Produto"
+            android:textColor="@color/colorAccent"
             android:textAllCaps="false"
             android:textSize="18sp"
             android:visibility="visible"
@@ -316,11 +318,10 @@
         <Button
             android:id="@+id/bPesqCat"
             style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="0dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="346dp"
-            android:layout_marginLeft="346dp"
-            android:layout_marginTop="69dp"
+            android:layout_marginStart="350dp"
+            android:layout_marginTop="75dp"
             android:background="@color/selecionado"
             android:onClick="filtrandocateg"
             android:scrollX="1dp"
@@ -331,16 +332,15 @@
 
         <Button
             android:id="@+id/bNovaCat"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="535dp"
-            android:layout_marginLeft="535dp"
+            android:layout_width="200dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="500dp"
             android:layout_marginTop="80dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginRight="50dp"
+            android:layout_marginEnd="60dp"
             android:background="@color/selecionado"
             android:onClick="novacategoria"
             android:text="+ Nova Categoria"
+            android:textColor="@color/colorAccent"
             android:textAllCaps="false"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -365,9 +365,11 @@
             android:layout_width="205dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="65dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:enabled="true"
             android:hint="Pesquise um produto..."
+            android:cursorVisible="true"
+            android:textCursorDrawable="@null"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewcadProd" />
 
@@ -405,12 +407,12 @@
 
         <Button
             android:id="@+id/bCategoria"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="400dp"
-            android:layout_marginLeft="400dp"
+            android:layout_width="150dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="280dp"
             android:background="@color/design_default_color_primary"
             android:text="Categoria"
+            android:textColor="@color/colorAccent"
             android:textAllCaps="false"
             android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/bPesqProd"
@@ -487,11 +489,10 @@
         <Button
             android:id="@+id/bPesqProd"
             style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="0dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="346dp"
-            android:layout_marginLeft="346dp"
-            android:layout_marginTop="69dp"
+            android:layout_marginStart="350dp"
+            android:layout_marginTop="75dp"
             android:background="@color/selecionado"
             android:onClick="filtrandoprod"
             android:scrollX="1dp"
@@ -502,16 +503,15 @@
 
         <Button
             android:id="@+id/bNovoProd"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="535dp"
-            android:layout_marginLeft="535dp"
+            android:layout_width="200dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="500dp"
             android:layout_marginTop="80dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginRight="50dp"
+            android:layout_marginEnd="60dp"
             android:background="@color/selecionado"
             android:onClick="novoproduto"
             android:text="+ Novo Produto"
+            android:textColor="@color/colorAccent"
             android:textAllCaps="false"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -530,19 +530,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/BenviarEmail">
 
-        <AnalogClock
-            android:id="@+id/TCclosck"
-            android:layout_width="713dp"
-            android:layout_height="400dp"
-            android:layout_marginStart="150dp"
-            android:layout_marginTop="400dp"
-            android:minWidth="300dip"
-            android:minHeight="300dip"
-            android:scaleX="3"
-            android:scaleY="3"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <android.support.constraint.ConstraintLayout
             android:id="@+id/StatusSistema"
             android:layout_width="1191dp"
@@ -553,115 +540,196 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ProgressBar
-                android:id="@+id/progressBar"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="300dp"
-                android:layout_height="100dp"
-                android:indeterminate="false"
-                android:max="100"
-                android:minWidth="200dp"
-                android:minHeight="50dp"
-                android:progress="0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnConsultarStatusOper"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints" />
-
             <Button
-                android:id="@+id/btninserirncm"
+                android:id="@+id/btnConsultarStatusOper"
                 android:layout_width="280dp"
                 android:layout_height="100dp"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="8dp"
-                android:background="#4169E1"
-                android:onClick="inserNcm"
-                android:text=" inserir ncm"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="75dp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:background="@drawable/gradient"
+                android:onClick="consultarStatusOperacional"
+                android:text="S@T\nConsultar Status Operacional"
+                android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnFecharAplicacao" />
+                app:layout_constraintTop_toTopOf="parent" />
             <Button
-                android:id="@+id/btnvoltarmenuant"
+                android:id="@+id/btnExtrairLogs"
                 android:layout_width="280dp"
                 android:layout_height="100dp"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="8dp"
-                android:background="#4169E1"
-                android:onClick="ConfigMenuAnterior"
-                android:text=" ao menu anterior"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="75dp"
+                android:background="@drawable/gradient"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:onClick="extrairLogs"
+                android:text="S@T\nExtrair Logs"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btninserirncm" />
-
+                app:layout_constraintTop_toBottomOf="@+id/btnConsultarStatusOper" />
             <Button
                 android:id="@+id/btnFecharAplicacao"
                 android:layout_width="280dp"
                 android:layout_height="100dp"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="8dp"
-                android:background="#4169E1"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="75dp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="20sp"
                 android:onClick="FecharAplicacao"
+                android:background="@drawable/gradient"
                 android:text="Fechar Aplicação"
                 android:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btnExtrairLogs" />
 
             <Button
-                android:id="@+id/btnExtrairLogs"
+                android:id="@+id/btninserirncm"
                 android:layout_width="280dp"
                 android:layout_height="100dp"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="75dp"
+                android:background="@drawable/gradient"
+                android:onClick="inserNcm"
+                android:text=" inserir ncm"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@+id/btnConsultarStatusOper"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteY="90dp" />
+
+            <Button
+                android:id="@+id/btnatualizar"
+                android:layout_width="280dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="75dp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:background="@drawable/gradient"
+                android:onClick="appPermissaoImpSweda"
+                android:text="Habilitar Imp Sweda"
+                app:layout_constraintStart_toEndOf="@+id/btnExtrairLogs"
+                app:layout_constraintTop_toBottomOf="@+id/btninserirncm" />
+            <Button
+                android:id="@+id/btnbaixararquivos"
+                android:layout_width="280dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="75dp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:background="@drawable/gradient"
+                android:onClick="downloadArqConfig"
+                android:text= "ATUALIZAR ARQUIVOS CONFIG"
+                app:layout_constraintStart_toEndOf="@+id/btnFecharAplicacao"
+                app:layout_constraintTop_toBottomOf="@+id/btnatualizar" />
+            <Button
+                android:id="@+id/btnbaixarbanco"
+                android:layout_width="280dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="75dp"
+                android:background="@drawable/gradient"
+                android:text="BAIXAR BANCO CONVERTIDO"
+                android:onClick="downloadBanco"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:visibility="invisible"
+                app:layout_constraintStart_toEndOf="@+id/btninserirncm"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteY="90dp" />
+
+            <Button
+                android:id="@+id/btndesenv2"
+                android:layout_width="280dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="75dp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:onClick="atualizarApp"
+                android:background="@drawable/gradient"
+                android:text="ATUALIZAR APLICAÇÃO"
+                app:layout_constraintStart_toEndOf="@+id/btnatualizar"
+                app:layout_constraintTop_toBottomOf="@+id/btnbaixarbanco" />
+            <Button
+                android:id="@+id/btndesenv3"
+                android:layout_width="280dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="75dp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:background="@drawable/gradient"
+                android:text= "EM DESENVOLVIMENTO 3"
+                app:layout_constraintStart_toEndOf="@+id/btnbaixararquivos"
+                app:layout_constraintTop_toBottomOf="@+id/btndesenv2" />
+
+            <Button
+                android:id="@+id/btnvoltarmenuant"
+                android:layout_width="280dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="75dp"
                 android:background="#4169E1"
-                android:onClick="extrairLogs"
-                android:text="Extrair Logs"
+                android:onClick="ConfigMenuAnterior"
+                android:text="menu anterior"
+                android:drawableLeft="@drawable/voltar"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnConsultarStatusOper" />
+                app:layout_constraintTop_toBottomOf="@+id/btnbaixararquivos" />
+
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/layconsultarstatusoper"
-                android:layout_width="700dp"
-                android:layout_height="700dp"
+                android:layout_width="580dp"
+                android:layout_height="620dp"
                 android:layout_marginStart="78dp"
                 android:layout_marginEnd="50dp"
-                android:background="@drawable/bordasarredondados"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/btnConsultarStatusOper"
                 app:layout_constraintTop_toTopOf="parent">
+
+                <Button
+                    android:id="@+id/btnfecharstatusop"
+                    android:layout_width="150dp"
+                    android:layout_height="70dp"
+                    android:layout_marginEnd="0dp"
+                    android:onClick="fecharConsultaStatusOper"
+                    android:text="FECHAR"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvconsultarstatusoperac"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
                 <TextView
                     android:id="@+id/tvconsultarstatusoperac"
                     android:layout_width="580dp"
                     android:layout_height="600dp"
                     android:layout_marginTop="15dp"
+                    android:paddingLeft="20dp"
                     android:text="TextView"
                     android:textSize="18sp"
+                    android:background="@drawable/bordasarredondados"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <Button
-                    android:id="@+id/btnimprimirstatussat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_marginEnd="50dp"
-                    android:layout_marginBottom="20dp"
-                    android:onClick="imprimirStatusSat"
-                    android:text="Imprimir"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
             </android.support.constraint.ConstraintLayout>
 
-            <Button
-                android:id="@+id/btnConsultarStatusOper"
-                android:layout_width="280dp"
-                android:layout_height="100dp"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="100dp"
-                android:background="#4169E1"
-                android:onClick="consultarStatusOperacional"
-                android:text="Consultar Status Operacional"
-                android:visibility="invisible"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+
         </android.support.constraint.ConstraintLayout>
 
         <EditText
@@ -768,6 +836,7 @@
                 android:layout_marginTop="95dp"
                 android:background="@color/corparametrosemfoco"
                 android:text="CONTADOR"
+                android:textSize="20sp"
                 android:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -780,6 +849,7 @@
                 android:layout_marginTop="2dp"
                 android:background="@color/corparametrosemfoco"
                 android:text="EMITENTE"
+                android:textSize="20sp"
                 android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="@+id/btndiversos"
                 app:layout_constraintTop_toBottomOf="@+id/btndiversos"
@@ -792,6 +862,7 @@
                 android:layout_marginTop="2dp"
                 android:background="@color/corparametrosemfoco"
                 android:text="IMPRESSORA"
+                android:textSize="20sp"
                 android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="@+id/btnemitente"
                 app:layout_constraintTop_toBottomOf="@+id/btnemitente"
@@ -804,7 +875,9 @@
                 android:layout_marginTop="8dp"
                 android:background="@color/corparametrosemfoco"
                 android:onClick="ConfigMenuAnterior"
-                android:text="sair"
+                android:text="MENU ANTERIOR"
+                android:drawableLeft="@drawable/voltar"
+                android:textSize="20sp"
                 android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="@+id/btnsat"
                 app:layout_constraintTop_toBottomOf="@+id/btnsat"
@@ -861,6 +934,7 @@
                 android:layout_marginTop="2dp"
                 android:background="@color/corparametrosemfoco"
                 android:text="SAT"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/btnrevenda"
                 app:layout_constraintTop_toBottomOf="@+id/btnrevenda" />
 
@@ -884,6 +958,7 @@
                 android:layout_marginTop="2dp"
                 android:background="@color/corparametrosemfoco"
                 android:text="DESENVOLVEDORA"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/btncontador"
                 app:layout_constraintTop_toBottomOf="@+id/btncontador" />
 
@@ -894,6 +969,7 @@
                 android:layout_marginTop="2dp"
                 android:background="@color/corparametrosemfoco"
                 android:text="REVENDA"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/btnimpressora"
                 app:layout_constraintTop_toBottomOf="@+id/btnimpressora" />
 
@@ -904,21 +980,37 @@
                 android:layout_marginTop="2dp"
                 android:background="@color/corparametrosemfoco"
                 android:text="DIVERSOS"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/btndesenvolvedora"
                 app:layout_constraintTop_toBottomOf="@+id/btndesenvolvedora" />
 
         </android.support.constraint.ConstraintLayout>
 
+        <TextView
+            android:id="@+id/tvtituloconfigurar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="370dp"
+            android:layout_marginTop="48dp"
+            android:text="Configurações"
+            android:textSize="60sp"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
         <Button
             android:id="@+id/btnstatusistema"
             android:layout_width="357dp"
             android:layout_height="203dp"
-            android:layout_marginStart="56dp"
+            android:layout_marginStart="150dp"
             android:layout_marginTop="168dp"
             android:background="#4169E1"
+            android:onClick="statusSistema"
             android:text="Status do Sistema"
             android:textColor="#FFFFFF"
-            android:textSize="36sp"
+            android:textSize="32sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -927,12 +1019,13 @@
             android:id="@+id/btnparametros"
             android:layout_width="357dp"
             android:layout_height="203dp"
-            android:layout_marginStart="300dp"
+            android:layout_marginStart="150dp"
             android:layout_marginTop="168dp"
             android:background="#4169E1"
+            android:onClick="parametrosSistema"
             android:text="Parametros do Sistema"
             android:textColor="#FFFFFF"
-            android:textSize="36sp"
+            android:textSize="32sp"
             android:textStyle="bold"
             android:visibility="visible"
             app:layout_constraintStart_toEndOf="@+id/btnstatusistema"
@@ -950,25 +1043,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/BenviarEmail">
 
-        <AnalogClock
-            android:id="@+id/AnlClockRelatorio"
-            android:layout_width="713dp"
-            android:layout_height="400dp"
-            android:layout_marginStart="150dp"
-            android:layout_marginTop="400dp"
-            android:minWidth="300dip"
-            android:minHeight="300dip"
-            android:scaleX="3"
-            android:scaleY="3"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:id="@+id/tvfechamentoPor"
-            android:layout_width="144dp"
-            android:layout_height="26dp"
-            android:layout_marginTop="32dp"
+            android:layout_width="180dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="50dp"
             android:text="Fechamento por"
+            android:textStyle="bold"
+            android:textSize="24sp"
             android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@+id/Bfechamento"
             app:layout_constraintStart_toStartOf="@+id/textdtnInicial"
@@ -1001,10 +1083,10 @@
 
         <Button
             android:id="@+id/Bfechamento"
-            android:layout_width="309dp"
-            android:layout_height="132dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="155dp"
+            android:layout_width="357dp"
+            android:layout_height="203dp"
+            android:layout_marginStart="146dp"
+            android:layout_marginTop="168dp"
             android:background="#4169E1"
             android:onClick="relatoriofechamento"
             android:text="Fechamento"
@@ -1012,15 +1094,16 @@
             android:textSize="36sp"
             android:textStyle="bold"
             android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="@+id/textRelatorio"
-            app:layout_constraintTop_toBottomOf="@+id/textRelatorio"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:visibility="visible" />
 
         <Button
             android:id="@+id/Borcamento"
-            android:layout_width="309dp"
-            android:layout_height="132dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="357dp"
+            android:layout_height="203dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="168dp"
             android:background="#4169E1"
             android:onClick="relatorioorcamento"
             android:text="Orçamento"
@@ -1028,26 +1111,11 @@
             android:textSize="36sp"
             android:textStyle="bold"
             android:visibility="invisible"
-            app:layout_constraintStart_toStartOf="@+id/Bfechamento"
-            app:layout_constraintTop_toBottomOf="@+id/Bfechamento"
+            app:layout_constraintStart_toEndOf="@+id/Bfechamento"
+            app:layout_constraintTop_toTopOf="parent"
             tools:onClick="relatorioorcamento"
             tools:visibility="visible" />
 
-        <Button
-            android:id="@+id/Bestatisticas"
-            android:layout_width="309dp"
-            android:layout_height="132dp"
-            android:layout_marginStart="155dp"
-            android:layout_marginTop="4dp"
-            android:background="#4169E1"
-            android:text="Estatísticas"
-            android:textColor="#FFFFFF"
-            android:textSize="36sp"
-            android:textStyle="bold"
-            android:visibility="invisible"
-            app:layout_constraintStart_toStartOf="@+id/textRelatorio"
-            app:layout_constraintTop_toBottomOf="@+id/textRelatorio"
-            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/textRelatorio"
@@ -1081,7 +1149,8 @@
             android:layout_height="19dp"
             android:layout_marginTop="90dp"
             android:text="Data Inicial:"
-            android:textSize="14sp"
+            android:textSize="18sp"
+            android:textStyle="bold"
             android:visibility="invisible"
             app:layout_constraintStart_toStartOf="@+id/editDatainicial"
             app:layout_constraintTop_toBottomOf="@+id/textRelatorio"
@@ -1093,7 +1162,8 @@
             android:layout_height="19dp"
             android:layout_marginTop="90dp"
             android:text="Data Final:"
-            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textSize="18sp"
             android:visibility="invisible"
             app:layout_constraintStart_toStartOf="@+id/editDatafinal"
             app:layout_constraintTop_toBottomOf="@+id/textRelatorio"
@@ -1133,7 +1203,7 @@
         <Button
             android:id="@+id/btngerarorcamento"
             android:layout_width="311dp"
-            android:layout_height="43dp"
+            android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:background="#32CD32"
             android:onClick="gerarRelatorio"
@@ -1147,7 +1217,7 @@
         <Button
             android:id="@+id/btnimprimirorcamento"
             android:layout_width="317dp"
-            android:layout_height="43dp"
+            android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:background="@color/finalizarorc"
             android:onClick="imprimirRelOrc"
@@ -1174,7 +1244,7 @@
             android:layout_marginStart="801dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="165dp"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:visibility="invisible"
             app:layout_constraintEnd_toStartOf="@+id/totalValor"
@@ -1186,29 +1256,33 @@
     <Button
         android:id="@+id/Bvender"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="120dp"
+        android:layout_width="125dp"
         android:layout_height="98dp"
         android:background="@color/selecionado"
         android:onClick="SelcVender"
+        android:drawableTop="@drawable/vender"
         android:text="VENDER"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/Bsair"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="120dp"
+        android:layout_width="125dp"
         android:layout_height="98dp"
         android:layout_marginTop="2dp"
         android:background="@color/semfoco"
         android:onClick="sair"
-        android:text="SAIR"
+        android:drawableTop="@drawable/sair"
+        android:text="sair"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Bsuporte" />
 
     <Button
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="121dp"
+        android:layout_width="125dp"
         android:layout_height="98dp"
         android:layout_marginTop="2dp"
         android:background="@color/semfoco"
@@ -1219,26 +1293,29 @@
     <Button
         android:id="@+id/Bcontador"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="120dp"
+        android:layout_width="125dp"
         android:layout_height="98dp"
         android:layout_marginTop="2dp"
         android:background="@color/semfoco"
         android:onClick="SelcContador"
         android:text="CONTADOR"
+        android:drawableTop="@drawable/emailcontador"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Brelatorios" />
 
     <Button
         android:id="@+id/Bconfigurar"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="120dp"
-
+        android:layout_width="125dp"
+        android:textSize="20sp"
         android:layout_height="98dp"
         android:layout_marginTop="2dp"
         android:background="@color/semfoco"
         android:enabled="true"
         android:onClick="SelcConfigurar"
-        android:text="CONFIGURAÇÕES"
+        android:drawableTop="@drawable/configuracao"
+        android:text="CONFIGURAR"
         app:layout_constraintCircleRadius="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Bcontador" />
@@ -1246,13 +1323,14 @@
     <Button
         android:id="@+id/Bsuporte"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="120dp"
+        android:layout_width="125dp"
 
-
+        android:textSize="20sp"
         android:layout_height="98dp"
         android:layout_marginTop="2dp"
         android:background="@color/semfoco"
         android:onClick="SelcSuporte"
+        android:drawableTop="@drawable/suporte"
         android:text="SUPORTE"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Bconfigurar" />
@@ -1260,11 +1338,13 @@
     <Button
         android:id="@+id/Brelatorios"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="120dp"
+        android:layout_width="125dp"
         android:layout_height="98dp"
         android:layout_marginTop="2dp"
         android:background="@color/semfoco"
         android:enabled="true"
+        android:textSize="20sp"
+        android:drawableTop="@drawable/relatorio"
         android:onClick="SelcRelatorio"
         android:text="RELATORIOS"
         app:layout_constraintStart_toStartOf="parent"
@@ -1274,12 +1354,14 @@
     <Button
         android:id="@+id/Bcadastro"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="120dp"
+        android:layout_width="125dp"
         android:layout_height="98dp"
         android:layout_marginTop="2dp"
         android:background="@color/semfoco"
         android:enabled="true"
+        android:drawableTop="@drawable/cadastro"
         android:onClick="SelcCadastrarProd"
+        android:textSize="20sp"
         android:text="CADASTROS"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Bvender" />
@@ -1298,11 +1380,53 @@
         app:layout_constraintStart_toEndOf="@+id/Bcontador"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:id="@+id/tvsefazalerta"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="90dp"
+            android:ems="10"
+            android:textStyle="bold"
+            android:text="SFZ = ??"
+            app:layout_constraintBottom_toBottomOf="@+id/btsatalerta"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tvlogoinicial"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="550dp"
+            android:background="@drawable/logo"
+            app:layout_constraintBottom_toBottomOf="@+id/tvversion"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/btnimpralerta"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="170dp"
+            android:background="@drawable/impressoraepsonalert"
+            android:ems="10"
+            android:textStyle="bold"
+            android:text=""
+            app:layout_constraintBottom_toBottomOf="@+id/btsatalerta"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tvversion"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="2dp"
+            android:ems="10"
+            android:text="Ver.1.0.0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/TCclock"/>
+
         <TextClock
             android:id="@+id/TCclock"
-            android:layout_width="213dp"
+            android:layout_width="180dp"
             android:layout_height="20dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="140dp"
             android:ems="10"
             android:format24Hour="dd/MM/yyyy HH:mm:ss"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -1312,7 +1436,7 @@
             android:id="@+id/btnClearPesqProd"
             android:layout_width="44dp"
             android:layout_height="37dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="14dp"
             android:layout_marginEnd="8dp"
             android:background="#8B0000"
             android:onClick="limpaPesqProd"
@@ -1325,12 +1449,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/btnalertausb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="184dp"
-            android:background="@color/colorAccent"
-            android:text="       !    "
+            android:id="@+id/btsatalerta"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/satcontrolid"
             android:textAllCaps="true"
             android:textColor="#ffff00"
             android:textSize="36sp"
@@ -1340,16 +1463,17 @@
 
         <EditText
             android:id="@+id/tvPesquisarProd"
-            android:layout_width="394dp"
+            android:layout_width="380dp"
             android:layout_height="50dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="195dp"
-            android:autofillHints=""
-            android:ems="10"
+
             android:enabled="true"
             android:hint="Pesquisar um produto..."
-            android:inputType="textPersonName"
+            android:cursorVisible="true"
+            android:textCursorDrawable="@null"
+
             app:layout_constraintBottom_toTopOf="@+id/GridProdutos"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -1358,7 +1482,7 @@
             android:id="@+id/GridProdutos"
             android:layout_width="680dp"
             android:layout_height="650dp"
-            android:layout_marginTop="72dp"
+            android:layout_marginTop="10dp"
             android:numColumns="4"
             android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
@@ -1368,7 +1492,7 @@
             android:id="@+id/GridCategorias"
             android:layout_width="680dp"
             android:layout_height="650dp"
-            android:layout_marginTop="88dp"
+            android:layout_marginTop="10dp"
             android:numColumns="4"
             android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
@@ -1377,13 +1501,14 @@
 
         <Button
             android:id="@+id/btnBuscar"
-            android:layout_width="0dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:background="@color/colorPrimary"
             android:onClick="buscarProduto"
             android:text="Buscar"
+            android:textColor="#ffffff"
             android:visibility="visible"
             app:layout_constraintStart_toEndOf="@+id/tvPesquisarProd"
             app:layout_constraintTop_toTopOf="parent" />
@@ -1457,6 +1582,19 @@
             app:layout_constraintStart_toStartOf="@+id/tvemail"
             app:layout_constraintTop_toBottomOf="@+id/tvemail" />
 
+        <Button
+            android:id="@+id/btnsuporteremoto"
+            android:layout_width="320dp"
+            android:layout_height="68dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/selecionado"
+            android:onClick="habilitarSuporteRemot"
+            android:text="HABILITAR SUPORTE REMOTO"
+            android:textSize="20sp"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintStart_toStartOf="@+id/tvendereco"
+            app:layout_constraintTop_toBottomOf="@+id/tvendereco" />
+
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
@@ -1473,12 +1611,13 @@
         <Button
             android:id="@+id/btninformcpf"
             style="@android:style/Widget.Button.Toggle"
-            android:layout_width="160dp"
+            android:layout_width="210dp"
             android:layout_height="50dp"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="8dp"
             android:background="@color/selecionado"
-            android:text="Informar CPF"
+            android:text="Informar CPF/CNPJ"
+            android:textSize="17sp"
             android:textColor="@color/colorAccent"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -1489,18 +1628,18 @@
             android:layout_width="470dp"
             android:layout_height="wrap_content"
             android:background="@color/semfoco"
-            android:elevation="4dp"
+            android:elevation="0dp"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             android:visibility="visible"
             app:contentInsetStartWithNavigation="80dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:title="DETALHE DA VENDA"
-            app:titleMargin="120dp"
-            app:titleMarginEnd="100dp"
-            app:titleMarginStart="80dp"
-            app:titleMargins="20dp"
+            app:title="DETALHES DA VENDA"
+            app:titleMargin="1dp"
+            app:titleMarginEnd="1dp"
+            app:titleMarginStart="1dp"
+            app:titleMargins="2dp"
             app:titleTextColor="@color/colorAccent" />
 
         <android.support.v7.widget.Toolbar
@@ -1540,7 +1679,7 @@
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="167dp"
             android:layout_height="60dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="30dp"
             android:layout_marginBottom="8dp"
             android:background="@color/semfoco"
             android:clickable="true"
@@ -1556,8 +1695,8 @@
             android:id="@+id/editText11"
             style="@style/Widget.AppCompat.AutoCompleteTextView"
             android:layout_width="176dp"
-            android:layout_height="49dp"
-            android:layout_marginBottom="108dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="100dp"
             android:ems="10"
             android:focusable="false"
             android:inputType="textPersonName"
@@ -1575,7 +1714,7 @@
             android:ems="10"
             android:focusable="false"
             android:inputType="textPersonName"
-            android:text=" Total dos itens"
+            android:text="Total dos itens"
             android:textColor="@color/colorAccent"
             app:layout_constraintBottom_toTopOf="@+id/editText13"
             app:layout_constraintStart_toStartOf="@+id/editText13" />
@@ -1598,8 +1737,8 @@
             android:id="@+id/tvValorTotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="104dp"
-            android:layout_marginLeft="104dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginLeft="128dp"
             android:layout_marginBottom="116dp"
             android:text="R$ 0.00"
             android:textColor="@color/colorAccent"
@@ -1612,7 +1751,7 @@
             android:id="@+id/tvTotSemDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="0dp"
             android:layout_marginLeft="4dp"
             android:layout_marginTop="16dp"
             android:text="R$ 0.00"
@@ -1626,7 +1765,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="28dp"
             android:text="0"
             android:textColor="@color/colorAccent"
             app:layout_constraintBottom_toTopOf="@+id/tvTotSemDesc"
@@ -1636,9 +1775,9 @@
             android:id="@+id/tvDesconto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="10dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="15dp"
             android:text="R$ 0.00"
             android:textColor="@color/colorAccent"
             app:layout_constraintStart_toEndOf="@+id/editText13"
@@ -1662,7 +1801,7 @@
             android:id="@+id/textView"
             android:layout_width="350dp"
             android:layout_height="108dp"
-            android:layout_marginStart="376dp"
+            android:layout_marginStart="500dp"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="426dp"
             android:text="Módulo do contador"
@@ -1676,7 +1815,7 @@
             android:id="@+id/textView2"
             android:layout_width="374dp"
             android:layout_height="61dp"
-            android:layout_marginTop="55dp"
+            android:layout_marginTop="40dp"
             android:text="@string/enviar_arquivos_fiscais_por_e_mail"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="@+id/textView"
@@ -1684,23 +1823,23 @@
 
         <TextView
             android:id="@+id/textView10"
-            android:layout_width="117dp"
-            android:layout_height="19dp"
-            android:layout_marginStart="350dp"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginStart="450dp"
             android:layout_marginTop="32dp"
             android:text="E-mail do contador"
-            android:textSize="14sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
         <TextView
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
-            android:layout_height="19dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:inputType="date"
             android:text="Data inicial"
-            android:textSize="14sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/tvemailcontador"
             app:layout_constraintTop_toBottomOf="@+id/tvemailcontador" />
 
@@ -1712,7 +1851,7 @@
             android:layout_marginTop="24dp"
             android:inputType="date"
             android:text="Data final"
-            android:textSize="14sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/etdatainicial"
             app:layout_constraintTop_toBottomOf="@+id/tvemailcontador" />
 
@@ -1740,7 +1879,7 @@
 
         <EditText
             android:id="@+id/etdatafinal"
-            android:layout_width="264dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:ems="10"
@@ -1752,13 +1891,16 @@
 
         <Button
             android:id="@+id/btnenvemailcont"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
             android:layout_marginTop="108dp"
-            android:layout_marginEnd="235dp"
+            android:layout_marginEnd="130dp"
             android:background="@color/corparametroselect"
             android:onClick="emailContador"
-            android:text="Enviar arquivos por e-mail"
+            android:text="Enviar XML"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etdatafinal" />
 

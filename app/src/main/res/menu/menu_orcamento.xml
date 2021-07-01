@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/menuorc"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
 
     <item
@@ -13,6 +14,11 @@
     <item
         android:id="@+id/action_venda"
         android:title="Alternar para venda" />
+    <item
+        android:id="@+id/action_venda2"
+        android:title="Alternar para venda"
+        android:icon="@drawable/vendas"
+        app:showAsAction="always" />
     <item
         android:id="@+id/efetivarOrc"
         android:title="Efetivar um orçamento" />
